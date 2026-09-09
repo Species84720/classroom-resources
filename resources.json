@@ -58,5 +58,22 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-balloon-number-pop/"
+  },
+  {
+    "id": "year-2-race-car-number-lines",
+    "title": "Race Car Number Lines",
+    "description": "A printable Year 2 racing-themed worksheet with configurable number lines and missing-number practice, designed to fit on one A4 page.",
+    "year_group": "Year 2",
+    "learning_intent": "Complete and sequence numbers on short number lines.",
+    "subjects": ["Mathematics"],
+    "topics": ["number lines", "counting", "number sequences", "missing numbers"],
+    "themes": ["race cars", "racing"],
+    "labels": ["1 to 30", "printable", "A4", "worksheet", "number line", "missing numbers"],
+    "resource_type": "printable worksheet generator",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-09-10",
+    "updated": "2026-09-10",
+    "url": "resources/year-2-race-car-number-lines/"
   }
 ]
