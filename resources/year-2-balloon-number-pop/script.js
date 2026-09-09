@@ -12,6 +12,8 @@ const shapes = ['shape-round','shape-tall','shape-pear'];
 const cheer = ['🎉','⭐','👏','😊','✨','👍'];
 let popped = 0;
 let audioCtx;
+let balloons = [];
+let resizeTimer;
 
 function rand(min,max){return Math.random()*(max-min)+min}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -52,8 +54,46 @@ function burstAt(x,y){
   }
 }
 
+function getSafePosition(w,h,placed,sw,sh){
+  const padding = 14;
+  let best = null;
+  let bestGap = -Infinity;
+
+  for(let tries=0;tries<450;tries++){
+    const x=rand(padding,Math.max(padding+1,sw-w-padding));
+    const y=rand(padding,Math.max(padding+1,sh-h-110));
+    const rect={x,y,w,h};
+    const overlap=placed.some(p=>
+      rect.x < p.x+p.w+padding && rect.x+rect.w+padding > p.x &&
+      rect.y < p.y+p.h+padding && rect.y+rect.h+padding > p.y
+    );
+    if(!overlap) return {x,y};
+
+    const gap = placed.length ? Math.min(...placed.map(p=>Math.hypot((x+w/2)-(p.x+p.w/2),(y+h/2)-(p.y+p.h/2)))) : 9999;
+    if(gap>bestGap){bestGap=gap;best={x,y};}
+  }
+  return best || {x:padding,y:padding};
+}
+
+function positionExistingBalloons(){
+  const active = balloons.filter(item=>!item.popped && item.wrap.isConnected);
+  if(!active.length) return;
+  const sw=Math.max(360,sky.clientWidth);
+  const sh=Math.max(500,sky.clientHeight);
+  const placed=[];
+
+  active.forEach(item=>{
+    const pos=getSafePosition(item.w,item.h,placed,sw,sh);
+    item.x=pos.x;item.y=pos.y;
+    item.wrap.style.left=`${pos.x}px`;
+    item.wrap.style.top=`${pos.y}px`;
+    placed.push({x:pos.x,y:pos.y,w:item.w,h:item.h});
+  });
+}
+
 function layoutBalloons(){
   sky.replaceChildren();
+  balloons=[];
   popped=0;
   counter.textContent=`0 / ${amount} popped`;
   message.textContent='Ready? Pop any balloon!';
@@ -67,14 +107,8 @@ function layoutBalloons(){
     const scale=rand(.72,1.28);
     const w=Math.round(72*scale);
     const h=Math.round((88+rand(-8,12))*scale);
-    let x=rand(8,Math.max(9,sw-w-8));
-    let y=rand(10,Math.max(11,sh-h-100));
-
-    for(let tries=0;tries<80;tries++){
-      const overlap=placed.some(p=>Math.abs((x+w/2)-(p.x+p.w/2))<(w+p.w)*.38 && Math.abs((y+h/2)-(p.y+p.h/2))<(h+p.h)*.42);
-      if(!overlap) break;
-      x=rand(8,Math.max(9,sw-w-8));y=rand(10,Math.max(11,sh-h-100));
-    }
+    const pos=getSafePosition(w,h,placed,sw,sh);
+    const {x,y}=pos;
     placed.push({x,y,w,h});
 
     const wrap=document.createElement('div');
@@ -83,8 +117,8 @@ function layoutBalloons(){
     wrap.style.setProperty('--w',`${w}px`);wrap.style.setProperty('--h',`${h}px`);
     wrap.style.setProperty('--font',`${Math.max(24,Math.round(w*.4))}px`);
     wrap.style.setProperty('--string',`${Math.round(rand(40,100))}px`);
-    wrap.style.setProperty('--float-speed',`${rand(1.5,3.7).toFixed(2)}s`);
-    wrap.style.animationDelay=`-${rand(0,3).toFixed(2)}s`;
+    wrap.style.setProperty('--float-speed',`${rand(4.8,8.2).toFixed(2)}s`);
+    wrap.style.animationDelay=`-${rand(0,8).toFixed(2)}s`;
 
     const b=document.createElement('button');
     b.className='balloon';b.type='button';b.textContent=num;b.setAttribute('aria-label',`Pop balloon ${num}`);
@@ -92,11 +126,15 @@ function layoutBalloons(){
     const string=document.createElement('span');string.className='string';
     wrap.append(b,string);sky.append(wrap);
 
+    const item={wrap,b,num,index,scale,w,h,x,y,popped:false};
+    balloons.push(item);
+
     b.addEventListener('click',()=>{
-      if(wrap.classList.contains('popped')) return;
+      if(item.popped) return;
       const r=b.getBoundingClientRect(), sr=sky.getBoundingClientRect();
       burstAt(r.left-sr.left+r.width/2,r.top-sr.top+r.height/2);
       playPop(scale,index);
+      item.popped=true;
       wrap.classList.add('popped');
       popped++;
       counter.textContent=`${popped} / ${amount} popped`;
@@ -107,5 +145,8 @@ function layoutBalloons(){
 }
 
 reset.addEventListener('click',layoutBalloons);
-window.addEventListener('resize',()=>{clearTimeout(window.__balloonResize);window.__balloonResize=setTimeout(layoutBalloons,250)});
+window.addEventListener('resize',()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(positionExistingBalloons,180);
+});
 layoutBalloons();
