@@ -15,9 +15,121 @@ const numberRewards=[
   {text:"Clever caterpillar!",emoji:"🐛",effect:"wiggle"},
   {text:"Brilliant!",emoji:"🎉",effect:"confetti"},
   {text:"You found it!",emoji:"✨",effect:"sparkle"},
-  {text:"Nice work!",emoji:"🍎",effect:"bounce"},
-  {text:"Fantastic!",emoji:"🌈",effect:"confetti"},
-  {text:"Keep going!",emoji:"🚀",effect:"wiggle"}
+  {text:"Nice work!",emoji:"👍",effect:"bounce"},
+  {text:"Fantastic!",emoji:"🤩",effect:"confetti"},
+  {text:"Keep going!",emoji:"😀",effect:"wiggle"}
+];
+
+const emojiThemes=[
+  ["👍","👍","👍","👍","👏","⭐"],
+  ["😀","😄","😁","😊","😀","😄"],
+  ["🤩","🤩","⭐","✨","🌟","🤩"],
+  ["🎉","🎊","🎉","🥳","🎊","✨"],
+  ["🐛","🐛","🌿","🐛","🍃","🐛"],
+  ["🚀","🚀","⭐","✨","🚀","🌟"],
+  ["🌈","✨","🌈","⭐","🌈","✨"],
+  ["👏","👏","👏","🙌","👏","👍"]
+];
+
+const wigglePatterns=[
+  {
+    name:"side-to-side",
+    row:[
+      {transform:"translateX(0) rotate(0deg)"},
+      {transform:"translateX(-10px) rotate(-1.5deg)"},
+      {transform:"translateX(10px) rotate(1.5deg)"},
+      {transform:"translateX(-7px) rotate(-1deg)"},
+      {transform:"translateX(7px) rotate(1deg)"},
+      {transform:"translateX(0) rotate(0deg)"}
+    ],
+    segment:[
+      {transform:"translateY(0) rotate(0deg)"},
+      {transform:"translateY(-6px) rotate(-3deg)"},
+      {transform:"translateY(4px) rotate(3deg)"},
+      {transform:"translateY(0) rotate(0deg)"}
+    ],
+    duration:620,
+    segmentDuration:430,
+    delay:28
+  },
+  {
+    name:"bouncy-wave",
+    row:[
+      {transform:"translateY(0) scale(1)"},
+      {transform:"translateY(-7px) scale(1.015)"},
+      {transform:"translateY(3px) scale(.995)"},
+      {transform:"translateY(-4px) scale(1.01)"},
+      {transform:"translateY(0) scale(1)"}
+    ],
+    segment:[
+      {transform:"translateY(0) scale(1)"},
+      {transform:"translateY(-13px) scale(1.06)"},
+      {transform:"translateY(3px) scale(.98)"},
+      {transform:"translateY(0) scale(1)"}
+    ],
+    duration:680,
+    segmentDuration:500,
+    delay:42
+  },
+  {
+    name:"twisty",
+    row:[
+      {transform:"rotate(0deg)"},
+      {transform:"rotate(-2deg)"},
+      {transform:"rotate(2deg)"},
+      {transform:"rotate(-1.5deg)"},
+      {transform:"rotate(1deg)"},
+      {transform:"rotate(0deg)"}
+    ],
+    segment:[
+      {transform:"rotate(0deg) translateY(0)"},
+      {transform:"rotate(-8deg) translateY(-5px)"},
+      {transform:"rotate(8deg) translateY(2px)"},
+      {transform:"rotate(0deg) translateY(0)"}
+    ],
+    duration:700,
+    segmentDuration:470,
+    delay:32
+  },
+  {
+    name:"squirm",
+    row:[
+      {transform:"translateX(0) skewX(0deg)"},
+      {transform:"translateX(-6px) skewX(-2deg)"},
+      {transform:"translateX(7px) skewX(2deg)"},
+      {transform:"translateX(-4px) skewX(-1deg)"},
+      {transform:"translateX(4px) skewX(1deg)"},
+      {transform:"translateX(0) skewX(0deg)"}
+    ],
+    segment:[
+      {transform:"translate(0,0) rotate(0deg)"},
+      {transform:"translate(-3px,-8px) rotate(-5deg)"},
+      {transform:"translate(3px,5px) rotate(5deg)"},
+      {transform:"translate(0,0) rotate(0deg)"}
+    ],
+    duration:760,
+    segmentDuration:520,
+    delay:24
+  },
+  {
+    name:"happy-hop",
+    row:[
+      {transform:"translateY(0)"},
+      {transform:"translateY(-12px)"},
+      {transform:"translateY(2px)"},
+      {transform:"translateY(-7px)"},
+      {transform:"translateY(0)"}
+    ],
+    segment:[
+      {transform:"translateY(0) rotate(0deg)"},
+      {transform:"translateY(-16px) rotate(-3deg)"},
+      {transform:"translateY(1px) rotate(2deg)"},
+      {transform:"translateY(0) rotate(0deg)"}
+    ],
+    duration:720,
+    segmentDuration:460,
+    delay:55
+  }
 ];
 
 const rowRewards=[
@@ -143,50 +255,42 @@ function selectCard(card){
 function clearSelection(card){card.classList.remove("selected");selected=null}
 
 function wiggleCaterpillar(row){
+  const pattern=randomItem(wigglePatterns);
   if(!row||typeof row.animate!=="function"){
     row?.classList.remove("correct-wiggle");
     void row?.offsetWidth;
     row?.classList.add("correct-wiggle");
     setTimeout(()=>row?.classList.remove("correct-wiggle"),800);
-    return;
+    return pattern.name;
   }
   row.getAnimations().filter(animation=>animation.id==="correct-wiggle").forEach(animation=>animation.cancel());
-  const animation=row.animate([
-    {transform:"translateX(0) rotate(0deg)"},
-    {transform:"translateX(-8px) rotate(-1.2deg)"},
-    {transform:"translateX(8px) rotate(1.2deg)"},
-    {transform:"translateX(-6px) rotate(-.8deg)"},
-    {transform:"translateX(6px) rotate(.8deg)"},
-    {transform:"translateX(-3px) rotate(-.4deg)"},
-    {transform:"translateX(0) rotate(0deg)"}
-  ],{duration:620,easing:"ease-in-out",iterations:1});
+  const animation=row.animate(pattern.row,{duration:pattern.duration,easing:"ease-in-out",iterations:1});
   animation.id="correct-wiggle";
   [...row.querySelectorAll(".segment")].forEach((segment,index)=>{
-    segment.animate([
-      {transform:"translateY(0) rotate(0deg)"},
-      {transform:"translateY(-7px) rotate(-3deg)"},
-      {transform:"translateY(4px) rotate(3deg)"},
-      {transform:"translateY(0) rotate(0deg)"}
-    ],{duration:430,delay:index*28,easing:"ease-in-out"});
+    segment.getAnimations().forEach(animation=>animation.cancel());
+    segment.animate(pattern.segment,{duration:pattern.segmentDuration,delay:index*pattern.delay,easing:"ease-in-out"});
   });
+  return pattern.name;
 }
 
-function makeRewardBurst(row,reward,large=false){
+function makeRewardBurst(row,reward,large=false,theme=null){
   const burst=document.createElement("div");
   burst.className=`reward-burst ${large?"big":"small"} ${reward.effect}`;
   burst.setAttribute("aria-hidden","true");
-  const count=large?18:7;
+  const emojis=theme||randomItem(emojiThemes);
+  const count=large?28:18;
   for(let i=0;i<count;i++){
     const piece=document.createElement("span");
-    piece.textContent=i===0?reward.emoji:randomItem([reward.emoji,"★","✦","●"]);
+    piece.textContent=randomItem(emojis);
     piece.style.setProperty("--i",i);
-    piece.style.setProperty("--x",`${Math.round((Math.random()-.5)*(large?330:150))}px`);
-    piece.style.setProperty("--y",`${Math.round(-35-Math.random()*(large?130:70))}px`);
-    piece.style.setProperty("--r",`${Math.round((Math.random()-.5)*100)}deg`);
+    piece.style.setProperty("--x",`${Math.round((Math.random()-.5)*(large?430:260))}px`);
+    piece.style.setProperty("--y",`${Math.round(-35-Math.random()*(large?180:120))}px`);
+    piece.style.setProperty("--r",`${Math.round((Math.random()-.5)*180)}deg`);
+    piece.style.fontSize=`${(large?1.3:.95)+Math.random()*(large?.8:.55)}rem`;
     burst.append(piece);
   }
   row.append(burst);
-  setTimeout(()=>burst.remove(),large?1900:900);
+  setTimeout(()=>burst.remove(),large?2100:1150);
 }
 
 function showRewardBubble(row,reward,large=false){
@@ -201,13 +305,14 @@ function showRewardBubble(row,reward,large=false){
 function rewardCorrect(slot,number){
   const row=slot.closest(".caterpillar-row");
   const reward=randomItem(numberRewards);
+  const emojiTheme=randomItem(emojiThemes);
   wiggleCaterpillar(row);
   row.classList.remove(`effect-${reward.effect}`);
   void row.offsetWidth;
   row.classList.add(`effect-${reward.effect}`);
   showRewardBubble(row,reward,false);
-  makeRewardBurst(row,reward,false);
-  setTimeout(()=>row.classList.remove(`effect-${reward.effect}`),760);
+  makeRewardBurst(row,reward,false,emojiTheme);
+  setTimeout(()=>row.classList.remove(`effect-${reward.effect}`),900);
   messageEl.className="message success";
   messageEl.textContent=`${reward.emoji} ${reward.text} Number ${number} is correct.`;
 }
@@ -219,9 +324,9 @@ function celebrateRow(row){
   void row.offsetWidth;
   row.classList.add("celebrate",`row-${reward.effect}`);
   showRewardBubble(row,reward,true);
-  makeRewardBurst(row,reward,true);
+  makeRewardBurst(row,reward,true,randomItem(emojiThemes));
   playRowSound();
-  setTimeout(()=>row.classList.remove("celebrate",`row-${reward.effect}`),1900);
+  setTimeout(()=>row.classList.remove("celebrate",`row-${reward.effect}`),2100);
   return reward;
 }
 
@@ -261,7 +366,7 @@ function updateProgress(){
 
 function resetGame(){
   selected=null;chooseClues();makeCaterpillars();makeCards();updateProgress();messageEl.className="message";
-  messageEl.textContent=`New number clues! ${hintCount} hint${hintCount===1?"":"s"} on each caterpillar. Every correct answer makes it wiggle!`;
+  messageEl.textContent=`New number clues! ${hintCount} hint${hintCount===1?"":"s"} on each caterpillar. Every correct answer brings a surprise!`;
 }
 
 document.querySelector("#reset").addEventListener("click",resetGame);
