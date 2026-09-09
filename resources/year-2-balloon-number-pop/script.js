@@ -56,18 +56,47 @@ function burstAt(x,y){
   }
 }
 
+function candidateScore(x,y,w,h,placed,sw,sh){
+  const cx=x+w/2, cy=y+h/2;
+  let nearest=Infinity;
+  for(const p of placed){
+    const pcx=p.x+p.w/2, pcy=p.y+p.h/2;
+    const dx=(cx-pcx)/((w+p.w)/2);
+    const dy=(cy-pcy)/((h+p.h)/2);
+    nearest=Math.min(nearest,Math.hypot(dx,dy));
+  }
+  if(!placed.length) nearest=99;
+
+  const edgeX=Math.min(x,sw-(x+w))/Math.max(1,w);
+  const edgeY=Math.min(y,sh-90-(y+h))/Math.max(1,h);
+  return nearest + Math.min(edgeX,edgeY)*0.08;
+}
+
 function getSafePosition(w,h,placed,sw,sh){
-  const padding = 10;
-  for(let tries=0;tries<500;tries++){
-    const x=rand(padding,Math.max(padding+1,sw-w-padding));
-    const y=rand(padding,Math.max(padding+1,sh-h-100));
+  const padding = amount > 24 ? 5 : 10;
+  const maxY=Math.max(padding+1,sh-h-90-padding);
+  const maxX=Math.max(padding+1,sw-w-padding);
+  let best={x:padding,y:padding};
+  let bestScore=-Infinity;
+
+  // For dense layouts, sample many candidates and keep the most evenly spread one.
+  for(let tries=0;tries<900;tries++){
+    const x=rand(padding,maxX);
+    const y=rand(padding,maxY);
     const overlap=placed.some(p=>
       x < p.x+p.w+padding && x+w+padding > p.x &&
       y < p.y+p.h+padding && y+h+padding > p.y
     );
-    if(!overlap) return {x,y};
+
+    const score=candidateScore(x,y,w,h,placed,sw,sh);
+    if(!overlap && score>bestScore){
+      bestScore=score;
+      best={x,y};
+    } else if(bestScore===-Infinity && score>candidateScore(best.x,best.y,w,h,placed,sw,sh)) {
+      best={x,y};
+    }
   }
-  return {x:padding,y:padding};
+  return best;
 }
 
 function clampExistingBalloons(){
@@ -157,7 +186,8 @@ function layoutBalloons(){
   lastSkyHeight=sh;
 
   numbers.forEach((num,index)=>{
-    const scale=rand(.86,1.14);
+    const dense=amount>24;
+    const scale=rand(dense?.80:.86,dense?1.03:1.14);
     const shape=shapes[Math.floor(Math.random()*shapes.length)];
     const baseW=shape==='shape-tall'?68:shape==='shape-wide'?80:74;
     const baseH=shape==='shape-tall'?98:shape==='shape-wide'?82:90;
