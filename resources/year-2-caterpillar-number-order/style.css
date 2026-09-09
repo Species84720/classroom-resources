@@ -21,20 +21,25 @@ h1{margin:.2rem 0;font-size:clamp(1.8rem,4vw,3rem);line-height:1.05}
 .head{height:132px;margin-left:0;background:#b7e979;z-index:2}
 .face{position:absolute;top:20px;display:flex;gap:22px}
 .eye{width:10px;height:16px;background:#26324a;border-radius:50%}
-.smile{position:absolute;top:44px;width:30px;height:20px;border-top:3px solid #26324a;border-radius:50%;transform:rotate(18deg)}
+.smile{position:absolute;top:48px;width:24px;height:4px;border-top:3px solid #26324a}
+.complete .head{background:#8ee56f}
+.complete .smile{top:39px;width:34px;height:26px;border:0;border-bottom:4px solid #26324a;border-radius:50%}
+.complete .head::before,.complete .head::after{content:"★";position:absolute;top:15px;color:#ff9f1c;font-size:1.35rem;z-index:4}
+.complete .head::before{left:8px}.complete .head::after{right:8px;bottom:auto;width:auto;height:auto;border:0;transform:none}
 .antenna{position:absolute;top:-19px;width:62px;height:32px;border-left:4px solid #26324a;border-right:4px solid #26324a;border-radius:40%;transform:skew(-15deg)}
 .antenna::before,.antenna::after{content:"";position:absolute;top:-7px;width:14px;height:14px;border:2px solid #26324a;border-radius:50%;background:#ff6b5d}
 .antenna::before{left:-9px}.antenna::after{right:-9px}
 .slot{width:48px;height:48px;border:2px solid #91a058;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:1.25rem;font-weight:900;color:#26324a}
+.slot.fixed{background:#d8f7ce;border-color:#237a38;color:#195c2c;cursor:default;box-shadow:inset 0 0 0 3px #fff}
 .head .slot{margin-top:52px}.slot.over{outline:4px dashed #2475ff;outline-offset:2px}.slot.correct{background:#d8f7ce;border-color:#237a38}.slot.wrong{background:#ffe1df;border-color:#b83328}
 .number-bank{background:#fff;border:4px solid #ff6b5d;border-radius:1rem;padding:1rem;box-shadow:0 8px 0 rgba(38,50,74,.1)}
 .bank-heading{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}.bank-heading h2{margin:.1rem 0 .8rem;color:#e95347;font-size:1.25rem}.bank-heading span{font-size:.8rem;font-weight:800;color:#566078}
 .cards{display:grid;grid-template-columns:repeat(5,1fr);gap:.55rem}
 .card{min-width:48px;min-height:48px;border:2px solid #26324a;border-radius:.7rem;background:#d9f2f1;display:grid;place-items:center;font-size:1.25rem;font-weight:900;cursor:grab;user-select:none;touch-action:none;box-shadow:0 3px 0 #26324a}
-.card:nth-child(even){background:#ffecad}.card.selected{outline:5px solid #2475ff;transform:scale(1.06)}.card.dragging{opacity:.45}.card.placed{display:none}
+.card:nth-child(even){background:#ffecad}.card.selected{outline:5px solid #2475ff;transform:scale(1.06)}.card.dragging{opacity:.45}.card.placed{display:none}.card.returning{animation:shake .28s ease}
 .message{margin:.9rem auto 0;padding:.75rem 1rem;max-width:760px;text-align:center;font-weight:900;border-radius:999px;background:#fff;border:2px solid #d4cfb9}
 .message.success{background:#d8f7ce;border-color:#237a38}.message.try{background:#fff0c5;border-color:#a26700}
 @media(max-width:950px){.play-area{grid-template-columns:1fr}.number-bank{order:-1}.cards{grid-template-columns:repeat(10,1fr)}.caterpillar-row{grid-template-columns:48px repeat(10,minmax(48px,1fr))}.segment{height:96px}.head{height:110px}.slot{width:44px;height:44px}.head .slot{margin-top:46px}}
 @media(max-width:620px){.game-shell{padding:.7rem}header{align-items:flex-start;flex-direction:column}.actions{justify-content:flex-start}.cards{grid-template-columns:repeat(6,1fr)}.caterpillars{overflow-x:auto;padding:0 .25rem .7rem}.caterpillar-row{min-width:700px}.number-bank{padding:.8rem}.segment{height:92px}.range{font-size:.8rem}}
-@media(prefers-reduced-motion:no-preference){button,.card{transition:transform .12s ease}.slot.correct{animation:pop .3s ease}@keyframes pop{50%{transform:scale(1.12)}}}
+@media(prefers-reduced-motion:no-preference){button,.card{transition:transform .12s ease}.slot.correct{animation:pop .3s ease}@keyframes pop{50%{transform:scale(1.12)}}@keyframes shake{25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-4px)}}}
 @media(prefers-reduced-motion:reduce){*{scroll-behaviour:auto!important;animation:none!important;transition:none!important}}

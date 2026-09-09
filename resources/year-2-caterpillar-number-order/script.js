@@ -2,7 +2,9 @@ const cardsEl=document.querySelector("#cards");
 const caterpillarsEl=document.querySelector("#caterpillars");
 const progressEl=document.querySelector("#progress");
 const messageEl=document.querySelector("#message");
+const clues=new Set([1,10,11,20,21,30]);
 let selected=null;
+let audioContext=null;
 
 function shuffle(values){
   const a=[...values];
@@ -10,26 +12,59 @@ function shuffle(values){
   return a;
 }
 
+function tone(frequency,start,duration,type="sine",volume=.08){
+  audioContext ||= new (window.AudioContext||window.webkitAudioContext)();
+  const oscillator=audioContext.createOscillator();
+  const gain=audioContext.createGain();
+  oscillator.type=type;oscillator.frequency.setValueAtTime(frequency,audioContext.currentTime+start);
+  gain.gain.setValueAtTime(volume,audioContext.currentTime+start);
+  gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+start+duration);
+  oscillator.connect(gain).connect(audioContext.destination);
+  oscillator.start(audioContext.currentTime+start);oscillator.stop(audioContext.currentTime+start+duration);
+}
+
+function playStarSound(){
+  tone(659,0,.18);tone(784,.1,.2);tone(1047,.2,.34,"sine",.1);
+}
+
+function playWrongSound(){
+  audioContext ||= new (window.AudioContext||window.webkitAudioContext)();
+  const oscillator=audioContext.createOscillator();
+  const gain=audioContext.createGain();
+  oscillator.type="triangle";
+  oscillator.frequency.setValueAtTime(180,audioContext.currentTime);
+  oscillator.frequency.exponentialRampToValueAtTime(105,audioContext.currentTime+.28);
+  gain.gain.setValueAtTime(.07,audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+.3);
+  oscillator.connect(gain).connect(audioContext.destination);oscillator.start();oscillator.stop(audioContext.currentTime+.3);
+}
+
 function makeCaterpillars(){
   caterpillarsEl.innerHTML="";
   for(let row=0;row<3;row++){
     const wrap=document.createElement("section");
-    wrap.className="caterpillar-row";
+    wrap.className="caterpillar-row";wrap.dataset.row=row;
     wrap.setAttribute("aria-label",`Caterpillar for numbers ${row*10+1} to ${row*10+10}`);
     const label=document.createElement("div");
-    label.className="range"; label.textContent=`${row*10+1}–${row*10+10}`; wrap.append(label);
+    label.className="range";label.textContent=`${row*10+1}–${row*10+10}`;wrap.append(label);
     for(let col=0;col<10;col++){
       const answer=row*10+col+1;
       const segment=document.createElement("div");
       segment.className="segment"+(col===0?" head":"");
-      if(col===0) segment.innerHTML='<span class="antenna" aria-hidden="true"></span><span class="face" aria-hidden="true"><i class="eye"></i><i class="eye"></i></span><span class="smile" aria-hidden="true"></span>';
+      if(col===0)segment.innerHTML='<span class="antenna" aria-hidden="true"></span><span class="face" aria-hidden="true"><i class="eye"></i><i class="eye"></i></span><span class="smile" aria-hidden="true"></span>';
       const slot=document.createElement("button");
-      slot.type="button"; slot.className="slot"; slot.dataset.answer=answer; slot.setAttribute("aria-label",`Empty position ${answer}`);
-      slot.addEventListener("click",()=>selected&&placeCard(selected,slot));
-      slot.addEventListener("dragover",e=>{e.preventDefault();slot.classList.add("over")});
-      slot.addEventListener("dragleave",()=>slot.classList.remove("over"));
-      slot.addEventListener("drop",e=>{e.preventDefault();slot.classList.remove("over");const n=e.dataTransfer.getData("text/plain");placeCard(document.querySelector(`.card[data-number="${n}"]`),slot)});
-      segment.append(slot); wrap.append(segment);
+      slot.type="button";slot.className="slot";slot.dataset.answer=answer;
+      if(clues.has(answer)){
+        slot.textContent=answer;slot.dataset.number=answer;slot.classList.add("fixed","correct");slot.disabled=true;
+        slot.setAttribute("aria-label",`Number clue ${answer}`);
+      }else{
+        slot.setAttribute("aria-label","Empty number position");
+        slot.addEventListener("click",()=>selected&&placeCard(selected,slot));
+        slot.addEventListener("dragover",e=>{e.preventDefault();slot.classList.add("over")});
+        slot.addEventListener("dragleave",()=>slot.classList.remove("over"));
+        slot.addEventListener("drop",e=>{e.preventDefault();slot.classList.remove("over");const n=e.dataTransfer.getData("text/plain");placeCard(document.querySelector(`.card[data-number="${n}"]`),slot)});
+      }
+      segment.append(slot);wrap.append(segment);
     }
     caterpillarsEl.append(wrap);
   }
@@ -37,10 +72,11 @@ function makeCaterpillars(){
 
 function makeCards(){
   cardsEl.innerHTML="";
-  shuffle(Array.from({length:30},(_,i)=>i+1)).forEach(number=>{
+  const numbers=Array.from({length:30},(_,i)=>i+1).filter(number=>!clues.has(number));
+  shuffle(numbers).forEach(number=>{
     const card=document.createElement("button");
-    card.type="button"; card.className="card"; card.draggable=true; card.dataset.number=number; card.textContent=number;
-    card.setAttribute("aria-label",`Number ${number}. Tap, then choose an empty circle.`);
+    card.type="button";card.className="card";card.draggable=true;card.dataset.number=number;card.textContent=number;
+    card.setAttribute("aria-label",`Number ${number}. Tap, then choose its empty circle.`);
     card.addEventListener("click",()=>selectCard(card));
     card.addEventListener("dragstart",e=>{e.dataTransfer.setData("text/plain",number);card.classList.add("dragging")});
     card.addEventListener("dragend",()=>card.classList.remove("dragging"));
@@ -51,40 +87,50 @@ function makeCards(){
 function selectCard(card){
   if(selected===card){card.classList.remove("selected");selected=null;messageEl.textContent="Choose another number card.";return}
   document.querySelectorAll(".card.selected").forEach(c=>c.classList.remove("selected"));
-  selected=card;card.classList.add("selected");messageEl.textContent=`Number ${card.dataset.number} selected. Now choose an empty circle.`;
+  selected=card;card.classList.add("selected");messageEl.textContent=`Number ${card.dataset.number} selected. Now choose its circle.`;
+}
+
+function clearSelection(card){
+  card.classList.remove("selected");selected=null;
 }
 
 function placeCard(card,slot){
-  if(!card||card.classList.contains("placed"))return;
-  const oldNumber=slot.dataset.number;
-  if(oldNumber){const oldCard=document.querySelector(`.card[data-number="${oldNumber}"]`);oldCard.classList.remove("placed")}
-  slot.textContent=card.dataset.number;slot.dataset.number=card.dataset.number;
-  slot.setAttribute("aria-label",`Position ${slot.dataset.answer}, containing number ${card.dataset.number}`);
-  card.classList.add("placed");card.classList.remove("selected");selected=null;
-  slot.classList.remove("correct","wrong");messageEl.className="message";messageEl.textContent="Good placing! Keep counting forwards.";
-  updateProgress();
+  if(!card||card.classList.contains("placed")||slot.disabled)return;
+  const number=Number(card.dataset.number);
+  const answer=Number(slot.dataset.answer);
+  clearSelection(card);
+  if(number!==answer){
+    card.classList.remove("returning");void card.offsetWidth;card.classList.add("returning");
+    setTimeout(()=>card.classList.remove("returning"),320);
+    playWrongSound();messageEl.className="message try";
+    messageEl.textContent=`Not there. Number ${number} has gone back. Try another circle.`;
+    return;
+  }
+  slot.textContent=number;slot.dataset.number=number;slot.disabled=true;slot.classList.add("correct");
+  slot.setAttribute("aria-label",`Correct number ${number}`);
+  card.classList.add("placed");playStarSound();updateProgress();
+  const row=slot.closest(".caterpillar-row");
+  const finished=[...row.querySelectorAll(".slot")].every(item=>item.dataset.number);
+  if(document.querySelectorAll(".card.placed").length===24){
+    row.classList.add("complete");
+    messageEl.className="message success";messageEl.textContent="Fantastic! All three caterpillars are happy!";
+  }else if(finished){
+    row.classList.add("complete");
+    const range=row.querySelector(".range").textContent;
+    messageEl.className="message success";messageEl.textContent=`Brilliant! The ${range} caterpillar is complete and happy!`;
+  }else{
+    messageEl.className="message success";messageEl.textContent=`Great! Number ${number} is in the right place.`;
+  }
 }
 
 function updateProgress(){
   const count=document.querySelectorAll(".card.placed").length;
-  progressEl.textContent=`${count} of 30 placed`;
-}
-
-function checkWork(){
-  const slots=[...document.querySelectorAll(".slot")];
-  const filled=slots.filter(s=>s.dataset.number).length;
-  slots.forEach(s=>{s.classList.remove("correct","wrong");if(s.dataset.number)s.classList.add(Number(s.dataset.number)===Number(s.dataset.answer)?"correct":"wrong")});
-  messageEl.className="message";
-  if(filled<30){messageEl.classList.add("try");messageEl.textContent=`${30-filled} spaces still need a number. Keep going!`;return}
-  const right=slots.filter(s=>s.classList.contains("correct")).length;
-  if(right===30){messageEl.classList.add("success");messageEl.textContent="Fantastic! Every number from 1 to 30 is in order!";return}
-  messageEl.classList.add("try");messageEl.textContent=`${right} are in the right place. Look for the pink circles and try again.`;
+  progressEl.textContent=`${count} of 24 placed`;
 }
 
 function resetGame(){
-  selected=null;makeCaterpillars();makeCards();updateProgress();messageEl.className="message";messageEl.textContent="Start with 1 and count forwards.";
+  selected=null;makeCaterpillars();makeCards();updateProgress();messageEl.className="message";messageEl.textContent="Use the number clues to find each card's place.";
 }
 
-document.querySelector("#check").addEventListener("click",checkWork);
 document.querySelector("#reset").addEventListener("click",resetGame);
 resetGame();
