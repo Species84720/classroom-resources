@@ -15,7 +15,7 @@ h1{margin:.2rem 0;font-size:clamp(1.8rem,4vw,3rem);line-height:1.05}
 .caterpillars{display:grid;gap:1rem}
 .caterpillar-row{display:grid;grid-template-columns:58px repeat(10,minmax(58px,1fr));align-items:center;min-height:142px;position:relative;perspective:900px}
 .range{font-weight:900;color:#e95347;text-align:center;font-size:.9rem}
-.segment{height:118px;margin-left:-12px;border:3px solid #26324a;border-radius:50%;background:#fff39a;display:grid;place-items:center;position:relative}
+.segment{height:118px;margin-left:-12px;border:3px solid #26324a;border-radius:50%;background:#fff39a;display:grid;place-items:center;position:relative;transform-origin:center}
 .segment:nth-child(even){background:#e8f8a2}
 .segment::after{content:"";position:absolute;bottom:-22px;width:34px;height:22px;border-left:4px solid #7b5137;border-right:4px solid #7b5137;transform:skew(-10deg)}
 .head{height:132px;margin-left:0;background:#b7e979;z-index:2}
@@ -26,7 +26,6 @@ h1{margin:.2rem 0;font-size:clamp(1.8rem,4vw,3rem);line-height:1.05}
 .complete .smile{top:39px;width:34px;height:26px;border:0;border-bottom:4px solid #26324a;border-radius:50%}
 .complete .head::before,.complete .head::after{content:"★";position:absolute;top:15px;color:#ff9f1c;font-size:1.35rem;z-index:4}
 .complete .head::before{left:8px}.complete .head::after{right:8px;bottom:auto;width:auto;height:auto;border:0;transform:none}
-.reward-bubble{position:absolute;left:4.5rem;top:-.4rem;z-index:10;padding:.45rem .8rem;border:3px solid #26324a;border-radius:999px;background:#fff;color:#237a38;font-weight:900;box-shadow:0 4px 0 #26324a;pointer-events:none}
 .antenna{position:absolute;top:-19px;width:62px;height:32px;border-left:4px solid #26324a;border-right:4px solid #26324a;border-radius:40%;transform:skew(-15deg)}
 .antenna::before,.antenna::after{content:"";position:absolute;top:-7px;width:14px;height:14px;border:2px solid #26324a;border-radius:50%;background:#ff6b5d}
 .antenna::before{left:-9px}.antenna::after{right:-9px}
@@ -39,33 +38,47 @@ h1{margin:.2rem 0;font-size:clamp(1.8rem,4vw,3rem);line-height:1.05}
 .card{min-width:48px;min-height:48px;border:2px solid #26324a;border-radius:.7rem;background:#d9f2f1;display:grid;place-items:center;font-size:1.25rem;font-weight:900;cursor:grab;user-select:none;touch-action:none;box-shadow:0 3px 0 #26324a}
 .card:nth-child(even){background:#ffecad}.card.selected{outline:5px solid #2475ff;transform:scale(1.06)}.card.dragging{opacity:.45}.card.placed{display:none}.card.returning{animation:shake .28s ease}
 .message{margin:.9rem auto 0;padding:.75rem 1rem;max-width:760px;text-align:center;font-weight:900;border-radius:999px;background:#fff;border:2px solid #d4cfb9}
-.message.success{background:#d8f7ce;border-color:#237a38}.message.try{background:#fff0c5;border-color:#a26700}
-@media(max-width:950px){.play-area{grid-template-columns:1fr}.number-bank{order:-1}.cards{grid-template-columns:repeat(10,1fr)}.caterpillar-row{grid-template-columns:48px repeat(10,minmax(48px,1fr))}.segment{height:96px}.head{height:110px}.slot{width:44px;height:44px}.head .slot{margin-top:46px}}
-@media(max-width:620px){.game-shell{padding:.7rem}header{align-items:flex-start;flex-direction:column}.actions{justify-content:flex-start}.cards{grid-template-columns:repeat(6,1fr)}.caterpillars{overflow-x:auto;padding:0 .25rem .7rem}.caterpillar-row{min-width:700px}.number-bank{padding:.8rem}.segment{height:92px}.range{font-size:.8rem}}
+.message.success{background:#d8f7ce;border-color:#237a38}.message.success.grand{font-size:1.15rem;box-shadow:0 5px 0 rgba(35,122,56,.18)}.message.try{background:#fff0c5;border-color:#a26700}
+.reward-bubble{position:absolute;left:4.5rem;top:-.45rem;z-index:20;padding:.45rem .8rem;border:3px solid #26324a;border-radius:999px;background:#fff;color:#237a38;font-weight:900;box-shadow:0 4px 0 #26324a;pointer-events:none;white-space:nowrap}
+.reward-bubble.big{left:50%;top:-1rem;transform:translateX(-50%);font-size:1.05rem;padding:.6rem 1rem}
+.reward-burst{position:absolute;inset:0;z-index:16;pointer-events:none;overflow:visible}
+.reward-burst span{position:absolute;left:50%;top:42%;font-size:1.1rem;opacity:0}
+.reward-burst.big span{font-size:1.45rem}
+.caterpillar-row.effect-sparkle .slot.correct{box-shadow:0 0 0 5px rgba(255,210,52,.35)}
+.caterpillar-row.effect-bounce .head{filter:saturate(1.15)}
+.caterpillar-row.effect-wiggle .antenna::before,.caterpillar-row.effect-wiggle .antenna::after{background:#ff9f1c}
+.caterpillar-row.effect-confetti .segment:nth-child(3n){filter:saturate(1.35)}
+.caterpillar-row.row-rainbow .segment:nth-child(3n+1){background:#ffd4dc}.caterpillar-row.row-rainbow .segment:nth-child(3n+2){background:#d8f7ce}.caterpillar-row.row-rainbow .segment:nth-child(3n){background:#d9f2ff}
+.caterpillar-row.row-treasure .slot.correct{box-shadow:0 0 0 4px #ffd76a,0 0 18px #ffd76a}
+.caterpillar-row.row-disco .segment:nth-child(odd){filter:hue-rotate(35deg) saturate(1.35)}
+.caterpillar-row.row-party .head{background:#bfe9ff}.caterpillar-row.row-stars .segment{box-shadow:0 0 0 2px rgba(255,210,52,.25)}
+@media(max-width:950px){.play-area{grid-template-columns:1fr}.number-bank{order:-1}.cards{grid-template-columns:repeat(10,1fr)}.caterpillar-row{grid-template-columns:48px repeat(10,minmax(48px,1fr))}.segment{height:96px}.head{height:110px}.slot{width:44px;height:44px}.head .slot{margin-top:46px}.reward-bubble{left:3rem}}
+@media(max-width:620px){.game-shell{padding:.7rem}header{align-items:flex-start;flex-direction:column}.actions{justify-content:flex-start}.cards{grid-template-columns:repeat(6,1fr)}.caterpillars{overflow-x:auto;padding:1rem .25rem .7rem}.caterpillar-row{min-width:700px}.number-bank{padding:.8rem}.segment{height:92px}.range{font-size:.8rem}}
 @media(prefers-reduced-motion:no-preference){
   button,.card{transition:transform .12s ease}
   .slot.correct{animation:pop .3s ease}
-  .caterpillar-row.good-hop .segment{animation:good-hop .52s cubic-bezier(.2,.8,.3,1.25)}
-  .caterpillar-row.celebrate .segment{animation:happy-wave .95s ease-in-out}
-  .caterpillar-row.celebrate .segment:nth-child(2){animation-delay:0s}
-  .caterpillar-row.celebrate .segment:nth-child(3){animation-delay:.05s}
-  .caterpillar-row.celebrate .segment:nth-child(4){animation-delay:.1s}
-  .caterpillar-row.celebrate .segment:nth-child(5){animation-delay:.15s}
-  .caterpillar-row.celebrate .segment:nth-child(6){animation-delay:.2s}
-  .caterpillar-row.celebrate .segment:nth-child(7){animation-delay:.25s}
-  .caterpillar-row.celebrate .segment:nth-child(8){animation-delay:.3s}
-  .caterpillar-row.celebrate .segment:nth-child(9){animation-delay:.35s}
-  .caterpillar-row.celebrate .segment:nth-child(10){animation-delay:.4s}
-  .caterpillar-row.celebrate .segment:nth-child(11){animation-delay:.45s}
-  .caterpillar-row.celebrate .antenna{animation:antenna-wiggle .7s ease-in-out 2}
-  .caterpillar-row.celebrate .eye{animation:happy-blink .32s ease-in-out 2 alternate}
-  .caterpillar-row.celebrate .reward-bubble{animation:bubble-pop 1.15s ease both}
+  .caterpillar-row.correct-wiggle .segment{animation:caterpillar-wiggle .7s ease-in-out}
+  .caterpillar-row.correct-wiggle .segment:nth-child(2){animation-delay:0s}.caterpillar-row.correct-wiggle .segment:nth-child(3){animation-delay:.035s}.caterpillar-row.correct-wiggle .segment:nth-child(4){animation-delay:.07s}.caterpillar-row.correct-wiggle .segment:nth-child(5){animation-delay:.105s}.caterpillar-row.correct-wiggle .segment:nth-child(6){animation-delay:.14s}.caterpillar-row.correct-wiggle .segment:nth-child(7){animation-delay:.175s}.caterpillar-row.correct-wiggle .segment:nth-child(8){animation-delay:.21s}.caterpillar-row.correct-wiggle .segment:nth-child(9){animation-delay:.245s}.caterpillar-row.correct-wiggle .segment:nth-child(10){animation-delay:.28s}.caterpillar-row.correct-wiggle .segment:nth-child(11){animation-delay:.315s}
+  .caterpillar-row.correct-wiggle .antenna{animation:antenna-wiggle .55s ease-in-out 2}
+  .caterpillar-row.celebrate .segment{animation:happy-wave 1.25s ease-in-out}
+  .caterpillar-row.celebrate .segment:nth-child(2){animation-delay:0s}.caterpillar-row.celebrate .segment:nth-child(3){animation-delay:.05s}.caterpillar-row.celebrate .segment:nth-child(4){animation-delay:.1s}.caterpillar-row.celebrate .segment:nth-child(5){animation-delay:.15s}.caterpillar-row.celebrate .segment:nth-child(6){animation-delay:.2s}.caterpillar-row.celebrate .segment:nth-child(7){animation-delay:.25s}.caterpillar-row.celebrate .segment:nth-child(8){animation-delay:.3s}.caterpillar-row.celebrate .segment:nth-child(9){animation-delay:.35s}.caterpillar-row.celebrate .segment:nth-child(10){animation-delay:.4s}.caterpillar-row.celebrate .segment:nth-child(11){animation-delay:.45s}
+  .caterpillar-row.celebrate .antenna{animation:antenna-wiggle .7s ease-in-out 3}
+  .caterpillar-row.celebrate .eye{animation:happy-blink .32s ease-in-out 3 alternate}
+  .reward-bubble.small{animation:bubble-pop .9s ease both}.reward-bubble.big{animation:big-bubble-pop 1.75s ease both}
+  .reward-burst span{animation:reward-fly .85s ease-out both;animation-delay:calc(var(--i)*.025s)}
+  .reward-burst.big span{animation-duration:1.55s;animation-delay:calc(var(--i)*.035s)}
+  .caterpillar-row.row-disco .segment{animation-name:disco-dance}.caterpillar-row.row-party .segment{animation-name:party-hop}.caterpillar-row.row-stars .segment{animation-name:star-spin}
   @keyframes pop{50%{transform:scale(1.12)}}
   @keyframes shake{25%{transform:translateX(-7px)}50%{transform:translateX(7px)}75%{transform:translateX(-4px)}}
-  @keyframes good-hop{0%,100%{transform:translateY(0)}45%{transform:translateY(-10px)}70%{transform:translateY(2px)}}
-  @keyframes happy-wave{0%,100%{transform:translateY(0) rotate(0)}35%{transform:translateY(-20px) rotate(-3deg)}65%{transform:translateY(3px) rotate(2deg)}}
-  @keyframes antenna-wiggle{0%,100%{transform:skew(-15deg) rotate(0)}50%{transform:skew(-15deg) rotate(9deg)}}
+  @keyframes caterpillar-wiggle{0%,100%{transform:translate(0,0) rotate(0)}18%{transform:translateY(-7px) rotate(-4deg)}36%{transform:translateY(4px) rotate(4deg)}54%{transform:translateY(-5px) rotate(-3deg)}72%{transform:translateY(2px) rotate(2deg)}}
+  @keyframes happy-wave{0%,100%{transform:translateY(0) rotate(0)}30%{transform:translateY(-22px) rotate(-4deg)}58%{transform:translateY(5px) rotate(3deg)}78%{transform:translateY(-9px) rotate(-2deg)}}
+  @keyframes disco-dance{0%,100%{transform:translateY(0) rotate(0)}25%{transform:translateY(-18px) rotate(-8deg) scale(1.03)}50%{transform:translateY(4px) rotate(8deg)}75%{transform:translateY(-12px) rotate(-5deg)}}
+  @keyframes party-hop{0%,100%{transform:translateY(0) scale(1)}35%{transform:translateY(-24px) scale(1.06)}70%{transform:translateY(2px) scale(.98)}}
+  @keyframes star-spin{0%,100%{transform:translateY(0) rotate(0)}45%{transform:translateY(-18px) rotate(8deg)}70%{transform:translateY(-4px) rotate(-6deg)}}
+  @keyframes antenna-wiggle{0%,100%{transform:skew(-15deg) rotate(0)}50%{transform:skew(-15deg) rotate(11deg)}}
   @keyframes happy-blink{0%{height:16px;transform:scaleY(1)}100%{height:4px;transform:scaleY(.35)}}
-  @keyframes bubble-pop{0%{opacity:0;transform:scale(.3) rotate(-8deg)}20%,75%{opacity:1;transform:scale(1.08) rotate(2deg)}100%{opacity:0;transform:translateY(-22px) scale(.9)}}
+  @keyframes bubble-pop{0%{opacity:0;transform:scale(.3) rotate(-8deg)}20%,72%{opacity:1;transform:scale(1.06) rotate(2deg)}100%{opacity:0;transform:translateY(-20px) scale(.9)}}
+  @keyframes big-bubble-pop{0%{opacity:0;transform:translateX(-50%) scale(.25) rotate(-5deg)}18%,72%{opacity:1;transform:translateX(-50%) scale(1.12) rotate(1deg)}100%{opacity:0;transform:translateX(-50%) translateY(-28px) scale(.92)}}
+  @keyframes reward-fly{0%{opacity:0;transform:translate(0,0) scale(.35) rotate(0)}18%{opacity:1}100%{opacity:0;transform:translate(var(--x),var(--y)) scale(1.15) rotate(var(--r))}}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behaviour:auto!important;animation:none!important;transition:none!important}}
