@@ -6,11 +6,32 @@ let clues=new Set();
 let selected=null;
 let audioContext=null;
 
+const numberRewards=[
+  {text:"Great spotting!",emoji:"⭐",effect:"sparkle"},
+  {text:"Super counting!",emoji:"🌟",effect:"bounce"},
+  {text:"Clever caterpillar!",emoji:"🐛",effect:"wiggle"},
+  {text:"Brilliant!",emoji:"🎉",effect:"confetti"},
+  {text:"You found it!",emoji:"✨",effect:"sparkle"},
+  {text:"Nice work!",emoji:"🍎",effect:"bounce"},
+  {text:"Fantastic!",emoji:"🌈",effect:"confetti"},
+  {text:"Keep going!",emoji:"🚀",effect:"wiggle"}
+];
+
+const rowRewards=[
+  {text:"Caterpillar disco!",emoji:"🪩",effect:"disco"},
+  {text:"Ten-number treasure!",emoji:"💎",effect:"treasure"},
+  {text:"Rainbow celebration!",emoji:"🌈",effect:"rainbow"},
+  {text:"Star shower!",emoji:"🌟",effect:"stars"},
+  {text:"Party time!",emoji:"🎊",effect:"party"}
+];
+
 function shuffle(values){
   const a=[...values];
   for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
   return a;
 }
+
+function randomItem(values){return values[Math.floor(Math.random()*values.length)]}
 
 function chooseClues(){
   clues=new Set();
@@ -35,9 +56,8 @@ function tone(frequency,start,duration,type="sine",volume=.08){
   oscillator.start(audioContext.currentTime+start);oscillator.stop(audioContext.currentTime+start+duration);
 }
 
-function playStarSound(){
-  tone(659,0,.18);tone(784,.1,.2);tone(1047,.2,.34,"sine",.1);
-}
+function playStarSound(){tone(659,0,.14);tone(784,.08,.16);tone(1047,.16,.28,"sine",.09)}
+function playRowSound(){tone(523,0,.16);tone(659,.12,.18);tone(784,.24,.2);tone(1047,.38,.42,"sine",.1)}
 
 function playWrongSound(){
   audioContext ||= new (window.AudioContext||window.webkitAudioContext)();
@@ -102,22 +122,59 @@ function selectCard(card){
   selected=card;card.classList.add("selected");messageEl.textContent=`Number ${card.dataset.number} selected. Now choose its circle.`;
 }
 
-function clearSelection(card){
-  card.classList.remove("selected");selected=null;
+function clearSelection(card){card.classList.remove("selected");selected=null}
+
+function makeRewardBurst(row,reward,large=false){
+  const burst=document.createElement("div");
+  burst.className=`reward-burst ${large?"big":"small"} ${reward.effect}`;
+  burst.setAttribute("aria-hidden","true");
+  const count=large?18:7;
+  for(let i=0;i<count;i++){
+    const piece=document.createElement("span");
+    piece.textContent=i===0?reward.emoji:randomItem([reward.emoji,"★","✦","●"]);
+    piece.style.setProperty("--i",i);
+    piece.style.setProperty("--x",`${Math.round((Math.random()-.5)*(large?330:150))}px`);
+    piece.style.setProperty("--y",`${Math.round(-35-Math.random()*(large?130:70))}px`);
+    piece.style.setProperty("--r",`${Math.round((Math.random()-.5)*100)}deg`);
+    burst.append(piece);
+  }
+  row.append(burst);
+  setTimeout(()=>burst.remove(),large?1900:900);
 }
 
-function rewardCorrect(slot){
+function showRewardBubble(row,reward,large=false){
+  const bubble=document.createElement("span");
+  bubble.className=`reward-bubble ${large?"big":"small"}`;
+  bubble.textContent=`${reward.emoji} ${reward.text}`;
+  bubble.setAttribute("aria-hidden","true");
+  row.append(bubble);
+  setTimeout(()=>bubble.remove(),large?1800:950);
+}
+
+function rewardCorrect(slot,number){
   const row=slot.closest(".caterpillar-row");
-  row.classList.remove("good-hop");void row.offsetWidth;row.classList.add("good-hop");
-  setTimeout(()=>row.classList.remove("good-hop"),600);
+  const reward=randomItem(numberRewards);
+  row.classList.remove("correct-wiggle",`effect-${reward.effect}`);
+  void row.offsetWidth;
+  row.classList.add("correct-wiggle",`effect-${reward.effect}`);
+  showRewardBubble(row,reward,false);
+  makeRewardBurst(row,reward,false);
+  setTimeout(()=>row.classList.remove("correct-wiggle",`effect-${reward.effect}`),760);
+  messageEl.className="message success";
+  messageEl.textContent=`${reward.emoji} ${reward.text} Number ${number} is correct.`;
 }
 
 function celebrateRow(row){
-  row.classList.remove("celebrate");void row.offsetWidth;row.classList.add("celebrate");
-  const bubble=document.createElement("span");
-  bubble.className="reward-bubble";bubble.textContent="Good job! ★";
-  bubble.setAttribute("aria-hidden","true");row.append(bubble);
-  setTimeout(()=>{row.classList.remove("celebrate");bubble.remove()},1400);
+  const reward=randomItem(rowRewards);
+  row.classList.remove("celebrate");
+  [...rowRewards].forEach(item=>row.classList.remove(`row-${item.effect}`));
+  void row.offsetWidth;
+  row.classList.add("celebrate",`row-${reward.effect}`);
+  showRewardBubble(row,reward,true);
+  makeRewardBurst(row,reward,true);
+  playRowSound();
+  setTimeout(()=>row.classList.remove("celebrate",`row-${reward.effect}`),1900);
+  return reward;
 }
 
 function placeCard(card,slot){
@@ -134,20 +191,18 @@ function placeCard(card,slot){
   }
   slot.textContent=number;slot.dataset.number=number;slot.disabled=true;slot.classList.add("correct");
   slot.setAttribute("aria-label",`Correct number ${number}`);
-  card.classList.add("placed");playStarSound();rewardCorrect(slot);updateProgress();
+  card.classList.add("placed");playStarSound();rewardCorrect(slot,number);updateProgress();
   const row=slot.closest(".caterpillar-row");
   const finished=[...row.querySelectorAll(".slot")].every(item=>item.dataset.number);
   if(document.querySelectorAll(".card.placed").length===24){
     row.classList.add("complete");
-    celebrateRow(row);
-    messageEl.className="message success";messageEl.textContent="Fantastic! All three caterpillars are happy!";
+    const reward=celebrateRow(row);
+    messageEl.className="message success grand";messageEl.textContent=`${reward.emoji} ${reward.text} All three caterpillars are complete!`;
   }else if(finished){
     row.classList.add("complete");
-    celebrateRow(row);
+    const reward=celebrateRow(row);
     const range=row.querySelector(".range").textContent;
-    messageEl.className="message success";messageEl.textContent=`Brilliant! The ${range} caterpillar is complete and happy!`;
-  }else{
-    messageEl.className="message success";messageEl.textContent=`Great! Number ${number} is in the right place.`;
+    messageEl.className="message success";messageEl.textContent=`${reward.emoji} ${reward.text} The ${range} caterpillar is complete!`;
   }
 }
 
@@ -157,7 +212,7 @@ function updateProgress(){
 }
 
 function resetGame(){
-  selected=null;chooseClues();makeCaterpillars();makeCards();updateProgress();messageEl.className="message";messageEl.textContent="New number clues! Use them to find each card's place.";
+  selected=null;chooseClues();makeCaterpillars();makeCards();updateProgress();messageEl.className="message";messageEl.textContent="New number clues! Every correct answer wakes up the caterpillar — see what happens!";
 }
 
 document.querySelector("#reset").addEventListener("click",resetGame);
