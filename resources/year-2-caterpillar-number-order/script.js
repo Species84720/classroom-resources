@@ -2,7 +2,7 @@ const cardsEl=document.querySelector("#cards");
 const caterpillarsEl=document.querySelector("#caterpillars");
 const progressEl=document.querySelector("#progress");
 const messageEl=document.querySelector("#message");
-const clues=new Set([1,10,11,20,21,30]);
+let clues=new Set();
 let selected=null;
 let audioContext=null;
 
@@ -10,6 +10,15 @@ function shuffle(values){
   const a=[...values];
   for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
   return a;
+}
+
+function chooseClues(){
+  clues=new Set();
+  for(let row=0;row<3;row++){
+    const first=row*10+2;
+    const middleNumbers=Array.from({length:8},(_,i)=>first+i);
+    shuffle(middleNumbers).slice(0,2).forEach(number=>clues.add(number));
+  }
 }
 
 function tone(frequency,start,duration,type="sine",volume=.08){
@@ -129,7 +138,7 @@ function updateProgress(){
 }
 
 function resetGame(){
-  selected=null;makeCaterpillars();makeCards();updateProgress();messageEl.className="message";messageEl.textContent="Use the number clues to find each card's place.";
+  selected=null;chooseClues();makeCaterpillars();makeCards();updateProgress();messageEl.className="message";messageEl.textContent="New number clues! Use them to find each card's place.";
 }
 
 document.querySelector("#reset").addEventListener("click",resetGame);
