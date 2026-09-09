@@ -8,7 +8,7 @@ const message = document.querySelector('#message');
 const reset = document.querySelector('#reset');
 
 const colours = ['#ff6b6b','#ffd166','#06d6a0','#4dabf7','#b197fc','#f783ac','#ffa94d','#66d9e8','#94d82d','#ff8787'];
-const shapes = ['shape-round','shape-tall','shape-pear','shape-oval','shape-squash'];
+const shapes = ['shape-classic','shape-round','shape-tall','shape-wide'];
 const cheer = ['🎉','⭐','👏','😊','✨','👍'];
 let popped = 0;
 let audioCtx;
@@ -157,12 +157,12 @@ function layoutBalloons(){
   lastSkyHeight=sh;
 
   numbers.forEach((num,index)=>{
-    const scale=rand(.82,1.18);
+    const scale=rand(.86,1.14);
     const shape=shapes[Math.floor(Math.random()*shapes.length)];
-    const baseW=shape==='shape-tall'?68:shape==='shape-squash'?80:74;
-    const baseH=shape==='shape-tall'?98:shape==='shape-squash'?78:90;
+    const baseW=shape==='shape-tall'?68:shape==='shape-wide'?80:74;
+    const baseH=shape==='shape-tall'?98:shape==='shape-wide'?82:90;
     const w=Math.round(baseW*scale);
-    const h=Math.round((baseH+rand(-4,7))*scale);
+    const h=Math.round((baseH+rand(-3,5))*scale);
     const pos=getSafePosition(w,h,placed,sw,sh);
     const {x,y}=pos;
     placed.push({x,y,w,h});
@@ -181,7 +181,7 @@ function layoutBalloons(){
     wrap.append(b,string);sky.append(wrap);
 
     const angle=rand(0,Math.PI*2);
-    const speed=rand(.04,.12);
+    const speed=rand(.03,.08);
     const item={wrap,b,num,index,scale,w,h,x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,popped:false};
     balloons.push(item);
 
