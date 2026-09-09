@@ -11,5 +11,18 @@
     "resourceType": "interactive/printable classroom resource",
     "language": "English",
     "url": "resources/year-2-dinosaur-adjectives/"
+  },
+  {
+    "title": "Number Spinner",
+    "slug": "year-2-number-spinner",
+    "yearGroup": "Year 2",
+    "subject": "Maths",
+    "topic": "Number and place value",
+    "learningIntention": "I can use numbers to practise place value, comparison and simple calculations.",
+    "theme": "Number spinner",
+    "labels": ["number", "place value", "counting in tens", "addition", "subtraction", "comparison"],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-number-spinner/"
   }
 ]
