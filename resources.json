@@ -24,5 +24,22 @@
     "resourceType": "interactive/printable classroom resource",
     "language": "English",
     "url": "resources/year-2-number-spinner/"
+  },
+  {
+    "id": "year-2-caterpillar-number-order",
+    "title": "Caterpillar Number Order",
+    "description": "A touch-friendly game where children place the numbers 1 to 30 in order across three caterpillars.",
+    "year_group": "Year 2",
+    "learning_intent": "Order, recognise and sequence whole numbers from 1 to 30.",
+    "subjects": ["Mathematics"],
+    "topics": ["number", "number order", "counting", "numeral recognition"],
+    "themes": ["caterpillars"],
+    "labels": ["1 to 30", "drag and drop", "touch activity", "independent practice", "sequencing"],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-09",
+    "updated": "2026-09-09",
+    "url": "resources/year-2-caterpillar-number-order/"
   }
 ]

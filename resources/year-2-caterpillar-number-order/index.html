@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#fff8df">
+  <title>Caterpillar Number Order 1–30 | Year 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header>
+      <div>
+        <p class="eyebrow">YEAR 2 • NUMBER ORDER</p>
+        <h1>Help the caterpillars count to 30!</h1>
+        <p class="instruction">Drag or tap each number into the right empty circle.</p>
+      </div>
+      <div class="actions">
+        <button id="check" class="primary" type="button">Check my work</button>
+        <button id="reset" type="button">Mix again</button>
+      </div>
+    </header>
+
+    <section class="play-area" aria-label="Number ordering game">
+      <div id="caterpillars" class="caterpillars"></div>
+      <aside class="number-bank" aria-labelledby="bank-title">
+        <div class="bank-heading">
+          <h2 id="bank-title">Number cards</h2>
+          <span id="progress" aria-live="polite">0 of 30 placed</span>
+        </div>
+        <div id="cards" class="cards" aria-label="Shuffled number cards"></div>
+      </aside>
+    </section>
+
+    <p id="message" class="message" role="status" aria-live="polite">Start with 1 and count forwards.</p>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
