@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "title": "Dinosaur Adjectives",
+    "slug": "year-2-dinosaur-adjectives",
+    "yearGroup": "Year 2",
+    "subject": "English",
+    "topic": "Adjectives",
+    "learningIntention": "I can identify and use adjectives to describe nouns.",
+    "theme": "Dinosaurs",
+    "labels": ["grammar", "descriptive writing", "nouns", "dinosaurs"],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-dinosaur-adjectives/"
+  }
+]
