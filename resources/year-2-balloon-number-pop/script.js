@@ -8,7 +8,7 @@ const message = document.querySelector('#message');
 const reset = document.querySelector('#reset');
 
 const colours = ['#ff6b6b','#ffd166','#06d6a0','#4dabf7','#b197fc','#f783ac','#ffa94d','#66d9e8','#94d82d','#ff8787'];
-const shapes = ['shape-round','shape-tall','shape-pear','shape-oval','shape-squash','shape-teardrop','shape-moon'];
+const shapes = ['shape-round','shape-tall','shape-pear','shape-oval','shape-squash'];
 const cheer = ['🎉','⭐','👏','😊','✨','👍'];
 let popped = 0;
 let audioCtx;
@@ -157,12 +157,12 @@ function layoutBalloons(){
   lastSkyHeight=sh;
 
   numbers.forEach((num,index)=>{
-    const scale=rand(.72,1.28);
+    const scale=rand(.82,1.18);
     const shape=shapes[Math.floor(Math.random()*shapes.length)];
-    const baseW=shape==='shape-tall'?64:shape==='shape-squash'?84:shape==='shape-moon'?82:72;
-    const baseH=shape==='shape-tall'?104:shape==='shape-squash'?70:shape==='shape-moon'?90:88;
+    const baseW=shape==='shape-tall'?68:shape==='shape-squash'?80:74;
+    const baseH=shape==='shape-tall'?98:shape==='shape-squash'?78:90;
     const w=Math.round(baseW*scale);
-    const h=Math.round((baseH+rand(-6,10))*scale);
+    const h=Math.round((baseH+rand(-4,7))*scale);
     const pos=getSafePosition(w,h,placed,sw,sh);
     const {x,y}=pos;
     placed.push({x,y,w,h});
@@ -172,7 +172,7 @@ function layoutBalloons(){
     wrap.style.left=`${x}px`;wrap.style.top=`${y}px`;
     wrap.style.setProperty('--w',`${w}px`);wrap.style.setProperty('--h',`${h}px`);
     wrap.style.setProperty('--font',`${Math.max(24,Math.round(Math.min(w,h)*.42))}px`);
-    wrap.style.setProperty('--string',`${Math.round(rand(40,100))}px`);
+    wrap.style.setProperty('--string',`${Math.round(rand(40,90))}px`);
 
     const b=document.createElement('button');
     b.className='balloon';b.type='button';b.textContent=num;b.setAttribute('aria-label',`Pop balloon ${num}`);
