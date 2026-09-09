@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Number Spinner – Year 2</title>
+  <style>
+    body{font-family:Arial,sans-serif;max-width:900px;margin:0 auto;padding:24px;line-height:1.5;background:#f4f8ff;color:#1f2a44}
+    h1,h2{color:#274c77}.card{background:white;border:2px solid #bfd4ea;border-radius:14px;padding:18px;margin:16px 0}
+    .spinner-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:center}
+    .spinner{width:260px;height:260px;border-radius:50%;border:8px solid #274c77;margin:auto;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden;transform:rotate(45deg)}
+    .spinner div{display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:bold;border:1px solid #274c77;background:#eaf2fb;transform:rotate(-45deg)}
+    .result{font-size:2.4rem;font-weight:bold;text-align:center;padding:14px;border:3px dashed #274c77;border-radius:12px;background:#fff}
+    .challenge li{margin:10px 0}.line{border-bottom:2px solid #777;display:inline-block;min-width:120px}
+    button{padding:10px 14px;border:0;border-radius:10px;background:#274c77;color:white;font-weight:bold;cursor:pointer;margin-right:8px}
+    @media (max-width:650px){.spinner-wrap{grid-template-columns:1fr}.spinner{width:220px;height:220px}}
+    @media print{button{display:none}body{background:white}.card{break-inside:avoid}.spinner{width:220px;height:220px}}
+  </style>
+</head>
+<body>
+  <div style="font-size:3rem">🎯</div>
+  <h1>Number Spinner</h1>
+  <p><strong>Year 2 Maths</strong> · Learning intention: I can use numbers to practise place value, comparison and simple calculations.</p>
+
+  <section class="card">
+    <h2>1. Spin a number</h2>
+    <div class="spinner-wrap">
+      <div class="spinner" aria-label="Number spinner showing 10, 20, 30 and 40">
+        <div>10</div><div>20</div><div>30</div><div>40</div>
+      </div>
+      <div>
+        <p>Press the button to choose one of the spinner numbers.</p>
+        <div class="result" id="result">?</div>
+        <p style="text-align:center"><button onclick="spin()">Spin</button></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="card challenge">
+    <h2>2. Number detective</h2>
+    <p>Use the number you spin.</p>
+    <ol>
+      <li>What number is 10 more? <span class="line"></span></li>
+      <li>What number is 10 less? <span class="line"></span></li>
+      <li>How many tens are in the number? <span class="line"></span></li>
+      <li>Write the number in words. <span class="line"></span></li>
+      <li>Is it greater than, less than or equal to 30? <span class="line"></span></li>
+    </ol>
+  </section>
+
+  <section class="card challenge">
+    <h2>3. Spin twice</h2>
+    <p>Spin two numbers and use them to answer the questions.</p>
+    <ol>
+      <li>Add the two numbers. <span class="line"></span></li>
+      <li>Find the difference between the two numbers. <span class="line"></span></li>
+      <li>Which number is greater? <span class="line"></span></li>
+      <li>Put the two numbers in ascending order. <span class="line"></span></li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>4. Challenge</h2>
+    <p>Choose one spun number and make as many different number sentences as you can that equal it.</p>
+    <p>Example for 20: 10 + 10 = 20, 30 − 10 = 20, 5 + 15 = 20.</p>
+  </section>
+
+  <section class="card">
+    <h2>5. Success check</h2>
+    <p>✓ I can read numbers in tens.<br>✓ I can find 10 more and 10 less.<br>✓ I can compare two numbers.<br>✓ I can add and subtract simple multiples of 10.</p>
+  </section>
+
+  <button onclick="window.print()">Print this resource</button>
+
+  <script>
+    function spin(){
+      const numbers=[10,20,30,40];
+      const chosen=numbers[Math.floor(Math.random()*numbers.length)];
+      document.getElementById('result').textContent=chosen;
+    }
+  </script>
+</body>
+</html>
