@@ -5,79 +5,110 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Number Spinner – Year 2</title>
   <style>
-    body{font-family:Arial,sans-serif;max-width:900px;margin:0 auto;padding:24px;line-height:1.5;background:#f4f8ff;color:#1f2a44}
-    h1,h2{color:#274c77}.card{background:white;border:2px solid #bfd4ea;border-radius:14px;padding:18px;margin:16px 0}
-    .spinner-wrap{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;align-items:center}
-    .spinner{width:260px;height:260px;border-radius:50%;border:8px solid #274c77;margin:auto;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;overflow:hidden;transform:rotate(45deg)}
-    .spinner div{display:flex;align-items:center;justify-content:center;font-size:2.2rem;font-weight:bold;border:1px solid #274c77;background:#eaf2fb;transform:rotate(-45deg)}
-    .result{font-size:2.4rem;font-weight:bold;text-align:center;padding:14px;border:3px dashed #274c77;border-radius:12px;background:#fff}
-    .challenge li{margin:10px 0}.line{border-bottom:2px solid #777;display:inline-block;min-width:120px}
-    button{padding:10px 14px;border:0;border-radius:10px;background:#274c77;color:white;font-weight:bold;cursor:pointer;margin-right:8px}
-    @media (max-width:650px){.spinner-wrap{grid-template-columns:1fr}.spinner{width:220px;height:220px}}
-    @media print{button{display:none}body{background:white}.card{break-inside:avoid}.spinner{width:220px;height:220px}}
+    *{box-sizing:border-box}body{font-family:Arial,sans-serif;max-width:900px;margin:0 auto;padding:24px;line-height:1.5;background:#f4f8ff;color:#1f2a44}h1,h2{color:#274c77}.card{background:white;border:2px solid #bfd4ea;border-radius:14px;padding:18px;margin:16px 0}.wheel-area{display:grid;grid-template-columns:minmax(280px,1fr) minmax(220px,.75fr);gap:24px;align-items:center}.wheel-box{position:relative;width:min(100%,430px);aspect-ratio:1;margin:auto}.pointer{position:absolute;z-index:3;top:-5px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:18px solid transparent;border-right:18px solid transparent;border-top:38px solid #d62828;filter:drop-shadow(0 2px 1px #777)}#wheel{width:100%;height:100%;display:block;filter:drop-shadow(0 3px 3px #aaa)}.result{font-size:4rem;font-weight:bold;text-align:center;padding:12px;border:3px dashed #274c77;border-radius:14px;background:#fff;min-height:110px}.hint{text-align:center;color:#53657d}.challenge li{margin:10px 0}.line{border-bottom:2px solid #777;display:inline-block;min-width:120px}button{padding:13px 22px;border:0;border-radius:10px;background:#274c77;color:white;font-size:1.05rem;font-weight:bold;cursor:pointer}button:disabled{opacity:.55;cursor:not-allowed}@media(max-width:680px){.wheel-area{grid-template-columns:1fr}.wheel-box{max-width:360px}}@media print{button{display:none}body{background:white}.card{break-inside:avoid}.wheel-box{width:360px}.result{font-size:2.5rem}}
   </style>
 </head>
 <body>
-  <div style="font-size:3rem">🎯</div>
+  <div style="font-size:3rem">🎡</div>
   <h1>Number Spinner</h1>
-  <p><strong>Year 2 Maths</strong> · Learning intention: I can use numbers to practise place value, comparison and simple calculations.</p>
+  <p><strong>Year 2 Maths</strong> · Spin the wheel to choose a random number from 1 to 15.</p>
 
   <section class="card">
-    <h2>1. Spin a number</h2>
-    <div class="spinner-wrap">
-      <div class="spinner" aria-label="Number spinner showing 10, 20, 30 and 40">
-        <div>10</div><div>20</div><div>30</div><div>40</div>
+    <h2>Spin the wheel</h2>
+    <div class="wheel-area">
+      <div class="wheel-box">
+        <div class="pointer" aria-hidden="true"></div>
+        <canvas id="wheel" width="600" height="600" role="img" aria-label="Spinning number wheel with values 1 to 15"></canvas>
       </div>
       <div>
-        <p>Press the button to choose one of the spinner numbers.</p>
-        <div class="result" id="result">?</div>
-        <p style="text-align:center"><button onclick="spin()">Spin</button></p>
+        <p class="hint">Tap <strong>SPIN!</strong> and watch the wheel turn.</p>
+        <div class="result" id="result" aria-live="polite">?</div>
+        <p style="text-align:center"><button id="spinButton" type="button">SPIN!</button></p>
       </div>
     </div>
   </section>
 
   <section class="card challenge">
-    <h2>2. Number detective</h2>
-    <p>Use the number you spin.</p>
+    <h2>Number detective</h2>
+    <p>Use the number the wheel lands on.</p>
     <ol>
-      <li>What number is 10 more? <span class="line"></span></li>
-      <li>What number is 10 less? <span class="line"></span></li>
-      <li>How many tens are in the number? <span class="line"></span></li>
+      <li>What is 1 more? <span class="line"></span></li>
+      <li>What is 1 less? <span class="line"></span></li>
+      <li>Is it odd or even? <span class="line"></span></li>
       <li>Write the number in words. <span class="line"></span></li>
-      <li>Is it greater than, less than or equal to 30? <span class="line"></span></li>
+      <li>How many tens and ones? <span class="line"></span></li>
     </ol>
   </section>
 
   <section class="card challenge">
-    <h2>3. Spin twice</h2>
-    <p>Spin two numbers and use them to answer the questions.</p>
+    <h2>Spin twice</h2>
+    <p>Spin two numbers. Record them, then:</p>
     <ol>
       <li>Add the two numbers. <span class="line"></span></li>
-      <li>Find the difference between the two numbers. <span class="line"></span></li>
+      <li>Find the difference. <span class="line"></span></li>
       <li>Which number is greater? <span class="line"></span></li>
-      <li>Put the two numbers in ascending order. <span class="line"></span></li>
+      <li>Put the numbers in ascending order. <span class="line"></span></li>
     </ol>
   </section>
 
   <section class="card">
-    <h2>4. Challenge</h2>
-    <p>Choose one spun number and make as many different number sentences as you can that equal it.</p>
-    <p>Example for 20: 10 + 10 = 20, 30 − 10 = 20, 5 + 15 = 20.</p>
+    <h2>Challenge</h2>
+    <p>Spin a number and make as many different number sentences as you can that equal it.</p>
+    <p><strong>Example for 12:</strong> 10 + 2 = 12, 6 + 6 = 12, 15 − 3 = 12.</p>
   </section>
 
-  <section class="card">
-    <h2>5. Success check</h2>
-    <p>✓ I can read numbers in tens.<br>✓ I can find 10 more and 10 less.<br>✓ I can compare two numbers.<br>✓ I can add and subtract simple multiples of 10.</p>
-  </section>
-
-  <button onclick="window.print()">Print this resource</button>
+  <button type="button" onclick="window.print()">Print this resource</button>
 
   <script>
-    function spin(){
-      const numbers=[10,20,30,40];
-      const chosen=numbers[Math.floor(Math.random()*numbers.length)];
-      document.getElementById('result').textContent=chosen;
+    const canvas=document.getElementById('wheel');
+    const ctx=canvas.getContext('2d');
+    const button=document.getElementById('spinButton');
+    const result=document.getElementById('result');
+    const count=15;
+    const slice=(Math.PI*2)/count;
+    const colours=['#ffd166','#90e0ef','#ff8fab','#b7e4c7','#cdb4db'];
+    let rotation=0;
+    let spinning=false;
+
+    function drawWheel(angle){
+      const cx=canvas.width/2,cy=canvas.height/2,r=canvas.width/2-10;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      ctx.save();ctx.translate(cx,cy);ctx.rotate(angle);
+      for(let i=0;i<count;i++){
+        const start=-Math.PI/2-slice/2+i*slice;
+        const end=start+slice;
+        ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,r,start,end);ctx.closePath();
+        ctx.fillStyle=colours[i%colours.length];ctx.fill();ctx.lineWidth=3;ctx.strokeStyle='#274c77';ctx.stroke();
+        ctx.save();ctx.rotate(start+slice/2);ctx.translate(r*.72,0);ctx.rotate(Math.PI/2);
+        ctx.fillStyle='#17233b';ctx.font='bold 28px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(String(i+1),0,0);ctx.restore();
+      }
+      ctx.beginPath();ctx.arc(0,0,42,0,Math.PI*2);ctx.fillStyle='#274c77';ctx.fill();ctx.lineWidth=5;ctx.strokeStyle='#fff';ctx.stroke();
+      ctx.restore();
     }
+
+    function spin(){
+      if(spinning)return;
+      spinning=true;button.disabled=true;result.textContent='…';
+      const chosen=Math.floor(Math.random()*count)+1;
+      const targetMod=-(chosen-1)*slice;
+      const currentMod=((rotation%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
+      const targetNorm=((targetMod%(Math.PI*2))+Math.PI*2)%(Math.PI*2);
+      const delta=((targetNorm-currentMod)+Math.PI*2)%(Math.PI*2);
+      const start=rotation;
+      const finish=rotation+(Math.PI*2*5)+delta;
+      const duration=2800;
+      const startTime=performance.now();
+      function frame(now){
+        const t=Math.min(1,(now-startTime)/duration);
+        const eased=1-Math.pow(1-t,4);
+        rotation=start+(finish-start)*eased;
+        drawWheel(rotation);
+        if(t<1){requestAnimationFrame(frame)}else{rotation=finish;result.textContent=chosen;button.disabled=false;spinning=false}
+      }
+      requestAnimationFrame(frame);
+    }
+    button.addEventListener('click',spin);
+    drawWheel(rotation);
   </script>
 </body>
 </html>
