@@ -37,12 +37,29 @@ function shuffle(values){
 function randomItem(values){return values[Math.floor(Math.random()*values.length)]}
 function targetCount(){return 30-clues.size}
 
+function chooseSpacedHints(numbers,count){
+  const results=[];
+  const search=(start,chosen)=>{
+    if(chosen.length===count){results.push([...chosen]);return}
+    for(let i=start;i<numbers.length;i++){
+      const n=numbers[i];
+      if(chosen.length&&n-chosen[chosen.length-1]===1)continue;
+      chosen.push(n);
+      search(i+1,chosen);
+      chosen.pop();
+    }
+  };
+  search(0,[]);
+  if(results.length)return randomItem(results);
+  return shuffle(numbers).slice(0,count);
+}
+
 function chooseClues(){
   clues=new Set();
   for(let row=0;row<3;row++){
     const first=row*10+2;
     const middleNumbers=Array.from({length:8},(_,i)=>first+i);
-    shuffle(middleNumbers).slice(0,hintCount).forEach(number=>clues.add(number));
+    chooseSpacedHints(middleNumbers,hintCount).forEach(number=>clues.add(number));
   }
 }
 
