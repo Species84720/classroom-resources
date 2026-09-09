@@ -1,39 +1,40 @@
 # Number Spinner – Year 2 Teacher Guide
 
 ## Learning intention
-I can use numbers to practise place value, comparison and simple calculations.
+I can recognise, compare and calculate with numbers from 1 to 15.
 
 ## Success criteria
-- I can read and recognise multiples of 10.
-- I can find 10 more and 10 less.
-- I can compare two numbers using greater than, less than and equal to.
-- I can add and subtract simple multiples of 10.
+- I can read and recognise numbers from 1 to 15.
+- I can find 1 more and 1 less.
+- I can identify odd and even numbers.
+- I can compare, order, add and subtract small numbers.
 
 ## Suggested lesson flow
-1. **Starter (5 min):** Count forwards and backwards in tens from 0 to 100.
-2. **Model (5–10 min):** Use the spinner and model how to describe a number using tens, number words, 10 more and 10 less.
-3. **Guided practice (10 min):** Spin a number together and complete the Number Detective questions as a class.
-4. **Independent/pair practice (10–15 min):** Pupils spin twice and compare, order, add and subtract the two numbers.
-5. **Challenge (10 min):** Pupils create several number sentences that equal one spun number.
-6. **Plenary (5 min):** Ask pupils to explain one fact they know about their spun number.
+1. **Starter (5 min):** Count forwards and backwards between 1 and 15.
+2. **Model (5–10 min):** Spin the animated wheel and describe the number it lands on.
+3. **Guided practice (10 min):** Complete the Number Detective questions together.
+4. **Independent/pair practice (10–15 min):** Pupils spin twice, record both values and compare, order, add and find the difference.
+5. **Challenge (10 min):** Pupils create several number sentences that equal a spun number.
+6. **Plenary (5 min):** Spin once more and ask pupils to share facts about the number.
 
 ## Differentiation
 ### Support
-- Use only 10 and 20 at first.
-- Provide a 0–100 number line or hundred square.
-- Let pupils build numbers using base-ten equipment before recording answers.
+- Use a 1–15 number line alongside the wheel.
+- Let pupils use counters or cubes to represent the spun number.
+- Focus first on recognising the number and finding 1 more or 1 less.
 
 ### Core
-- Use all four spinner values: 10, 20, 30 and 40.
-- Ask pupils to explain their comparison using mathematical language.
+- Use all values from 1 to 15.
+- Ask pupils to identify odd/even and tens/ones.
+- Spin twice to compare and calculate.
 
 ### Challenge
-- Ask pupils to double or halve suitable spinner numbers.
-- Extend the spinner orally to 50, 60, 70, 80, 90 and 100.
-- Ask pupils to create missing-number equations, e.g. 40 = 10 + __.
+- Ask pupils to double suitable spun numbers.
+- Ask for two or three different addition/subtraction equations for the same target.
+- Spin three times and order all three numbers.
 
 ## Assessment opportunities
-Listen for accurate use of *tens*, *more*, *less*, *greater than*, *less than* and *equal to*. Check whether pupils understand that finding 10 more or 10 less changes the tens digit by one when working with these multiples of 10.
+Listen for accurate number recognition and mathematical vocabulary such as *more*, *less*, *odd*, *even*, *greater than*, *less than* and *difference*. Check whether pupils can represent teen numbers as one ten and some ones.
 
 ## Notes
-The accompanying `index.html` includes a simple interactive spinner and can also be printed. For a physical spinner activity, display or print the spinner and use a paperclip and pencil as the pointer.
+The accompanying `index.html` contains a visual spinning wheel divided into 15 numbered sections. Pressing **SPIN!** animates the wheel and randomly selects a value from 1 to 15.
