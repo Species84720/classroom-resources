@@ -107,9 +107,9 @@ function clearSelection(card){
 }
 
 function rewardCorrect(slot){
-  const segment=slot.closest(".segment");
-  segment.classList.remove("good-hop");void segment.offsetWidth;segment.classList.add("good-hop");
-  setTimeout(()=>segment.classList.remove("good-hop"),650);
+  const row=slot.closest(".caterpillar-row");
+  row.classList.remove("good-hop");void row.offsetWidth;row.classList.add("good-hop");
+  setTimeout(()=>row.classList.remove("good-hop"),600);
 }
 
 function celebrateRow(row){
