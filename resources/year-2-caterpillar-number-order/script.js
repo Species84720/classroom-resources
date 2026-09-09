@@ -6,6 +6,9 @@ let clues=new Set();
 let selected=null;
 let audioContext=null;
 
+const requestedHintCount=Number.parseInt(new URLSearchParams(window.location.search).get("hint")||"3",10);
+const hintCount=Number.isFinite(requestedHintCount)?Math.min(8,Math.max(1,requestedHintCount)):3;
+
 const numberRewards=[
   {text:"Great spotting!",emoji:"⭐",effect:"sparkle"},
   {text:"Super counting!",emoji:"🌟",effect:"bounce"},
@@ -32,16 +35,14 @@ function shuffle(values){
 }
 
 function randomItem(values){return values[Math.floor(Math.random()*values.length)]}
+function targetCount(){return 30-clues.size}
 
 function chooseClues(){
   clues=new Set();
   for(let row=0;row<3;row++){
     const first=row*10+2;
     const middleNumbers=Array.from({length:8},(_,i)=>first+i);
-    const firstClue=shuffle(middleNumbers)[0];
-    const separated=middleNumbers.filter(number=>Math.abs(number-firstClue)>1);
-    const secondClue=shuffle(separated)[0];
-    clues.add(firstClue);clues.add(secondClue);
+    shuffle(middleNumbers).slice(0,hintCount).forEach(number=>clues.add(number));
   }
 }
 
@@ -124,6 +125,35 @@ function selectCard(card){
 
 function clearSelection(card){card.classList.remove("selected");selected=null}
 
+function wiggleCaterpillar(row){
+  if(!row||typeof row.animate!=="function"){
+    row?.classList.remove("correct-wiggle");
+    void row?.offsetWidth;
+    row?.classList.add("correct-wiggle");
+    setTimeout(()=>row?.classList.remove("correct-wiggle"),800);
+    return;
+  }
+  row.getAnimations().filter(animation=>animation.id==="correct-wiggle").forEach(animation=>animation.cancel());
+  const animation=row.animate([
+    {transform:"translateX(0) rotate(0deg)"},
+    {transform:"translateX(-8px) rotate(-1.2deg)"},
+    {transform:"translateX(8px) rotate(1.2deg)"},
+    {transform:"translateX(-6px) rotate(-.8deg)"},
+    {transform:"translateX(6px) rotate(.8deg)"},
+    {transform:"translateX(-3px) rotate(-.4deg)"},
+    {transform:"translateX(0) rotate(0deg)"}
+  ],{duration:620,easing:"ease-in-out",iterations:1});
+  animation.id="correct-wiggle";
+  [...row.querySelectorAll(".segment")].forEach((segment,index)=>{
+    segment.animate([
+      {transform:"translateY(0) rotate(0deg)"},
+      {transform:"translateY(-7px) rotate(-3deg)"},
+      {transform:"translateY(4px) rotate(3deg)"},
+      {transform:"translateY(0) rotate(0deg)"}
+    ],{duration:430,delay:index*28,easing:"ease-in-out"});
+  });
+}
+
 function makeRewardBurst(row,reward,large=false){
   const burst=document.createElement("div");
   burst.className=`reward-burst ${large?"big":"small"} ${reward.effect}`;
@@ -154,12 +184,13 @@ function showRewardBubble(row,reward,large=false){
 function rewardCorrect(slot,number){
   const row=slot.closest(".caterpillar-row");
   const reward=randomItem(numberRewards);
-  row.classList.remove("correct-wiggle",`effect-${reward.effect}`);
+  wiggleCaterpillar(row);
+  row.classList.remove(`effect-${reward.effect}`);
   void row.offsetWidth;
-  row.classList.add("correct-wiggle",`effect-${reward.effect}`);
+  row.classList.add(`effect-${reward.effect}`);
   showRewardBubble(row,reward,false);
   makeRewardBurst(row,reward,false);
-  setTimeout(()=>row.classList.remove("correct-wiggle",`effect-${reward.effect}`),760);
+  setTimeout(()=>row.classList.remove(`effect-${reward.effect}`),760);
   messageEl.className="message success";
   messageEl.textContent=`${reward.emoji} ${reward.text} Number ${number} is correct.`;
 }
@@ -167,7 +198,7 @@ function rewardCorrect(slot,number){
 function celebrateRow(row){
   const reward=randomItem(rowRewards);
   row.classList.remove("celebrate");
-  [...rowRewards].forEach(item=>row.classList.remove(`row-${item.effect}`));
+  rowRewards.forEach(item=>row.classList.remove(`row-${item.effect}`));
   void row.offsetWidth;
   row.classList.add("celebrate",`row-${reward.effect}`);
   showRewardBubble(row,reward,true);
@@ -194,7 +225,7 @@ function placeCard(card,slot){
   card.classList.add("placed");playStarSound();rewardCorrect(slot,number);updateProgress();
   const row=slot.closest(".caterpillar-row");
   const finished=[...row.querySelectorAll(".slot")].every(item=>item.dataset.number);
-  if(document.querySelectorAll(".card.placed").length===24){
+  if(document.querySelectorAll(".card.placed").length===targetCount()){
     row.classList.add("complete");
     const reward=celebrateRow(row);
     messageEl.className="message success grand";messageEl.textContent=`${reward.emoji} ${reward.text} All three caterpillars are complete!`;
@@ -208,11 +239,12 @@ function placeCard(card,slot){
 
 function updateProgress(){
   const count=document.querySelectorAll(".card.placed").length;
-  progressEl.textContent=`${count} of 24 placed`;
+  progressEl.textContent=`${count} of ${targetCount()} placed`;
 }
 
 function resetGame(){
-  selected=null;chooseClues();makeCaterpillars();makeCards();updateProgress();messageEl.className="message";messageEl.textContent="New number clues! Every correct answer wakes up the caterpillar — see what happens!";
+  selected=null;chooseClues();makeCaterpillars();makeCards();updateProgress();messageEl.className="message";
+  messageEl.textContent=`New number clues! ${hintCount} hint${hintCount===1?"":"s"} on each caterpillar. Every correct answer makes it wiggle!`;
 }
 
 document.querySelector("#reset").addEventListener("click",resetGame);
