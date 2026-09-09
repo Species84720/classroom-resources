@@ -8,13 +8,14 @@ const message = document.querySelector('#message');
 const reset = document.querySelector('#reset');
 
 const colours = ['#ff6b6b','#ffd166','#06d6a0','#4dabf7','#b197fc','#f783ac','#ffa94d','#66d9e8','#94d82d','#ff8787'];
-const shapes = ['shape-round','shape-tall','shape-pear'];
+const shapes = ['shape-round','shape-tall','shape-pear','shape-oval','shape-squash','shape-teardrop','shape-moon'];
 const cheer = ['🎉','⭐','👏','😊','✨','👍'];
 let popped = 0;
 let audioCtx;
 let balloons = [];
-let resizeTimer;
 let lastFrame = performance.now();
+let lastSkyWidth = 0;
+let lastSkyHeight = 0;
 
 function rand(min,max){return Math.random()*(max-min)+min}
 function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
@@ -69,18 +70,18 @@ function getSafePosition(w,h,placed,sw,sh){
   return {x:padding,y:padding};
 }
 
-function positionExistingBalloons(){
-  const active = balloons.filter(item=>!item.popped && item.wrap.isConnected);
-  const sw=Math.max(360,sky.clientWidth);
-  const sh=Math.max(500,sky.clientHeight);
-  const placed=[];
-  active.forEach(item=>{
-    const pos=getSafePosition(item.w,item.h,placed,sw,sh);
-    item.x=pos.x;item.y=pos.y;
+function clampExistingBalloons(){
+  const sw=Math.max(320,sky.clientWidth);
+  const sh=Math.max(420,sky.clientHeight);
+  const maxY=Math.max(4,sh-90);
+
+  for(const item of balloons){
+    if(item.popped || !item.wrap.isConnected) continue;
+    item.x=Math.min(Math.max(4,item.x),Math.max(4,sw-item.w-4));
+    item.y=Math.min(Math.max(4,item.y),Math.max(4,maxY-item.h));
     item.wrap.style.left=`${item.x}px`;
     item.wrap.style.top=`${item.y}px`;
-    placed.push({x:item.x,y:item.y,w:item.w,h:item.h});
-  });
+  }
 }
 
 function resolveCollisions(active){
@@ -112,9 +113,15 @@ function resolveCollisions(active){
 function animate(now){
   const dt=Math.min(2,(now-lastFrame)/16.67);
   lastFrame=now;
-  const sw=Math.max(360,sky.clientWidth);
-  const sh=Math.max(500,sky.clientHeight);
+  const sw=Math.max(320,sky.clientWidth);
+  const sh=Math.max(420,sky.clientHeight);
   const active=balloons.filter(item=>!item.popped && item.wrap.isConnected);
+
+  if(Math.abs(sw-lastSkyWidth)>24 || Math.abs(sh-lastSkyHeight)>120){
+    lastSkyWidth=sw;
+    lastSkyHeight=sh;
+    clampExistingBalloons();
+  }
 
   for(const item of active){
     item.x += item.vx*dt;
@@ -144,22 +151,27 @@ function layoutBalloons(){
 
   const numbers=shuffle(Array.from({length:amount},(_,i)=>i+1));
   const placed=[];
-  const sw=Math.max(360,sky.clientWidth);
-  const sh=Math.max(500,sky.clientHeight);
+  const sw=Math.max(320,sky.clientWidth);
+  const sh=Math.max(420,sky.clientHeight);
+  lastSkyWidth=sw;
+  lastSkyHeight=sh;
 
   numbers.forEach((num,index)=>{
     const scale=rand(.72,1.28);
-    const w=Math.round(72*scale);
-    const h=Math.round((88+rand(-8,12))*scale);
+    const shape=shapes[Math.floor(Math.random()*shapes.length)];
+    const baseW=shape==='shape-tall'?64:shape==='shape-squash'?84:shape==='shape-moon'?82:72;
+    const baseH=shape==='shape-tall'?104:shape==='shape-squash'?70:shape==='shape-moon'?90:88;
+    const w=Math.round(baseW*scale);
+    const h=Math.round((baseH+rand(-6,10))*scale);
     const pos=getSafePosition(w,h,placed,sw,sh);
     const {x,y}=pos;
     placed.push({x,y,w,h});
 
     const wrap=document.createElement('div');
-    wrap.className=`balloon-wrap ${shapes[Math.floor(Math.random()*shapes.length)]}`;
+    wrap.className=`balloon-wrap ${shape}`;
     wrap.style.left=`${x}px`;wrap.style.top=`${y}px`;
     wrap.style.setProperty('--w',`${w}px`);wrap.style.setProperty('--h',`${h}px`);
-    wrap.style.setProperty('--font',`${Math.max(24,Math.round(w*.4))}px`);
+    wrap.style.setProperty('--font',`${Math.max(24,Math.round(Math.min(w,h)*.42))}px`);
     wrap.style.setProperty('--string',`${Math.round(rand(40,100))}px`);
 
     const b=document.createElement('button');
@@ -169,7 +181,7 @@ function layoutBalloons(){
     wrap.append(b,string);sky.append(wrap);
 
     const angle=rand(0,Math.PI*2);
-    const speed=rand(.08,.22);
+    const speed=rand(.04,.12);
     const item={wrap,b,num,index,scale,w,h,x,y,vx:Math.cos(angle)*speed,vy:Math.sin(angle)*speed,popped:false};
     balloons.push(item);
 
@@ -189,9 +201,6 @@ function layoutBalloons(){
 }
 
 reset.addEventListener('click',layoutBalloons);
-window.addEventListener('resize',()=>{
-  clearTimeout(resizeTimer);
-  resizeTimer=setTimeout(positionExistingBalloons,180);
-});
+window.addEventListener('orientationchange',()=>setTimeout(clampExistingBalloons,250));
 layoutBalloons();
 requestAnimationFrame(animate);
