@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Classroom Resource Library</title>
+  <meta name="description" content="Searchable classroom resources for learners in Malta.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Classroom resource library</p>
+      <h1>Find a learning activity</h1>
+      <p>Search by what you are teaching, year group, topic, or a classroom interest such as frogs or cars.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="filters" aria-label="Resource filters">
+      <label>
+        <span>Search</span>
+        <input id="search" type="search" placeholder="e.g. fractions, frogs, phonics" autocomplete="off">
+      </label>
+      <label>
+        <span>Year group</span>
+        <select id="year"><option value="">All year groups</option></select>
+      </label>
+      <label>
+        <span>Subject</span>
+        <select id="subject"><option value="">All subjects</option></select>
+      </label>
+      <button id="clear" type="button">Clear filters</button>
+    </section>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+    <section id="resources" class="grid" aria-label="Resources"></section>
+
+    <noscript>
+      <p>This catalogue needs JavaScript for searching. Individual resource pages may still work without it.</p>
+    </noscript>
+  </main>
+
+  <footer class="wrap footer">
+    <p>Static classroom resources. No trackers. No student accounts.</p>
+  </footer>
+  <script src="app.js" defer></script>
+</body>
+</html>
