@@ -17,7 +17,10 @@ function chooseClues(){
   for(let row=0;row<3;row++){
     const first=row*10+2;
     const middleNumbers=Array.from({length:8},(_,i)=>first+i);
-    shuffle(middleNumbers).slice(0,2).forEach(number=>clues.add(number));
+    const firstClue=shuffle(middleNumbers)[0];
+    const separated=middleNumbers.filter(number=>Math.abs(number-firstClue)>1);
+    const secondClue=shuffle(separated)[0];
+    clues.add(firstClue);clues.add(secondClue);
   }
 }
 
