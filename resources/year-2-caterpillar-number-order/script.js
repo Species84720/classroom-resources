@@ -106,6 +106,20 @@ function clearSelection(card){
   card.classList.remove("selected");selected=null;
 }
 
+function rewardCorrect(slot){
+  const segment=slot.closest(".segment");
+  segment.classList.remove("good-hop");void segment.offsetWidth;segment.classList.add("good-hop");
+  setTimeout(()=>segment.classList.remove("good-hop"),650);
+}
+
+function celebrateRow(row){
+  row.classList.remove("celebrate");void row.offsetWidth;row.classList.add("celebrate");
+  const bubble=document.createElement("span");
+  bubble.className="reward-bubble";bubble.textContent="Good job! ★";
+  bubble.setAttribute("aria-hidden","true");row.append(bubble);
+  setTimeout(()=>{row.classList.remove("celebrate");bubble.remove()},1400);
+}
+
 function placeCard(card,slot){
   if(!card||card.classList.contains("placed")||slot.disabled)return;
   const number=Number(card.dataset.number);
@@ -120,14 +134,16 @@ function placeCard(card,slot){
   }
   slot.textContent=number;slot.dataset.number=number;slot.disabled=true;slot.classList.add("correct");
   slot.setAttribute("aria-label",`Correct number ${number}`);
-  card.classList.add("placed");playStarSound();updateProgress();
+  card.classList.add("placed");playStarSound();rewardCorrect(slot);updateProgress();
   const row=slot.closest(".caterpillar-row");
   const finished=[...row.querySelectorAll(".slot")].every(item=>item.dataset.number);
   if(document.querySelectorAll(".card.placed").length===24){
     row.classList.add("complete");
+    celebrateRow(row);
     messageEl.className="message success";messageEl.textContent="Fantastic! All three caterpillars are happy!";
   }else if(finished){
     row.classList.add("complete");
+    celebrateRow(row);
     const range=row.querySelector(".range").textContent;
     messageEl.className="message success";messageEl.textContent=`Brilliant! The ${range} caterpillar is complete and happy!`;
   }else{
