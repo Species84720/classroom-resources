@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#9ed7ff">
+  <title>Bird Crumb Path 30–50 | Year 2 Mathematics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">YEAR 2 • MATHEMATICS • MISSING NUMBERS</p>
+        <h1>Bird Crumb Path 30–50</h1>
+        <p class="instruction">Follow the crumb path from 30 to 50. Some cheeky birds are sitting on the numbers! Ask: <strong>“What number is the bird hiding?”</strong> Then tap the bird to make it fly away and reveal the answer.</p>
+      </div>
+      <div class="controls">
+        <div class="counter" id="counter" aria-live="polite">0 / 8 birds revealed</div>
+        <button id="reset" type="button">New birds</button>
+      </div>
+    </header>
+
+    <section id="scene" class="scene" aria-label="Crumb number path from 30 to 50">
+      <div class="sun" aria-hidden="true"></div>
+      <div class="cloud cloud-one" aria-hidden="true"></div>
+      <div class="cloud cloud-two" aria-hidden="true"></div>
+      <div class="tree tree-left" aria-hidden="true"><span></span></div>
+      <div class="tree tree-right" aria-hidden="true"><span></span></div>
+      <div class="path" id="path"></div>
+    </section>
+
+    <footer class="footer-note">
+      <p id="prompt">Which number is the bird hiding?</p>
+      <p id="message" aria-live="polite">Tap a bird after the class has guessed.</p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
