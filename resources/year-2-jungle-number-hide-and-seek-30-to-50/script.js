@@ -66,11 +66,32 @@ function speak(text){if("speechSynthesis" in window){speechSynthesis.cancel();co
 function renderTargets(){targetListEl.replaceChildren();activeNumbers.forEach(number=>{const badge=document.createElement("span");badge.className="target-chip"+(found.has(number)?" found":"");badge.textContent=number;badge.setAttribute("aria-label",found.has(number)?`Number ${number} found`:`Find number ${number}`);targetListEl.append(badge);});}
 function updateProgress(){progressEl.textContent=`Found ${found.size} of ${activeNumbers.length}`;renderTargets();}
 
-function choose(number,button){if(found.has(number))return;found.add(number);button.classList.add("found");button.disabled=true;const burst=document.createElement("span");burst.className="burst";burst.textContent=pick(["⭐","🎉","👏","🌟","😊","🦜","🐒"]);button.append(burst);setTimeout(()=>burst.remove(),900);messageEl.textContent=`Great spotting! You found ${number}.`;speak(`Great! You found ${number}.`);updateProgress();if(found.size===activeNumbers.length){messageEl.textContent="Amazing! You found every hidden jungle number!";hintBtn.disabled=true;speak("Amazing! You found every hidden jungle number!");jungleEl.classList.add("complete");}}
+function choose(number,button){
+  if(found.has(number))return;
+  found.add(number);
+  const host=button.closest(".scene-item");
+  const hostRect=host.getBoundingClientRect();
+  const jungleRect=jungleEl.getBoundingClientRect();
+  button.classList.add("found");
+  button.disabled=true;
+  button.style.left=(hostRect.left-jungleRect.left+hostRect.width/2)+"px";
+  button.style.top=(hostRect.top-jungleRect.top+hostRect.height/2)+"px";
+  button.style.transform="translate(-50%,-50%) rotate(0deg) scaleX(1)";
+  jungleEl.append(button);
+  const burst=document.createElement("span");
+  burst.className="burst";
+  burst.textContent=pick(["⭐","🎉","👏","🌟","😊","🦜","🐒"]);
+  button.append(burst);
+  setTimeout(()=>burst.remove(),900);
+  messageEl.textContent=`Great spotting! You found ${number}.`;
+  speak(`Great! You found ${number}.`);
+  updateProgress();
+  if(found.size===activeNumbers.length){messageEl.textContent="Amazing! You found every hidden jungle number!";hintBtn.disabled=true;speak("Amazing! You found every hidden jungle number!");jungleEl.classList.add("complete");}
+}
 
 function attachNumber(number,host){const button=document.createElement("button");button.type="button";button.className="number";button.textContent=number;button.setAttribute("aria-label",`Hidden number ${number}`);button.style.left=between(28,72)+"%";button.style.top=between(28,72)+"%";button.style.transform=`translate(-50%,-50%) rotate(${Math.round(between(-14,14))}deg)`;button.addEventListener("click",()=>choose(number,button));host.append(button);buttons.set(number,button);}
 
-function build(){found=new Set();buttons=new Map();placed=[];sceneObjectEl.replaceChildren();numbersEl.replaceChildren();jungleEl.classList.remove("complete");activeNumbers=requested?.length?requested.slice(0,amount):shuffle(allNumbers).slice(0,amount);
+function build(){found=new Set();buttons=new Map();placed=[];sceneObjectEl.replaceChildren();numbersEl.replaceChildren();jungleEl.querySelectorAll(":scope > .number.found").forEach(el=>el.remove());jungleEl.classList.remove("complete");activeNumbers=requested?.length?requested.slice(0,amount):shuffle(allNumbers).slice(0,amount);
   const targetDefs=shuffle([...objectTypes,...builtObjects,...objectTypes]).slice(0,activeNumbers.length);
   shuffle(activeNumbers).forEach((number,index)=>{const host=makeObject(targetDefs[index]||randomDefinition(),true);attachNumber(number,host);});
   const clutterCount=Math.max(12,Math.min(26,activeNumbers.length+10+Math.floor(Math.random()*7)));
