@@ -22,12 +22,6 @@ const restartBtn=document.querySelector("#restart");
 const jungleEl=document.querySelector("#jungle");
 
 const SCENE_CLASSES=["scene-river","scene-waterfall","scene-clearing","scene-dusk","scene-swamp","scene-gorge"];
-const numberSpots=[
-  [10,18],[26,15],[43,20],[61,14],[80,19],
-  [16,35],[35,34],[54,37],[74,33],[89,39],
-  [9,54],[27,55],[47,52],[66,57],[84,54],
-  [16,73],[36,71],[56,75],[76,72],[89,79]
-];
 
 const objectTypes=[
   {name:"palm",emoji:"🌴",size:[82,132],zones:[[3,47,18,38],[80,47,17,38]]},
@@ -62,7 +56,20 @@ let lastScene=null;
 function overlaps(x,y,w,h){return placed.some(p=>Math.abs(p.x-x)<(p.w+w)*0.42&&Math.abs(p.y-y)<(p.h+h)*0.42);}
 function findPlacement(zones,w,h){for(let tries=0;tries<80;tries++){const z=pick(zones);const x=between(z[0],z[0]+z[2]);const y=between(z[1],z[1]+z[3]);if(!overlaps(x,y,w/10,h/10))return{x,y};}return{x:between(8,92),y:between(25,82)};}
 
-function makeObject(def){const size=Math.round(between(def.size[0],def.size[1]));const pos=findPlacement(def.zones,size,size);const wrap=document.createElement("div");wrap.className=`scene-item ${def.className||"emoji-prop"} ${def.name}`;wrap.style.left=pos.x+"%";wrap.style.top=pos.y+"%";wrap.style.fontSize=size+"px";wrap.style.transform=`translate(-50%,-50%) rotate(${Math.round(between(-11,11))}deg) scaleX(${Math.random()>.5?1:-1})`;if(def.emoji)wrap.textContent=def.emoji;else wrap.innerHTML=def.html||"";sceneObjectEl.append(wrap);placed.push({x:pos.x,y:pos.y,w:size/10,h:size/10});}
+function makeObject(def,forNumber=false){
+  const size=Math.round(between(def.size[0],def.size[1]));
+  const pos=findPlacement(def.zones,size,size);
+  const wrap=document.createElement("div");
+  wrap.className=`scene-item ${def.className||"emoji-prop"} ${def.name}${forNumber?" number-companion":""}`;
+  wrap.style.left=pos.x+"%";
+  wrap.style.top=pos.y+"%";
+  wrap.style.fontSize=size+"px";
+  wrap.style.transform=`translate(-50%,-50%) rotate(${Math.round(between(-11,11))}deg) scaleX(${Math.random()>.5?1:-1})`;
+  if(def.emoji)wrap.textContent=def.emoji;else wrap.innerHTML=def.html||"";
+  sceneObjectEl.append(wrap);
+  placed.push({x:pos.x,y:pos.y,w:size/10,h:size/10});
+  return {wrap,pos,size,def};
+}
 function randomDefinition(){return Math.random()<.72?pick(objectTypes):pick(builtObjects);}
 
 function applyRandomScene(){
@@ -88,18 +95,31 @@ function updateProgress(){progressEl.textContent=`Found ${found.size} of ${activ
 
 function choose(number,button){if(found.has(number))return;found.add(number);button.classList.add("found");button.disabled=true;const burst=document.createElement("span");burst.className="burst";burst.textContent=pick(["⭐","🎉","👏","🌟","😊"]);button.append(burst);setTimeout(()=>burst.remove(),900);messageEl.textContent=`Great spotting! You found ${number}.`;speak(`Great! You found ${number}.`);updateProgress();if(found.size===activeNumbers.length){messageEl.textContent="Amazing! You found every jungle number!";hintBtn.disabled=true;speak("Amazing! You found every jungle number!");jungleEl.classList.add("complete");}}
 
+function numberPositionFor(companion){
+  const {pos,size,def}=companion;
+  const offset=Math.min(5.5,Math.max(2.5,size/28));
+  if(def.name==="palm")return{x:pos.x,y:Math.max(10,pos.y-offset*1.5)};
+  if(def.name==="log"||def.name==="rock"||def.name==="stump"||def.name==="lily")return{x:pos.x,y:pos.y};
+  if(def.name==="sign")return{x:pos.x,y:pos.y-1};
+  const side=Math.random()>.5?1:-1;
+  return{x:Math.max(6,Math.min(94,pos.x+side*offset)),y:Math.max(10,Math.min(88,pos.y-offset*.25))};
+}
+
 function placeNumbers(){
   numbersEl.replaceChildren();
-  const spots=shuffle(numberSpots).slice(0,activeNumbers.length);
+  const targetDefs=shuffle([...objectTypes,...builtObjects,...objectTypes]);
   shuffle(activeNumbers).forEach((number,index)=>{
+    const companion=makeObject(targetDefs[index]||randomDefinition(),true);
+    const spot=numberPositionFor(companion);
     const button=document.createElement("button");
     button.type="button";
-    button.className="number easy-number";
+    button.className="number easy-number attached-number";
     button.textContent=number;
     button.setAttribute("aria-label",`Number ${number}`);
-    button.style.left=spots[index][0]+"%";
-    button.style.top=spots[index][1]+"%";
-    button.style.transform="translate(-50%,-50%)";
+    button.dataset.companion=companion.def.name;
+    button.style.left=spot.x+"%";
+    button.style.top=spot.y+"%";
+    button.style.transform="translate(-50%,-50%) rotate(0deg) scaleX(1)";
     button.style.zIndex="20";
     button.addEventListener("click",()=>choose(number,button));
     numbersEl.append(button);
@@ -113,11 +133,11 @@ function build(){
   jungleEl.classList.remove("complete");
   applyRandomScene();
   activeNumbers=requested?.length?requested.slice(0,amount):shuffle(allNumbers).slice(0,amount);
-  const clutterCount=14+Math.floor(Math.random()*10);
-  for(let i=0;i<clutterCount;i++)makeObject(randomDefinition());
   placeNumbers();
+  const clutterCount=10+Math.floor(Math.random()*8);
+  for(let i=0;i<clutterCount;i++)makeObject(randomDefinition());
   hintBtn.disabled=false;
-  messageEl.textContent="Find the clear numbers around the jungle scene!";
+  messageEl.textContent="Find the numbers attached to the jungle animals and objects!";
   updateProgress();
 }
 
