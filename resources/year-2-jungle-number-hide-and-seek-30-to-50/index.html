@@ -13,45 +13,51 @@
       <div>
         <p class="eyebrow">YEAR 2 • MATHEMATICS</p>
         <h1>Jungle Number Hide-and-Seek</h1>
-        <p class="instruction">Help Milo the curious monkey find each hidden number from 30 to 50.</p>
+        <p class="instruction">Explore the jungle scene and click every hidden number you can find.</p>
       </div>
       <div class="controls">
-        <div class="progress" id="progress" aria-live="polite">Found 0 of 21</div>
+        <div class="progress" id="progress" aria-live="polite">Found 0 of 8</div>
         <button id="restart" type="button">New game</button>
       </div>
     </header>
 
-    <section class="mission" aria-labelledby="target-label">
+    <section class="mission" aria-label="Numbers to find">
       <div class="monkey" aria-hidden="true">
         <span class="ear left"></span><span class="ear right"></span>
         <span class="face">●ᴥ●</span><span class="tail"></span>
       </div>
-      <div>
-        <p id="target-label">Can you find number…</p>
-        <strong id="target">30</strong>
+      <div class="mission-copy">
+        <p>Numbers hiding in the jungle</p>
+        <div id="targets" class="targets" aria-live="polite"></div>
       </div>
-      <button id="hint" type="button">Give me a hint</button>
+      <button id="hint" type="button">Hint</button>
     </section>
 
     <section id="jungle" class="jungle" aria-label="Jungle picture with hidden numbers">
-      <div class="sun" aria-hidden="true"></div>
-      <div class="cloud cloud-one" aria-hidden="true"></div>
-      <div class="cloud cloud-two" aria-hidden="true"></div>
-      <div class="mountain mountain-one" aria-hidden="true"></div>
-      <div class="mountain mountain-two" aria-hidden="true"></div>
-      <div class="tree tree-left" aria-hidden="true"><i></i><b>🌴</b></div>
-      <div class="tree tree-right" aria-hidden="true"><i></i><b>🌿</b></div>
-      <div class="vine vine-one" aria-hidden="true"></div>
-      <div class="vine vine-two" aria-hidden="true"></div>
-      <div class="river" aria-hidden="true"></div>
-      <div class="rock rock-one" aria-hidden="true"></div>
-      <div class="rock rock-two" aria-hidden="true"></div>
-      <div class="flowers" aria-hidden="true">🌺　🌼　🌸</div>
+      <div class="sun scene-object" aria-hidden="true"></div>
+      <div class="cloud cloud-one scene-object" aria-hidden="true"></div>
+      <div class="cloud cloud-two scene-object" aria-hidden="true"></div>
+      <div class="mountain mountain-one scene-object" aria-hidden="true"></div>
+      <div class="mountain mountain-two scene-object" aria-hidden="true"></div>
+      <div class="tree tree-left scene-object" aria-hidden="true"><b>🌴</b></div>
+      <div class="tree tree-right scene-object" aria-hidden="true"><b>🌿</b></div>
+      <div class="vine vine-one scene-object" aria-hidden="true"></div>
+      <div class="vine vine-two scene-object" aria-hidden="true"></div>
+      <div class="river scene-object" aria-hidden="true"></div>
+      <div class="rock rock-one scene-object" aria-hidden="true"></div>
+      <div class="rock rock-two scene-object" aria-hidden="true"></div>
+      <div class="log scene-object" aria-hidden="true"></div>
+      <div class="bush bush-one scene-object" aria-hidden="true">🌿</div>
+      <div class="bush bush-two scene-object" aria-hidden="true">🍃</div>
+      <div class="parrot scene-object" aria-hidden="true">🦜</div>
+      <div class="frog scene-object" aria-hidden="true">🐸</div>
+      <div class="tiger scene-object" aria-hidden="true">🐯</div>
+      <div class="flowers scene-object" aria-hidden="true">🌺　🌼　🌸</div>
       <div id="numbers"></div>
     </section>
 
     <footer>
-      <p id="message" role="status" aria-live="polite">Look carefully—the numbers are hiding in the picture!</p>
+      <p id="message" role="status" aria-live="polite">Look on the leaves, rocks, trees and other jungle objects!</p>
     </footer>
   </main>
   <script src="script.js"></script>
