@@ -7,7 +7,12 @@
     "topic": "Adjectives",
     "learningIntention": "I can identify and use adjectives to describe nouns.",
     "theme": "Dinosaurs",
-    "labels": ["grammar","descriptive writing","nouns","dinosaurs"],
+    "labels": [
+      "grammar",
+      "descriptive writing",
+      "nouns",
+      "dinosaurs"
+    ],
     "resourceType": "interactive/printable classroom resource",
     "language": "English",
     "url": "resources/year-2-dinosaur-adjectives/"
@@ -20,7 +25,15 @@
     "topic": "Numbers 1 to 15",
     "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
     "theme": "Spinning number wheel",
-    "labels": ["number","1-15","spinner","number recognition","addition","subtraction","comparison"],
+    "labels": [
+      "number",
+      "1-15",
+      "spinner",
+      "number recognition",
+      "addition",
+      "subtraction",
+      "comparison"
+    ],
     "resourceType": "interactive/printable classroom resource",
     "language": "English",
     "url": "resources/year-2-number-spinner/"
@@ -31,10 +44,25 @@
     "description": "A touch-friendly game where children order 1 to 30 using teacher-controlled clues, instant feedback, rewards and optional background music.",
     "year_group": "Year 2",
     "learning_intent": "Order, recognise and sequence whole numbers from 1 to 30.",
-    "subjects": ["Mathematics"],
-    "topics": ["number","number order","counting","numeral recognition"],
-    "themes": ["caterpillars"],
-    "labels": ["1 to 30","drag and drop","touch activity","independent practice","sequencing"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "number order",
+      "counting",
+      "numeral recognition"
+    ],
+    "themes": [
+      "caterpillars"
+    ],
+    "labels": [
+      "1 to 30",
+      "drag and drop",
+      "touch activity",
+      "independent practice",
+      "sequencing"
+    ],
     "resource_type": "interactive game",
     "language": "en-GB",
     "estimated_minutes": 10,
@@ -48,10 +76,25 @@
     "description": "A colourful Year 2 number-recognition game with randomly placed balloons, varied sizes and shapes, animated floating, and different pop sounds.",
     "year_group": "Year 2",
     "learning_intent": "Recognise and read numerals within a chosen number range.",
-    "subjects": ["Mathematics"],
-    "topics": ["number","counting","numeral recognition"],
-    "themes": ["balloons"],
-    "labels": ["1 to 30","click activity","touch activity","sound","randomised","number recognition"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "numeral recognition"
+    ],
+    "themes": [
+      "balloons"
+    ],
+    "labels": [
+      "1 to 30",
+      "click activity",
+      "touch activity",
+      "sound",
+      "randomised",
+      "number recognition"
+    ],
     "resource_type": "interactive game",
     "language": "en-GB",
     "estimated_minutes": 10,
@@ -65,10 +108,27 @@
     "description": "A printable Year 2 racing-themed worksheet with configurable number lines and missing-number practice, designed to fit on one A4 page.",
     "year_group": "Year 2",
     "learning_intent": "Complete and sequence numbers on short number lines.",
-    "subjects": ["Mathematics"],
-    "topics": ["number lines","counting","number sequences","missing numbers"],
-    "themes": ["race cars","racing"],
-    "labels": ["1 to 30","printable","A4","worksheet","number line","missing numbers"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number lines",
+      "counting",
+      "number sequences",
+      "missing numbers"
+    ],
+    "themes": [
+      "race cars",
+      "racing"
+    ],
+    "labels": [
+      "1 to 30",
+      "printable",
+      "A4",
+      "worksheet",
+      "number line",
+      "missing numbers"
+    ],
     "resource_type": "printable worksheet generator",
     "language": "en-GB",
     "estimated_minutes": 15,
@@ -82,10 +142,26 @@
     "description": "A friendly ten-question quiz covering numeral recognition, missing numbers, before and after, and counting quantities from 1 to 30.",
     "year_group": "Year 2",
     "learning_intent": "Recognise, count and sequence whole numbers from 1 to 30.",
-    "subjects": ["Mathematics"],
-    "topics": ["number","counting","number sequences","missing numbers","numeral recognition"],
-    "themes": ["number quest"],
-    "labels": ["1 to 30","quiz","independent practice","before and after","quantity matching"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "number sequences",
+      "missing numbers",
+      "numeral recognition"
+    ],
+    "themes": [
+      "number quest"
+    ],
+    "labels": [
+      "1 to 30",
+      "quiz",
+      "independent practice",
+      "before and after",
+      "quantity matching"
+    ],
     "resource_type": "interactive quiz",
     "language": "en-GB",
     "estimated_minutes": 10,
@@ -99,10 +175,26 @@
     "description": "A fruit-themed printable Year 2 worksheet for recognising numerals and completing number sequences, including two missing numbers between 45 and 50.",
     "year_group": "Year 2",
     "learning_intent": "Recognise and sequence whole numbers to 50.",
-    "subjects": ["Mathematics"],
-    "topics": ["number","counting","number sequences","missing numbers","numeral recognition"],
-    "themes": ["fruit"],
-    "labels": ["numbers to 50","printable","A4","worksheet","missing numbers"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "number sequences",
+      "missing numbers",
+      "numeral recognition"
+    ],
+    "themes": [
+      "fruit"
+    ],
+    "labels": [
+      "numbers to 50",
+      "printable",
+      "A4",
+      "worksheet",
+      "missing numbers"
+    ],
     "resource_type": "printable worksheet",
     "language": "en-GB",
     "estimated_minutes": 15,
@@ -116,10 +208,25 @@
     "description": "A colourful Year 2 number-recognition game with 21 randomly placed balloons covering every number from 30 to 50, animated floating, and different pop sounds.",
     "year_group": "Year 2",
     "learning_intent": "Recognise and read numerals from 30 to 50.",
-    "subjects": ["Mathematics"],
-    "topics": ["number","counting","numeral recognition"],
-    "themes": ["balloons"],
-    "labels": ["30 to 50","click activity","touch activity","sound","randomised","number recognition"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "numeral recognition"
+    ],
+    "themes": [
+      "balloons"
+    ],
+    "labels": [
+      "30 to 50",
+      "click activity",
+      "touch activity",
+      "sound",
+      "randomised",
+      "number recognition"
+    ],
     "resource_type": "interactive game",
     "language": "en-GB",
     "estimated_minutes": 10,
@@ -133,10 +240,27 @@
     "description": "A touch-friendly Year 2 jungle game where children seek the requested hidden numeral among numbers from 30 to 50.",
     "year_group": "Year 2",
     "learning_intent": "Recognise and identify numerals from 30 to 50.",
-    "subjects": ["Mathematics"],
-    "topics": ["number","numeral recognition","numbers to 50"],
-    "themes": ["jungle","curious monkey","exploration"],
-    "labels": ["30 to 50","hide and seek","visual search","touch activity","independent practice","audio feedback"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "numeral recognition",
+      "numbers to 50"
+    ],
+    "themes": [
+      "jungle",
+      "curious monkey",
+      "exploration"
+    ],
+    "labels": [
+      "30 to 50",
+      "hide and seek",
+      "visual search",
+      "touch activity",
+      "independent practice",
+      "audio feedback"
+    ],
     "resource_type": "interactive game",
     "language": "en-GB",
     "estimated_minutes": 10,
@@ -147,13 +271,33 @@
   {
     "id": "year-2-bird-number-song-30-to-50",
     "title": "Bird Number Song 30–50",
-    "description": "A Year 2 number-recognition game set in a Hansel and Gretel–style enchanted forest with a colourful candy cottage. Each realistic bird chirps, flaps and flies upward when tapped.",
+    "description": "A Year 2 number-recognition game set in an enchanted forest, with realistic birds that chirp and fly upward plus a clear three-row number line covering 30 to 50.",
     "year_group": "Year 2",
     "learning_intent": "Recognise and read numerals from 30 to 50.",
-    "subjects": ["Mathematics"],
-    "topics": ["number","counting","numeral recognition"],
-    "themes": ["birds","Hansel and Gretel","enchanted forest","candy cottage","fairy tale"],
-    "labels": ["30 to 50","click activity","touch activity","bird sounds","randomised","number recognition","Hansel and Gretel background","fly-away animation"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "numeral recognition"
+    ],
+    "themes": [
+      "birds",
+      "enchanted forest",
+      "fairy tale"
+    ],
+    "labels": [
+      "30 to 50",
+      "click activity",
+      "touch activity",
+      "bird sounds",
+      "randomised",
+      "number recognition",
+      "fly-away animation",
+      "three-row number line",
+      "30 to 50 number line"
+    ],
     "resource_type": "interactive game",
     "language": "en-GB",
     "estimated_minutes": 10,
@@ -167,10 +311,29 @@
     "description": "A Year 2 whole-class missing-number activity with a crumb path from 30 to 50. Birds cover selected numerals; children guess the hidden number, then the teacher taps the bird so it flies away and reveals the answer.",
     "year_group": "Year 2",
     "learning_intent": "Recognise and identify missing numerals in the sequence from 30 to 50.",
-    "subjects": ["Mathematics"],
-    "topics": ["number","number sequences","missing numbers","numeral recognition"],
-    "themes": ["birds","crumb trail","outdoors"],
-    "labels": ["30 to 50","whole-class activity","missing numbers","click activity","touch activity","randomised","fly-away animation"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "number sequences",
+      "missing numbers",
+      "numeral recognition"
+    ],
+    "themes": [
+      "birds",
+      "crumb trail",
+      "outdoors"
+    ],
+    "labels": [
+      "30 to 50",
+      "whole-class activity",
+      "missing numbers",
+      "click activity",
+      "touch activity",
+      "randomised",
+      "fly-away animation"
+    ],
     "resource_type": "interactive teaching activity",
     "language": "en-GB",
     "estimated_minutes": 10,
