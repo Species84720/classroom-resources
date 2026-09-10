@@ -20,7 +20,31 @@ h2{margin:0;color:var(--green);font-size:28px}.details{font-size:13px;line-heigh
 .answer-mode .answer-box{color:#247a29;background:#f0faeb}.note{margin-top:13px;padding:7px;border-radius:7px;background:var(--soft);font-size:12px;text-align:center}
 footer{text-align:center;color:#579d35;font-weight:700;margin-top:10px;font-size:13px}
 @media(max-width:840px){.sheet{width:100%;min-height:auto;padding:20px}.activities{grid-template-columns:1fr}.toolbar{margin:0;border-radius:0}.exercise{min-height:auto}}
-@media print{body{background:#fff}.toolbar{display:none}.sheet{margin:0;padding:10mm 13mm;box-shadow:none}.answer-mode .answer-box{color:transparent;background:#fff}}
+@page{size:A4 portrait;margin:0}
+@media print{
+  html,body{width:210mm;height:297mm;margin:0;background:#fff}
+  .toolbar{display:none}
+  .sheet{width:210mm;height:297mm;min-height:0;margin:0;padding:8mm 12mm;box-shadow:none;overflow:hidden}
+  header{padding-bottom:4px}
+  h2{font-size:24px}
+  .details{font-size:11px;line-height:1.7}
+  .instruction{margin:4px 0 7px;font-size:13px}
+  .number-grid{margin:0 auto 8px}
+  .number-grid td{width:52px;height:45px;font-size:22px}
+  .fruit{font-size:29px}
+  .activities{gap:10px;margin-top:7px;break-inside:avoid}
+  .exercise{min-height:0;height:118mm;padding:8px 10px}
+  .exercise h3{font-size:14px;margin-bottom:2px}
+  .exercise .help{font-size:10px;margin-bottom:4px}
+  .recognition-row{gap:7px;margin:7px 0}
+  .recognition-row .fruit{width:36px}
+  .answer-box{width:34px;height:28px;font-size:15px}
+  .sequence{gap:4px;margin:11px 0;font-size:14px}
+  .sequence .answer-box{width:31px;height:28px}
+  .note{margin-top:7px;padding:5px;font-size:10px}
+  footer{margin-top:6px;font-size:11px}
+  .answer-mode .answer-box{color:transparent;background:#fff}
+}
 </style>
 </head>
 <body>
