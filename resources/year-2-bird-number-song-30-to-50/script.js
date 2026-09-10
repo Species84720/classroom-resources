@@ -77,22 +77,23 @@ function buildBird(num,index,x,y,w,h){
   button.innerHTML='<span class="tail"></span><span class="body"></span><span class="wing"></span><span class="head"><span class="eye"></span><span class="beak"></span></span><span class="feet"></span><span class="number">'+num+'</span>';
   wrap.append(button);garden.append(wrap);
   button.addEventListener('click',()=>{
+    if(heard.has(num)) return;
+    heard.add(num);
+    button.disabled=true;
     const r=button.getBoundingClientRect(),gr=garden.getBoundingClientRect();
     playBirdSong(index);
     addNotes(r.left-gr.left+r.width*.75,r.top-gr.top+r.height*.25);
-    wrap.classList.remove('sang');void wrap.offsetWidth;wrap.classList.add('sang');
-    setTimeout(()=>wrap.classList.remove('sang'),780);
-    if(!heard.has(num)){
-      heard.add(num);
-      counter.textContent=heard.size+' / '+amount+' birds sang';
-    }
-    message.textContent=heard.size===amount?'Wonderful! Every bird sang its number song! 🎉':'Bird '+num+' says: tweet-tweet! ♪';
+    wrap.style.setProperty('--fly-x',rand(-130,130)+'px');
+    wrap.classList.add('flying');
+    counter.textContent=heard.size+' / '+amount+' birds flew';
+    message.textContent=heard.size===amount?'Wonderful! Every bird sang and flew into the sky! 🎉':'Bird '+num+' says: tweet-tweet — away it flies! ♪';
+    setTimeout(()=>wrap.remove(),1300);
   });
 }
 
 function layoutBirds(){
   garden.replaceChildren();heard=new Set();
-  counter.textContent='0 / '+amount+' birds sang';
+  counter.textContent='0 / '+amount+' birds flew';
   message.textContent='Ready? Tap any bird to hear it sing!';
   const numbers=shuffle(Array.from({length:amount},(_,i)=>startNumber+i));
   const placed=[],sw=Math.max(320,garden.clientWidth),sh=Math.max(430,garden.clientHeight);
