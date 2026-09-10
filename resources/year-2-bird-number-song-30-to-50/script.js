@@ -95,6 +95,11 @@ function layoutBirds(){
   garden.replaceChildren();heard=new Set();
   counter.textContent='0 / '+amount+' birds flew';
   message.textContent='Ready? Tap any bird to hear it sing!';
+  const cottage=document.createElement('div');
+  cottage.className='candy-house';
+  cottage.setAttribute('aria-hidden','true');
+  cottage.innerHTML='<span class="candy-window left"></span><span class="candy-window right"></span><span class="lollipop one"></span><span class="lollipop two"></span>';
+  garden.append(cottage);
   const numbers=shuffle(Array.from({length:amount},(_,i)=>startNumber+i));
   const placed=[],sw=Math.max(320,garden.clientWidth),sh=Math.max(430,garden.clientHeight);
   numbers.forEach((num,index)=>{
