@@ -201,5 +201,37 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-missing-numbers-to-50/"
+  },
+  {
+    "id": "year-2-balloon-number-pop-30-to-50",
+    "title": "Balloon Number Pop 30–50",
+    "description": "A colourful Year 2 number-recognition game with 21 randomly placed balloons covering every number from 30 to 50, animated floating, and different pop sounds.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise and read numerals from 30 to 50.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "numeral recognition"
+    ],
+    "themes": [
+      "balloons"
+    ],
+    "labels": [
+      "30 to 50",
+      "click activity",
+      "touch activity",
+      "sound",
+      "randomised",
+      "number recognition"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-10",
+    "updated": "2026-09-10",
+    "url": "resources/year-2-balloon-number-pop-30-to-50/"
   }
 ]
