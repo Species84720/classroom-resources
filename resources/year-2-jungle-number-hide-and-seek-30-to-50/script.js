@@ -6,6 +6,7 @@ function parseRequestedNumbers(){const raw=params.get("numbers");if(!raw)return 
 function shuffle(items){const copy=[...items];for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
 function pick(items){return items[Math.floor(Math.random()*items.length)];}
 function between(min,max){return min+Math.random()*(max-min);}
+function clamp(v,min,max){return Math.max(min,Math.min(max,v));}
 
 const requested=parseRequestedNumbers();
 const amount=clampAmount(params.get("amount"));
@@ -51,10 +52,12 @@ const builtObjects=[
 let found=new Set();
 let buttons=new Map();
 let placed=[];
+let numberLabels=[];
 let lastScene=null;
 
 function overlaps(x,y,w,h){return placed.some(p=>Math.abs(p.x-x)<(p.w+w)*0.42&&Math.abs(p.y-y)<(p.h+h)*0.42);}
 function findPlacement(zones,w,h){for(let tries=0;tries<80;tries++){const z=pick(zones);const x=between(z[0],z[0]+z[2]);const y=between(z[1],z[1]+z[3]);if(!overlaps(x,y,w/10,h/10))return{x,y};}return{x:between(8,92),y:between(25,82)};}
+function labelOverlaps(x,y){return numberLabels.some(p=>Math.abs(p.x-x)<7&&Math.abs(p.y-y)<8);}
 
 function makeObject(def,forNumber=false){
   const size=Math.round(between(def.size[0],def.size[1]));
@@ -95,18 +98,34 @@ function updateProgress(){progressEl.textContent=`Found ${found.size} of ${activ
 
 function choose(number,button){if(found.has(number))return;found.add(number);button.classList.add("found");button.disabled=true;const burst=document.createElement("span");burst.className="burst";burst.textContent=pick(["⭐","🎉","👏","🌟","😊"]);button.append(burst);setTimeout(()=>burst.remove(),900);messageEl.textContent=`Great spotting! You found ${number}.`;speak(`Great! You found ${number}.`);updateProgress();if(found.size===activeNumbers.length){messageEl.textContent="Amazing! You found every jungle number!";hintBtn.disabled=true;speak("Amazing! You found every jungle number!");jungleEl.classList.add("complete");}}
 
-function numberPositionFor(companion){
+function numberCandidates(companion){
   const {pos,size,def}=companion;
-  const offset=Math.min(5.5,Math.max(2.5,size/28));
-  if(def.name==="palm")return{x:pos.x,y:Math.max(10,pos.y-offset*1.5)};
-  if(def.name==="log"||def.name==="rock"||def.name==="stump"||def.name==="lily")return{x:pos.x,y:pos.y};
-  if(def.name==="sign")return{x:pos.x,y:pos.y-1};
-  const side=Math.random()>.5?1:-1;
-  return{x:Math.max(6,Math.min(94,pos.x+side*offset)),y:Math.max(10,Math.min(88,pos.y-offset*.25))};
+  const d=clamp(size/24,3.2,6.2);
+  if(["log","rock","stump","lily","sign"].includes(def.name)){
+    return [{x:pos.x,y:pos.y},{x:pos.x+d*.55,y:pos.y},{x:pos.x-d*.55,y:pos.y}];
+  }
+  if(def.name==="palm"){
+    return [{x:pos.x,y:pos.y-d*1.25},{x:pos.x+d*.65,y:pos.y-d*.9},{x:pos.x-d*.65,y:pos.y-d*.9}];
+  }
+  return [
+    {x:pos.x+d*.72,y:pos.y+d*.35},
+    {x:pos.x-d*.72,y:pos.y+d*.35},
+    {x:pos.x+d*.72,y:pos.y-d*.45},
+    {x:pos.x-d*.72,y:pos.y-d*.45}
+  ];
+}
+
+function numberPositionFor(companion){
+  const candidates=numberCandidates(companion).map(p=>({x:clamp(p.x,6,94),y:clamp(p.y,10,88)}));
+  const free=candidates.find(p=>!labelOverlaps(p.x,p.y));
+  const spot=free||candidates[0];
+  numberLabels.push(spot);
+  return spot;
 }
 
 function placeNumbers(){
   numbersEl.replaceChildren();
+  numberLabels=[];
   const targetDefs=shuffle([...objectTypes,...builtObjects,...objectTypes]);
   shuffle(activeNumbers).forEach((number,index)=>{
     const companion=makeObject(targetDefs[index]||randomDefinition(),true);
@@ -128,7 +147,7 @@ function placeNumbers(){
 }
 
 function build(){
-  found=new Set();buttons=new Map();placed=[];
+  found=new Set();buttons=new Map();placed=[];numberLabels=[];
   sceneObjectEl.replaceChildren();
   jungleEl.classList.remove("complete");
   applyRandomScene();
@@ -137,7 +156,7 @@ function build(){
   const clutterCount=10+Math.floor(Math.random()*8);
   for(let i=0;i<clutterCount;i++)makeObject(randomDefinition());
   hintBtn.disabled=false;
-  messageEl.textContent="Find the numbers attached to the jungle animals and objects!";
+  messageEl.textContent="Find the numbers printed on or beside the jungle animals and objects!";
   updateProgress();
 }
 
