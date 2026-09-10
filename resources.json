@@ -7,7 +7,12 @@
     "topic": "Adjectives",
     "learningIntention": "I can identify and use adjectives to describe nouns.",
     "theme": "Dinosaurs",
-    "labels": ["grammar", "descriptive writing", "nouns", "dinosaurs"],
+    "labels": [
+      "grammar",
+      "descriptive writing",
+      "nouns",
+      "dinosaurs"
+    ],
     "resourceType": "interactive/printable classroom resource",
     "language": "English",
     "url": "resources/year-2-dinosaur-adjectives/"
@@ -20,7 +25,15 @@
     "topic": "Numbers 1 to 15",
     "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
     "theme": "Spinning number wheel",
-    "labels": ["number", "1-15", "spinner", "number recognition", "addition", "subtraction", "comparison"],
+    "labels": [
+      "number",
+      "1-15",
+      "spinner",
+      "number recognition",
+      "addition",
+      "subtraction",
+      "comparison"
+    ],
     "resourceType": "interactive/printable classroom resource",
     "language": "English",
     "url": "resources/year-2-number-spinner/"
@@ -31,10 +44,25 @@
     "description": "A touch-friendly game where children use number clues to place 1 to 30 in order, with instant sound and visual feedback.",
     "year_group": "Year 2",
     "learning_intent": "Order, recognise and sequence whole numbers from 1 to 30.",
-    "subjects": ["Mathematics"],
-    "topics": ["number", "number order", "counting", "numeral recognition"],
-    "themes": ["caterpillars"],
-    "labels": ["1 to 30", "drag and drop", "touch activity", "independent practice", "sequencing"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "number order",
+      "counting",
+      "numeral recognition"
+    ],
+    "themes": [
+      "caterpillars"
+    ],
+    "labels": [
+      "1 to 30",
+      "drag and drop",
+      "touch activity",
+      "independent practice",
+      "sequencing"
+    ],
     "resource_type": "interactive game",
     "language": "en-GB",
     "estimated_minutes": 10,
@@ -48,10 +76,25 @@
     "description": "A colourful Year 2 number-recognition game with randomly placed balloons, varied sizes and shapes, animated floating, and different pop sounds.",
     "year_group": "Year 2",
     "learning_intent": "Recognise and read numerals within a chosen number range.",
-    "subjects": ["Mathematics"],
-    "topics": ["number", "counting", "numeral recognition"],
-    "themes": ["balloons"],
-    "labels": ["1 to 30", "click activity", "touch activity", "sound", "randomised", "number recognition"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "numeral recognition"
+    ],
+    "themes": [
+      "balloons"
+    ],
+    "labels": [
+      "1 to 30",
+      "click activity",
+      "touch activity",
+      "sound",
+      "randomised",
+      "number recognition"
+    ],
     "resource_type": "interactive game",
     "language": "en-GB",
     "estimated_minutes": 10,
@@ -65,15 +108,65 @@
     "description": "A printable Year 2 racing-themed worksheet with configurable number lines and missing-number practice, designed to fit on one A4 page.",
     "year_group": "Year 2",
     "learning_intent": "Complete and sequence numbers on short number lines.",
-    "subjects": ["Mathematics"],
-    "topics": ["number lines", "counting", "number sequences", "missing numbers"],
-    "themes": ["race cars", "racing"],
-    "labels": ["1 to 30", "printable", "A4", "worksheet", "number line", "missing numbers"],
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number lines",
+      "counting",
+      "number sequences",
+      "missing numbers"
+    ],
+    "themes": [
+      "race cars",
+      "racing"
+    ],
+    "labels": [
+      "1 to 30",
+      "printable",
+      "A4",
+      "worksheet",
+      "number line",
+      "missing numbers"
+    ],
     "resource_type": "printable worksheet generator",
     "language": "en-GB",
     "estimated_minutes": 15,
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-race-car-number-lines/"
+  },
+  {
+    "id": "year-2-number-quest",
+    "title": "Number Quest 1–30",
+    "description": "A friendly ten-question quiz covering numeral recognition, missing numbers, before and after, and counting quantities from 1 to 30.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise, count and sequence whole numbers from 1 to 30.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "number sequences",
+      "missing numbers",
+      "numeral recognition"
+    ],
+    "themes": [
+      "number quest"
+    ],
+    "labels": [
+      "1 to 30",
+      "quiz",
+      "independent practice",
+      "before and after",
+      "quantity matching"
+    ],
+    "resource_type": "interactive quiz",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-10",
+    "updated": "2026-09-10",
+    "url": "resources/year-2-number-quest/"
   }
 ]
