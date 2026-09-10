@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#fff7df">
+  <title>Number Quest 1–30 | Year 2</title>
+  <style>
+    :root { color-scheme: light; --ink:#213547; --navy:#17365d; --cream:#fff7df; --card:#fff; --blue:#2878c8; --green:#16734a; --red:#a52d2d; --gold:#ffd45c; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:linear-gradient(160deg,#e7f6ff 0 46%,var(--cream) 46%); }
+    button { font:inherit; }
+    button:focus-visible { outline:4px solid #111; outline-offset:3px; }
+    .shell { width:min(920px,calc(100% - 24px)); margin:0 auto; padding:20px 0 40px; }
+    header { display:flex; justify-content:space-between; align-items:center; gap:16px; margin-bottom:18px; }
+    .eyebrow { margin:0 0 4px; color:var(--navy); font-weight:800; letter-spacing:.08em; }
+    h1 { margin:0; font-size:clamp(2rem,7vw,3.4rem); line-height:1; }
+    .new-game { min-height:48px; padding:10px 18px; border:0; border-radius:14px; color:#fff; background:var(--navy); font-weight:800; cursor:pointer; }
+    .progress-wrap { display:grid; grid-template-columns:1fr auto; align-items:center; gap:10px; margin:12px 0; font-weight:800; }
+    .track { height:16px; overflow:hidden; border:2px solid var(--navy); border-radius:999px; background:#fff; }
+    .bar { width:0; height:100%; background:var(--gold); transition:width .25s ease; }
+    .quiz-card { min-height:430px; display:grid; align-content:center; gap:20px; padding:clamp(20px,5vw,46px); border:3px solid var(--navy); border-radius:28px; background:var(--card); box-shadow:0 10px 0 rgba(23,54,93,.14); text-align:center; }
+    .type { margin:0; color:var(--blue); font-weight:900; text-transform:uppercase; letter-spacing:.06em; }
+    h2 { margin:0; font-size:clamp(1.65rem,6vw,2.7rem); line-height:1.2; }
+    .sequence { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:10px; font-size:clamp(1.7rem,7vw,3.2rem); font-weight:900; }
+    .sequence span { min-width:58px; padding:8px; border-radius:14px; background:#eef7ff; }
+    .sequence .blank { border:3px dashed var(--blue); background:#fff; }
+    .dots { width:min(330px,100%); display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin:auto; }
+    .dot { width:26px; height:26px; border:2px solid var(--navy); border-radius:50%; background:var(--gold); }
+    .answers { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .answer { min-height:70px; border:3px solid var(--blue); border-radius:18px; background:#eef7ff; color:var(--navy); font-size:clamp(1.4rem,5vw,2rem); font-weight:900; cursor:pointer; }
+    .answer:hover { background:#d8eeff; }
+    .answer.correct { border-color:var(--green); background:#dff7eb; color:#0d5937; }
+    .answer.wrong { border-color:var(--red); background:#ffe4e4; color:#7e1f1f; }
+    .answer:disabled { cursor:default; opacity:1; }
+    .feedback { min-height:32px; margin:0; font-size:1.2rem; font-weight:800; }
+    .next { justify-self:center; min-height:50px; padding:10px 28px; border:0; border-radius:16px; color:#11243d; background:var(--gold); font-weight:900; cursor:pointer; }
+    .summary { display:none; }
+    .summary.show { display:grid; gap:18px; justify-items:center; }
+    .score { font-size:clamp(3.5rem,15vw,7rem); line-height:1; font-weight:900; color:var(--blue); }
+    .teacher-note { margin:18px 6px 0; font-size:.95rem; }
+    @media (max-width:560px) { header { align-items:flex-start; flex-direction:column; } .new-game { width:100%; } .answers { grid-template-columns:1fr; } .quiz-card { min-height:500px; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behaviour:auto!important; transition:none!important; } }
+    @media print { body { background:#fff; } .new-game,.next { display:none!important; } .quiz-card { box-shadow:none; } }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div><p class="eyebrow">YEAR 2 • NUMBERS 1–30</p><h1>Number Quest</h1></div>
+      <button id="new-game" class="new-game" type="button">New questions</button>
+    </header>
+
+    <div class="progress-wrap" aria-label="Quiz progress">
+      <div class="track"><div id="bar" class="bar"></div></div>
+      <span id="progress">Question 1 of 10</span>
+    </div>
+
+    <section id="quiz" class="quiz-card" aria-labelledby="question">
+      <p id="type" class="type"></p>
+      <h2 id="question"></h2>
+      <div id="visual"></div>
+      <div id="answers" class="answers"></div>
+      <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+      <button id="next" class="next" type="button" hidden>Next question</button>
+    </section>
+
+    <section id="summary" class="quiz-card summary" aria-labelledby="summary-title">
+      <p class="type">Quest complete!</p>
+      <h2 id="summary-title">Brilliant number work!</h2>
+      <div id="score" class="score"></div>
+      <p id="score-message" class="feedback"></p>
+      <button id="play-again" class="next" type="button">Play again</button>
+    </section>
+
+    <p class="teacher-note"><strong>Learning intention:</strong> I can recognise and sequence numbers from 1 to 30.</p>
+  </main>
+
+  <script>
+    const TOTAL = 10;
+    const words = ["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"];
+    const quiz = document.querySelector('#quiz');
+    const summary = document.querySelector('#summary');
+    const typeEl = document.querySelector('#type');
+    const questionEl = document.querySelector('#question');
+    const visualEl = document.querySelector('#visual');
+    const answersEl = document.querySelector('#answers');
+    const feedbackEl = document.querySelector('#feedback');
+    const nextButton = document.querySelector('#next');
+    let questions = [], current = 0, score = 0, answered = false;
+
+    const randomInt = (min,max) => Math.floor(Math.random()*(max-min+1))+min;
+    const shuffle = list => [...list].sort(() => Math.random()-.5);
+    function choices(answer,min=1,max=30) {
+      const set = new Set([answer]);
+      while(set.size < 3) set.add(Math.max(min,Math.min(max,answer+randomInt(-4,4))) || min);
+      return shuffle([...set]);
+    }
+    function makeQuestion(kind) {
+      if(kind === 'missing') {
+        const start=randomInt(1,26), gap=randomInt(1,3), answer=start+gap;
+        const nums=[0,1,2,3,4].map(i=>start+i);
+        return {type:'Missing number',prompt:'Which number is missing?',visual:`<div class="sequence">${nums.map(n=>`<span class="${n===answer?'blank':''}">${n===answer?'?':n}</span>`).join('')}</div>`,answer,options:choices(answer)};
+      }
+      if(kind === 'word') {
+        const answer=randomInt(1,20);
+        return {type:'Recognise the number',prompt:`Which numeral means “${words[answer]}”?`,visual:'',answer,options:choices(answer)};
+      }
+      if(kind === 'before') {
+        const n=randomInt(2,30), answer=n-1;
+        return {type:'Before and after',prompt:`Which number comes just before ${n}?`,visual:'',answer,options:choices(answer)};
+      }
+      if(kind === 'after') {
+        const n=randomInt(1,29), answer=n+1;
+        return {type:'Before and after',prompt:`Which number comes just after ${n}?`,visual:'',answer,options:choices(answer)};
+      }
+      const answer=randomInt(4,20);
+      return {type:'Count and match',prompt:'How many dots can you see?',visual:`<div class="dots" aria-label="${answer} dots">${'<span class="dot"></span>'.repeat(answer)}</div>`,answer,options:choices(answer,1,20)};
+    }
+    function newGame() {
+      const kinds=shuffle(['missing','word','before','after','dots','missing','word','before','after','dots']);
+      questions=kinds.map(makeQuestion); current=0; score=0; answered=false;
+      summary.classList.remove('show'); quiz.hidden=false; showQuestion();
+    }
+    function showQuestion() {
+      answered=false; const q=questions[current];
+      typeEl.textContent=q.type; questionEl.textContent=q.prompt; visualEl.innerHTML=q.visual;
+      feedbackEl.textContent=''; nextButton.hidden=true; answersEl.innerHTML='';
+      q.options.forEach(option=>{
+        const button=document.createElement('button'); button.type='button'; button.className='answer';
+        button.textContent=option; button.addEventListener('click',()=>check(button,option,q.answer)); answersEl.append(button);
+      });
+      document.querySelector('#progress').textContent=`Question ${current+1} of ${TOTAL}`;
+      document.querySelector('#bar').style.width=`${(current/TOTAL)*100}%`;
+    }
+    function check(button,choice,answer) {
+      if(answered) return; answered=true;
+      [...answersEl.children].forEach(b=>{ b.disabled=true; if(Number(b.textContent)===answer) b.classList.add('correct'); });
+      if(choice===answer) { score++; feedbackEl.textContent='✓ Correct — well done!'; }
+      else { button.classList.add('wrong'); feedbackEl.textContent=`Not quite. The answer is ${answer}.`; }
+      nextButton.textContent=current===TOTAL-1?'See my score':'Next question'; nextButton.hidden=false; nextButton.focus();
+    }
+    function next() {
+      current++;
+      if(current<TOTAL) return showQuestion();
+      quiz.hidden=true; summary.classList.add('show'); document.querySelector('#bar').style.width='100%';
+      document.querySelector('#progress').textContent='10 of 10 complete'; document.querySelector('#score').textContent=`${score} / ${TOTAL}`;
+      document.querySelector('#score-message').textContent=score===TOTAL?'Perfect score! You are a number star!':score>=7?'Great work! Try again for a new set of questions.':'Good effort! Play again and keep practising.';
+      document.querySelector('#play-again').focus();
+    }
+    nextButton.addEventListener('click',next);
+    document.querySelector('#new-game').addEventListener('click',newGame);
+    document.querySelector('#play-again').addEventListener('click',newGame);
+    newGame();
+  </script>
+</body>
+</html>
