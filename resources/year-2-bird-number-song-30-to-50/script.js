@@ -97,8 +97,8 @@ function layoutBirds(){
   message.textContent='Ready? Tap any bird to hear it sing!';
   const numberBoard=document.createElement('div');
   numberBoard.className='number-board';
-  numberBoard.setAttribute('aria-label','Number line from 30 to 50 in three rows');
-  [[30,31,32,33,34,35,36],[37,38,39,40,41,42,43],[44,45,46,47,48,49,50]].forEach(row=>{
+  numberBoard.setAttribute('aria-label','Number guide with 30 to 40 on line one and 40 to 50 on line two');
+  [[30,31,32,33,34,35,36,37,38,39,40],[40,41,42,43,44,45,46,47,48,49,50]].forEach(row=>{
     const line=document.createElement('div');
     line.className='number-row';
     row.forEach(number=>{
