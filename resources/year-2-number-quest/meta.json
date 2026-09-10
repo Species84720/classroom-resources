@@ -1,0 +1,16 @@
+{
+  "id": "year-2-number-quest",
+  "title": "Number Quest 1–30",
+  "description": "A friendly ten-question quiz covering numeral recognition, missing numbers, before and after, and counting quantities from 1 to 30.",
+  "year_group": "Year 2",
+  "learning_intent": "Recognise, count and sequence whole numbers from 1 to 30.",
+  "subjects": ["Mathematics"],
+  "topics": ["number", "counting", "number sequences", "missing numbers", "numeral recognition"],
+  "themes": ["number quest"],
+  "labels": ["1 to 30", "quiz", "independent practice", "before and after", "quantity matching"],
+  "resource_type": "interactive quiz",
+  "language": "en-GB",
+  "estimated_minutes": 10,
+  "created": "2026-09-10",
+  "updated": "2026-09-10"
+}
