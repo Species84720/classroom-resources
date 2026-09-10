@@ -52,7 +52,7 @@ function addNotes(x,y){
 }
 
 function safePosition(w,h,placed,sw,sh){
-  const pad=7,maxX=Math.max(pad,sw-w-pad),maxY=Math.max(pad,sh-h-75-pad);
+  const pad=7,maxX=Math.max(pad,sw-w-pad),maxY=Math.max(pad,sh-h-190-pad);
   let best={x:pad,y:pad},bestGap=-1;
   for(let t=0;t<700;t++){
     const x=rand(pad,maxX),y=rand(pad,maxY);
@@ -95,11 +95,21 @@ function layoutBirds(){
   garden.replaceChildren();heard=new Set();
   counter.textContent='0 / '+amount+' birds flew';
   message.textContent='Ready? Tap any bird to hear it sing!';
-  const cottage=document.createElement('div');
-  cottage.className='candy-house';
-  cottage.setAttribute('aria-hidden','true');
-  cottage.innerHTML='<span class="candy-window left"></span><span class="candy-window right"></span><span class="lollipop one"></span><span class="lollipop two"></span>';
-  garden.append(cottage);
+  const numberBoard=document.createElement('div');
+  numberBoard.className='number-board';
+  numberBoard.setAttribute('aria-label','Number line from 30 to 50 in three rows');
+  [[30,31,32,33,34,35,36],[37,38,39,40,41,42,43],[44,45,46,47,48,49,50]].forEach(row=>{
+    const line=document.createElement('div');
+    line.className='number-row';
+    row.forEach(number=>{
+      const cell=document.createElement('span');
+      cell.className='number-cell';
+      cell.textContent=number;
+      line.append(cell);
+    });
+    numberBoard.append(line);
+  });
+  garden.append(numberBoard);
   const numbers=shuffle(Array.from({length:amount},(_,i)=>startNumber+i));
   const placed=[],sw=Math.max(320,garden.clientWidth),sh=Math.max(430,garden.clientHeight);
   numbers.forEach((num,index)=>{
