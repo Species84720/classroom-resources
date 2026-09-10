@@ -12,7 +12,7 @@ const hintCountEl=document.querySelector("#hintCount");
 const hintValueEl=document.querySelector("#hintValue");
 const musicEl=document.querySelector("#music");
 const requestedHintCount=Number.parseInt(new URLSearchParams(window.location.search).get("hint")||"2",10);
-let hintCount=Number.isFinite(requestedHintCount)?Math.min(4,Math.max(0,requestedHintCount)):2;
+let hintCount=Number.isFinite(requestedHintCount)?Math.min(5,Math.max(0,requestedHintCount)):2;
 let musicTimer=null;
 let musicStep=0;
 
@@ -176,9 +176,9 @@ function chooseSpacedHints(numbers,count){
 function chooseClues(){
   clues=new Set();
   for(let row=0;row<3;row++){
-    const first=row*10+2;
-    const middleNumbers=Array.from({length:8},(_,i)=>first+i);
-    chooseSpacedHints(middleNumbers,hintCount).forEach(number=>clues.add(number));
+    const first=row*10+1;
+    const rowNumbers=Array.from({length:10},(_,i)=>first+i);
+    chooseSpacedHints(rowNumbers,hintCount).forEach(number=>clues.add(number));
   }
 }
 
@@ -195,16 +195,28 @@ function tone(frequency,start,duration,type="sine",volume=.08){
 
 function playStarSound(){tone(659,0,.14);tone(784,.08,.16);tone(1047,.16,.28,"sine",.09)}
 
-const musicNotes=[261.63,329.63,392,329.63,293.66,349.23,440,349.23];
+const musicMelody=[
+  523.25,659.25,783.99,1046.5,783.99,659.25,587.33,698.46,
+  880,1174.66,880,698.46,659.25,783.99,987.77,1318.51,
+  1046.5,783.99,659.25,783.99,587.33,698.46,880,698.46,
+  659.25,783.99,1046.5,1318.51,1174.66,987.77,783.99,1046.5
+];
+const musicBass=[130.81,146.83,174.61,196];
 function playMusicNote(){
-  tone(musicNotes[musicStep%musicNotes.length],0,.58,"triangle",.018);
-  if(musicStep%4===0)tone(musicNotes[musicStep%musicNotes.length]/2,0,.72,"sine",.01);
+  const note=musicMelody[musicStep%musicMelody.length];
+  tone(note,0,.24,musicStep%8===7?"sine":"triangle",.028);
+  if(musicStep%2===0)tone(note/2,.03,.2,"square",.009);
+  if(musicStep%4===0){
+    tone(musicBass[Math.floor(musicStep/4)%musicBass.length],0,.34,"triangle",.02);
+    tone(95,0,.1,"sine",.024);
+  }
+  if(musicStep%4===2)tone(140,0,.05,"square",.008);
   musicStep++;
 }
 function startMusic(){
   audioContext ||= new (window.AudioContext||window.webkitAudioContext)();
   audioContext.resume?.();
-  playMusicNote();musicTimer=setInterval(playMusicNote,650);
+  musicStep=0;playMusicNote();musicTimer=setInterval(playMusicNote,330);
   musicEl.textContent="Music: on";musicEl.setAttribute("aria-pressed","true");
 }
 function stopMusic(){
