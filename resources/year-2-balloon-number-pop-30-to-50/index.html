@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#7bdff2">
+  <title>Balloon Number Pop 30–50 | Year 2 Mathematics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">YEAR 2 • MATHEMATICS</p>
+        <h1>Balloon Number Pop 30–50</h1>
+        <p class="instruction">Pop every balloon from 30 to 50. Reload or press Mix again for a brand-new layout.</p>
+      </div>
+      <div class="controls">
+        <div class="counter" id="counter" aria-live="polite">0 / 21 popped</div>
+        <button id="reset" type="button">Mix again</button>
+      </div>
+    </header>
+
+    <section id="sky" class="sky" aria-label="Number balloons"></section>
+
+    <footer class="footer-note">
+      <p>Read each number aloud as you pop it.</p>
+      <p id="message" aria-live="polite">Ready? Pop any balloon!</p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
