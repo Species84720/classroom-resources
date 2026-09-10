@@ -41,7 +41,7 @@
   {
     "id": "year-2-caterpillar-number-order",
     "title": "Caterpillar Number Order",
-    "description": "A touch-friendly game where children use number clues to place 1 to 30 in order, with instant sound and visual feedback.",
+    "description": "A touch-friendly game where children order 1 to 30 using teacher-controlled clues, instant feedback, rewards and optional background music.",
     "year_group": "Year 2",
     "learning_intent": "Order, recognise and sequence whole numbers from 1 to 30.",
     "subjects": [
@@ -67,7 +67,7 @@
     "language": "en-GB",
     "estimated_minutes": 10,
     "created": "2026-09-09",
-    "updated": "2026-09-09",
+    "updated": "2026-09-10",
     "url": "resources/year-2-caterpillar-number-order/"
   },
   {

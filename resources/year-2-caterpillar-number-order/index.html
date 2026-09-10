@@ -13,12 +13,24 @@
       <div>
         <p class="eyebrow">YEAR 2 • NUMBER ORDER</p>
         <h1>Help the caterpillars count to 30!</h1>
-        <p class="instruction">Use the two clues in each row. Drag or tap each card into the right circle.</p>
+        <p class="instruction">Choose the clue level, then drag or tap each card into the right circle.</p>
       </div>
       <div class="actions">
+        <button id="teacherSettings" type="button" aria-expanded="false" aria-controls="teacherPanel">Hint settings</button>
+        <button id="music" type="button" aria-pressed="false">Music: off</button>
         <button id="reset" class="primary" type="button">Mix again</button>
       </div>
     </header>
+
+    <section id="teacherPanel" class="teacher-panel" aria-labelledby="teacher-title" hidden>
+      <div>
+        <h2 id="teacher-title">Teacher hint settings</h2>
+        <label for="hintCount">Visible clues in each row: <output id="hintValue" for="hintCount">2</output></label>
+        <input id="hintCount" type="range" min="0" max="4" step="1" value="2">
+      </div>
+      <p>Clues stay in the middle and are never next to each other.</p>
+      <button id="applyHints" class="primary" type="button">Apply and mix</button>
+    </section>
 
     <section class="play-area" aria-label="Number ordering game">
       <div id="caterpillars" class="caterpillars"></div>

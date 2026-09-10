@@ -6,8 +6,15 @@ let clues=new Set();
 let selected=null;
 let audioContext=null;
 
-const requestedHintCount=Number.parseInt(new URLSearchParams(window.location.search).get("hint")||"3",10);
-const hintCount=Number.isFinite(requestedHintCount)?Math.min(8,Math.max(1,requestedHintCount)):3;
+const teacherSettingsEl=document.querySelector("#teacherSettings");
+const teacherPanelEl=document.querySelector("#teacherPanel");
+const hintCountEl=document.querySelector("#hintCount");
+const hintValueEl=document.querySelector("#hintValue");
+const musicEl=document.querySelector("#music");
+const requestedHintCount=Number.parseInt(new URLSearchParams(window.location.search).get("hint")||"2",10);
+let hintCount=Number.isFinite(requestedHintCount)?Math.min(4,Math.max(0,requestedHintCount)):2;
+let musicTimer=null;
+let musicStep=0;
 
 const numberRewards=[
   {text:"Great spotting!",emoji:"⭐",effect:"sparkle"},
@@ -187,6 +194,24 @@ function tone(frequency,start,duration,type="sine",volume=.08){
 }
 
 function playStarSound(){tone(659,0,.14);tone(784,.08,.16);tone(1047,.16,.28,"sine",.09)}
+
+const musicNotes=[261.63,329.63,392,329.63,293.66,349.23,440,349.23];
+function playMusicNote(){
+  tone(musicNotes[musicStep%musicNotes.length],0,.58,"triangle",.018);
+  if(musicStep%4===0)tone(musicNotes[musicStep%musicNotes.length]/2,0,.72,"sine",.01);
+  musicStep++;
+}
+function startMusic(){
+  audioContext ||= new (window.AudioContext||window.webkitAudioContext)();
+  audioContext.resume?.();
+  playMusicNote();musicTimer=setInterval(playMusicNote,650);
+  musicEl.textContent="Music: on";musicEl.setAttribute("aria-pressed","true");
+}
+function stopMusic(){
+  clearInterval(musicTimer);musicTimer=null;
+  musicEl.textContent="Music: off";musicEl.setAttribute("aria-pressed","false");
+}
+function toggleMusic(){musicTimer?stopMusic():startMusic()}
 function playRowSound(){tone(523,0,.16);tone(659,.12,.18);tone(784,.24,.2);tone(1047,.38,.42,"sine",.1)}
 
 function playWrongSound(){
@@ -369,5 +394,19 @@ function resetGame(){
   messageEl.textContent=`New number clues! ${hintCount} hint${hintCount===1?"":"s"} on each caterpillar. Every correct answer brings a surprise!`;
 }
 
+teacherSettingsEl.addEventListener("click",()=>{
+  const opening=teacherPanelEl.hidden;
+  teacherPanelEl.hidden=!opening;
+  teacherSettingsEl.setAttribute("aria-expanded",String(opening));
+  if(opening)hintCountEl.focus();
+});
+hintCountEl.value=String(hintCount);hintValueEl.value=String(hintCount);
+hintCountEl.addEventListener("input",()=>{hintValueEl.value=hintCountEl.value});
+document.querySelector("#applyHints").addEventListener("click",()=>{
+  hintCount=Number(hintCountEl.value);
+  teacherPanelEl.hidden=true;teacherSettingsEl.setAttribute("aria-expanded","false");
+  resetGame();
+});
+musicEl.addEventListener("click",toggleMusic);
 document.querySelector("#reset").addEventListener("click",resetGame);
 resetGame();
