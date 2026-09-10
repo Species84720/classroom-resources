@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Missing Numbers to 50 | Year 2 Maths</title>
+<style>
+:root{--green:#67b83f;--ink:#282528;--line:#444;--soft:#f3faed}
+*{box-sizing:border-box} body{margin:0;background:#eef2ed;color:var(--ink);font-family:Arial,Helvetica,sans-serif}
+.toolbar{max-width:820px;margin:18px auto 10px;padding:14px 18px;background:#fff;border-radius:14px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 18px #0001}
+.toolbar h1{font-size:20px;margin:0}.toolbar button{border:0;border-radius:9px;padding:10px 15px;background:var(--green);color:#fff;font-weight:700;cursor:pointer}
+.sheet{width:210mm;min-height:297mm;margin:0 auto 24px;padding:13mm 15mm;background:white;box-shadow:0 5px 24px #0002}
+header{display:flex;align-items:flex-end;justify-content:space-between;border-bottom:2px solid var(--green);padding-bottom:6px}
+h2{margin:0;color:var(--green);font-size:28px}.details{font-size:13px;line-height:2}.line{display:inline-block;width:86px;border-bottom:1px solid #555;margin-left:5px}
+.instruction{margin:7px 0 11px;font-size:15px}.number-grid{border-collapse:collapse;margin:0 auto 14px}.number-grid td{width:50px;height:50px;border:1.5px solid var(--line);text-align:center;font-size:23px;font-weight:700}
+.fruit{font-size:31px;line-height:1}.activities{display:grid;grid-template-columns:1fr 1.25fr;gap:13px;margin-top:12px}
+.exercise{border:2px solid var(--green);padding:10px 12px;min-height:118mm}.exercise h3{font-family:Georgia,serif;font-size:16px;margin:0 0 4px}.exercise .help{margin:0 0 10px;font-size:12px}
+.recognition-row{display:flex;align-items:center;gap:9px;margin:9px 0}.recognition-row .fruit{width:42px;text-align:center}.arrow{font-weight:700}.answer-box{display:inline-flex;width:38px;height:32px;border:1.5px solid #333;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:transparent}
+.sequence{display:flex;align-items:center;gap:5px;margin:17px 0;font-family:Georgia,serif;font-size:17px;white-space:nowrap}.sequence .answer-box{width:35px;height:32px}.comma{margin-left:-3px}
+.answer-mode .answer-box{color:#247a29;background:#f0faeb}.note{margin-top:13px;padding:7px;border-radius:7px;background:var(--soft);font-size:12px;text-align:center}
+footer{text-align:center;color:#579d35;font-weight:700;margin-top:10px;font-size:13px}
+@media(max-width:840px){.sheet{width:100%;min-height:auto;padding:20px}.activities{grid-template-columns:1fr}.toolbar{margin:0;border-radius:0}.exercise{min-height:auto}}
+@media print{body{background:#fff}.toolbar{display:none}.sheet{margin:0;padding:10mm 13mm;box-shadow:none}.answer-mode .answer-box{color:transparent;background:#fff}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <h1>Year 2 printable worksheet</h1>
+  <div><button id="answers" type="button">Show answers</button> <button type="button" onclick="window.print()">Print A4</button></div>
+</div>
+<main class="sheet" id="sheet">
+<header>
+  <div><h2>Missing Numbers to 50</h2><p class="instruction">Look carefully, count on, and write the missing numbers.</p></div>
+  <div class="details">Name <span class="line"></span><br>Date <span class="line"></span></div>
+</header>
+
+<table class="number-grid" aria-label="Numbers 21 to 40 with six numbers replaced by fruit">
+<tbody>
+<tr><td><span class="fruit" title="21">🍎</span></td><td>22</td><td>23</td><td>24</td><td>25</td></tr>
+<tr><td>26</td><td>27</td><td>28</td><td>29</td><td><span class="fruit" title="30">🍌</span></td></tr>
+<tr><td>31</td><td><span class="fruit" title="32">🍊</span></td><td>33</td><td><span class="fruit" title="34">🥝</span></td><td>35</td></tr>
+<tr><td>36</td><td>37</td><td>38</td><td><span class="fruit" title="39">🍍</span></td><td><span class="fruit" title="40">🍇</span></td></tr>
+</tbody>
+</table>
+
+<div class="activities">
+<section class="exercise">
+  <h3>Exercise 1: Write the correct number.</h3>
+  <p class="help">Use the number grid to work out each fruit's number.</p>
+  <div class="recognition-row"><span class="fruit">🍎</span><span class="arrow">→</span><span class="answer-box">21</span></div>
+  <div class="recognition-row"><span class="fruit">🍊</span><span class="arrow">→</span><span class="answer-box">32</span></div>
+  <div class="recognition-row"><span class="fruit">🍍</span><span class="arrow">→</span><span class="answer-box">39</span></div>
+  <div class="recognition-row"><span class="fruit">🍌</span><span class="arrow">→</span><span class="answer-box">30</span></div>
+  <div class="recognition-row"><span class="fruit">🥝</span><span class="arrow">→</span><span class="answer-box">34</span></div>
+  <div class="recognition-row"><span class="fruit">🍇</span><span class="arrow">→</span><span class="answer-box">40</span></div>
+</section>
+
+<section class="exercise">
+  <h3>Exercise 2: Add the correct numbers.</h3>
+  <p class="help">Count forwards by one and fill every empty box.</p>
+  <div class="sequence"><span>32,</span><span class="answer-box">33</span><span class="comma">,</span><span>34,</span><span class="answer-box">35</span><span class="comma">,</span><span>36</span></div>
+  <div class="sequence"><span class="answer-box">21</span><span class="comma">,</span><span>22, 23, 24,</span><span class="answer-box">25</span></div>
+  <div class="sequence"><span>36,</span><span class="answer-box">37</span><span class="comma">,</span><span>38, 39,</span><span class="answer-box">40</span></div>
+  <div class="sequence"><span>45,</span><span class="answer-box">46</span><span class="comma">,</span><span class="answer-box">47</span><span class="comma">,</span><span>48, 49, 50</span></div>
+  <p class="note">Challenge: Say each completed sequence aloud.</p>
+</section>
+</div>
+<footer>Great counting! Check each number before you finish.</footer>
+</main>
+<script>
+const button=document.getElementById('answers');
+button.addEventListener('click',()=>{
+  const shown=document.getElementById('sheet').classList.toggle('answer-mode');
+  button.textContent=shown?'Hide answers':'Show answers';
+});
+</script>
+</body>
+</html>
