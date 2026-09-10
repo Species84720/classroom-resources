@@ -271,7 +271,7 @@
   {
     "id": "year-2-bird-number-song-30-to-50",
     "title": "Bird Number Song 30–50",
-    "description": "A Year 2 number-recognition game set in an enchanted forest, with realistic birds that chirp and fly upward plus a clear three-row number line covering 30 to 50.",
+    "description": "A Year 2 number-recognition game set in an enchanted forest, with realistic birds that chirp and fly upward plus a two-line number guide: 30–40 and 40–50.",
     "year_group": "Year 2",
     "learning_intent": "Recognise and read numerals from 30 to 50.",
     "subjects": [
@@ -295,7 +295,7 @@
       "randomised",
       "number recognition",
       "fly-away animation",
-      "three-row number line",
+      "two-line number guide",
       "30 to 50 number line"
     ],
     "resource_type": "interactive game",
