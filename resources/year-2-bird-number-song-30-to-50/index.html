@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#87ceeb">
+  <title>Bird Number Song 30–50 | Year 2 Mathematics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">YEAR 2 • MATHEMATICS</p>
+        <h1>Bird Number Song 30–50</h1>
+        <p class="instruction">Tap every bird from 30 to 50. Each bird stays safe and sings a cheerful sound!</p>
+      </div>
+      <div class="controls">
+        <div class="counter" id="counter" aria-live="polite">0 / 21 birds sang</div>
+        <button id="reset" type="button">Mix again</button>
+      </div>
+    </header>
+
+    <section id="garden" class="garden" aria-label="Number birds"></section>
+
+    <footer class="footer-note">
+      <p>Read each number aloud, then tap its bird.</p>
+      <p id="message" aria-live="polite">Ready? Tap any bird to hear it sing!</p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
