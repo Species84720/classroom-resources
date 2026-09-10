@@ -271,7 +271,7 @@
   {
     "id": "year-2-bird-number-song-30-to-50",
     "title": "Bird Number Song 30–50",
-    "description": "A colourful Year 2 number-recognition game with 21 friendly birds covering every number from 30 to 50. Tapping a bird makes it flap and sing a cheerful bird sound without removing it.",
+    "description": "A Year 2 number-recognition game set in a Hansel and Gretel–style enchanted forest with a colourful candy cottage. Each realistic bird chirps, flaps and flies upward when tapped.",
     "year_group": "Year 2",
     "learning_intent": "Recognise and read numerals from 30 to 50.",
     "subjects": [
@@ -284,8 +284,10 @@
     ],
     "themes": [
       "birds",
-      "garden",
-      "nature"
+      "Hansel and Gretel",
+      "enchanted forest",
+      "candy cottage",
+      "fairy tale"
     ],
     "labels": [
       "30 to 50",
@@ -293,7 +295,9 @@
       "touch activity",
       "bird sounds",
       "randomised",
-      "number recognition"
+      "number recognition",
+      "Hansel and Gretel background",
+      "fly-away animation"
     ],
     "resource_type": "interactive game",
     "language": "en-GB",
