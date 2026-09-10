@@ -233,5 +233,39 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-balloon-number-pop-30-to-50/"
+  },
+  {
+    "id": "year-2-jungle-number-hide-and-seek-30-to-50",
+    "title": "Jungle Number Hide-and-Seek 30–50",
+    "description": "A touch-friendly Year 2 jungle game where children seek the requested hidden numeral among numbers from 30 to 50.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise and identify numerals from 30 to 50.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "numeral recognition",
+      "numbers to 50"
+    ],
+    "themes": [
+      "jungle",
+      "curious monkey",
+      "exploration"
+    ],
+    "labels": [
+      "30 to 50",
+      "hide and seek",
+      "visual search",
+      "touch activity",
+      "independent practice",
+      "audio feedback"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-10",
+    "updated": "2026-09-10",
+    "url": "resources/year-2-jungle-number-hide-and-seek-30-to-50/"
   }
 ]

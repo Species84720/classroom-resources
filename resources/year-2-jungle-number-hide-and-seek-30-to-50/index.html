@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#dff3a7">
+  <title>Jungle Number Hide-and-Seek 30–50 | Year 2 Mathematics</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">YEAR 2 • MATHEMATICS</p>
+        <h1>Jungle Number Hide-and-Seek</h1>
+        <p class="instruction">Help Milo the curious monkey find each hidden number from 30 to 50.</p>
+      </div>
+      <div class="controls">
+        <div class="progress" id="progress" aria-live="polite">Found 0 of 21</div>
+        <button id="restart" type="button">New game</button>
+      </div>
+    </header>
+
+    <section class="mission" aria-labelledby="target-label">
+      <div class="monkey" aria-hidden="true">
+        <span class="ear left"></span><span class="ear right"></span>
+        <span class="face">●ᴥ●</span><span class="tail"></span>
+      </div>
+      <div>
+        <p id="target-label">Can you find number…</p>
+        <strong id="target">30</strong>
+      </div>
+      <button id="hint" type="button">Give me a hint</button>
+    </section>
+
+    <section id="jungle" class="jungle" aria-label="Jungle picture with hidden numbers">
+      <div class="sun" aria-hidden="true"></div>
+      <div class="cloud cloud-one" aria-hidden="true"></div>
+      <div class="cloud cloud-two" aria-hidden="true"></div>
+      <div class="mountain mountain-one" aria-hidden="true"></div>
+      <div class="mountain mountain-two" aria-hidden="true"></div>
+      <div class="tree tree-left" aria-hidden="true"><i></i><b>🌴</b></div>
+      <div class="tree tree-right" aria-hidden="true"><i></i><b>🌿</b></div>
+      <div class="vine vine-one" aria-hidden="true"></div>
+      <div class="vine vine-two" aria-hidden="true"></div>
+      <div class="river" aria-hidden="true"></div>
+      <div class="rock rock-one" aria-hidden="true"></div>
+      <div class="rock rock-two" aria-hidden="true"></div>
+      <div class="flowers" aria-hidden="true">🌺　🌼　🌸</div>
+      <div id="numbers"></div>
+    </section>
+
+    <footer>
+      <p id="message" role="status" aria-live="polite">Look carefully—the numbers are hiding in the picture!</p>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
