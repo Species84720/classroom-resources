@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Number Picture Jigsaw 30–50</title>
+  <meta name="description" content="Build a colourful picture by ordering the numbers from 30 to 50.">
+  <style>
+    :root { --ink:#17324d; --cream:#fffaf0; --blue:#087e8b; --blue-dark:#075c65; --gold:#ffd166; --coral:#ef476f; }
+    * { box-sizing:border-box; }
+    body { margin:0; min-height:100vh; font-family:system-ui,-apple-system,"Segoe UI",sans-serif; color:var(--ink); background:linear-gradient(160deg,#dff7ff,#fff5cf); }
+    button { font:inherit; }
+    .topbar { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem clamp(.75rem,3vw,2rem); background:#fff; border-bottom:3px solid var(--gold); }
+    .topbar h1 { margin:0; font-size:clamp(1.25rem,3vw,2rem); }
+    .topbar a { color:var(--blue-dark); font-weight:800; }
+    .intro { text-align:center; padding:.85rem 1rem .45rem; }
+    .intro p { margin:.25rem auto; max-width:62ch; font-size:clamp(1rem,2vw,1.2rem); }
+    .progress { font-weight:900; }
+    .game { width:min(1180px,calc(100% - 1rem)); margin:.5rem auto 1.5rem; display:grid; grid-template-columns:minmax(190px,250px) minmax(0,1fr); gap:1rem; align-items:start; }
+    .tray { background:#fff; border:3px solid var(--blue); border-radius:1.25rem; padding:.75rem; box-shadow:0 8px 0 #94d9df; }
+    .tray h2 { margin:0 0 .5rem; font-size:1.1rem; text-align:center; }
+    .pieces { display:grid; grid-template-columns:repeat(3,1fr); gap:.45rem; max-height:68vh; overflow:auto; padding:.25rem; }
+    .piece { aspect-ratio:1.18; min-height:54px; border:3px solid #fff; border-radius:.7rem; box-shadow:0 3px 0 #b7c8d4; color:#102a43; font-weight:1000; font-size:clamp(1rem,2.3vw,1.45rem); cursor:grab; touch-action:none; position:relative; background-color:#bcecff; background-size:700% 300%; text-shadow:0 1px 0 #fff,1px 0 0 #fff,0 -1px 0 #fff,-1px 0 0 #fff; }
+    .piece:hover { transform:translateY(-2px); }
+    .piece:focus-visible,.slot:focus-visible,.controls button:focus-visible { outline:4px solid #111; outline-offset:3px; }
+    .piece.selected { outline:5px solid var(--coral); outline-offset:2px; transform:scale(1.05); }
+    .piece.dragging { opacity:.55; cursor:grabbing; }
+    .piece.placed { width:100%; height:100%; min-height:0; border:0; border-radius:.35rem; box-shadow:none; cursor:default; font-size:clamp(.8rem,2vw,1.3rem); animation:pop .28s ease-out; }
+    .board-wrap { background:#fff; border-radius:1.25rem; padding:.75rem; box-shadow:0 8px 0 #c7b9e8; }
+    .board { display:grid; grid-template-columns:repeat(7,1fr); aspect-ratio:7/3; border:5px solid #694fad; border-radius:.8rem; overflow:hidden; background:#e9e4f7; }
+    .slot { min-width:0; border:1px dashed #9988c8; display:grid; place-items:center; padding:0; color:#695a91; background:rgba(255,255,255,.58); font-weight:900; font-size:clamp(.65rem,2vw,1.2rem); }
+    .slot.over { background:#fff2a8; outline:4px solid var(--gold); outline-offset:-4px; }
+    .slot.filled { border-style:solid; background:transparent; }
+    .controls { display:flex; justify-content:center; gap:.65rem; flex-wrap:wrap; margin:.9rem 0 .2rem; }
+    .controls button { min-height:46px; border:0; border-radius:999px; padding:.7rem 1.1rem; background:var(--blue); color:#fff; font-weight:900; cursor:pointer; box-shadow:0 4px 0 var(--blue-dark); }
+    .controls button:active { transform:translateY(3px); box-shadow:0 1px 0 var(--blue-dark); }
+    .message { min-height:1.8em; margin:.5rem 0 0; text-align:center; font-weight:900; }
+    .celebration { position:fixed; inset:0; display:grid; place-items:center; padding:1rem; background:rgba(12,34,54,.72); z-index:10; }
+    .celebration[hidden] { display:none; }
+    .card { max-width:520px; padding:1.5rem; text-align:center; border-radius:1.5rem; background:#fff; box-shadow:0 12px 0 var(--gold); }
+    .card h2 { margin:.1rem 0 .5rem; font-size:clamp(2rem,8vw,3.4rem); }
+    .card button { min-height:48px; padding:.75rem 1.25rem; border:0; border-radius:999px; background:var(--coral); color:#fff; font-weight:900; cursor:pointer; }
+    @keyframes pop { 50% { transform:scale(1.12); } }
+    @media (max-width:720px) { .game { grid-template-columns:1fr; } .tray { order:2; } .pieces { grid-template-columns:repeat(7,1fr); max-height:none; } .piece { min-height:48px; font-size:.95rem; } .board { order:1; } }
+    @media (max-width:430px) { .pieces { grid-template-columns:repeat(4,1fr); } .board { grid-template-columns:repeat(7,1fr); } .slot { font-size:.62rem; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar"><h1>Number Picture Jigsaw</h1><a href="../../">Resource library</a></header>
+  <main>
+    <section class="intro" aria-labelledby="instructions">
+      <p id="instructions"><strong>Build the picture!</strong> Drag each number onto the same number on the board.</p>
+      <p>Or tap a piece, then tap its matching space.</p>
+      <p id="progress" class="progress" role="status" aria-live="polite">0 of 21 pieces placed</p>
+    </section>
+    <section class="game" aria-label="Number jigsaw game">
+      <aside class="tray" aria-labelledby="tray-title"><h2 id="tray-title">Puzzle pieces</h2><div id="pieces" class="pieces"></div></aside>
+      <div class="board-wrap">
+        <div id="board" class="board" aria-label="Puzzle board"></div>
+        <p id="message" class="message" aria-live="assertive">Start with any number.</p>
+        <div class="controls"><button id="hint" type="button">Show me a hint</button><button id="restart" type="button">Mix again</button></div>
+      </div>
+    </section>
+  </main>
+  <div id="celebration" class="celebration" hidden role="dialog" aria-modal="true" aria-labelledby="win-title">
+    <div class="card"><div aria-hidden="true">⭐ 🌈 ⭐</div><h2 id="win-title">Picture complete!</h2><p>Brilliant number ordering from 30 to 50.</p><button id="play-again" type="button">Play again</button></div>
+  </div>
+  <script>
+    const numbers=Array.from({length:21},(_,i)=>i+30);
+    const pieces=document.querySelector('#pieces'),board=document.querySelector('#board'),progress=document.querySelector('#progress'),message=document.querySelector('#message'),celebration=document.querySelector('#celebration');
+    let selected=null,placed=0;
+    function shuffle(items){for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]];}return items;}
+    function art(el,index){const col=index%7,row=Math.floor(index/7);el.style.backgroundImage='radial-gradient(circle at 50% 62%,#fff59d 0 10%,transparent 11%),linear-gradient(165deg,transparent 0 52%,#8bd17c 53% 72%,#4b9b66 73%),linear-gradient(#76d7ff 0 58%,#dff9ff 59%)';el.style.backgroundPosition=`${col*100/6}% ${row*50}%`;}
+    function makePiece(n){const b=document.createElement('button');b.type='button';b.className='piece';b.textContent=n;b.dataset.number=n;b.draggable=true;b.setAttribute('aria-label',`Puzzle piece ${n}`);art(b,n-30);b.addEventListener('click',()=>selectPiece(b));b.addEventListener('dragstart',e=>{selected=b;e.dataTransfer.setData('text/plain',n);b.classList.add('dragging');});b.addEventListener('dragend',()=>b.classList.remove('dragging'));b.addEventListener('pointerdown',pointerStart);return b;}
+    function selectPiece(piece){if(piece.parentElement.classList.contains('slot'))return;document.querySelectorAll('.piece.selected').forEach(p=>p.classList.remove('selected'));selected=selected===piece?null:piece;if(selected){selected.classList.add('selected');message.textContent=`Piece ${selected.dataset.number} selected. Find the same number.`;}else message.textContent='Choose a puzzle piece.';}
+    function tryPlace(slot,piece){if(!piece||slot.classList.contains('filled'))return;const wanted=slot.dataset.number,got=piece.dataset.number;if(wanted!==got){message.textContent=`Not there yet. Find the space marked ${got}.`;slot.animate([{transform:'translateX(-3px)'},{transform:'translateX(3px)'},{transform:'none'}],{duration:180});return;}piece.classList.remove('selected','dragging');piece.classList.add('placed');piece.draggable=false;slot.replaceChildren(piece);slot.classList.add('filled');slot.removeAttribute('aria-label');selected=null;placed++;progress.textContent=`${placed} of 21 pieces placed`;message.textContent=`Yes! ${got} fits perfectly.`;if(placed===21)setTimeout(win,350);}
+    function makeSlot(n){const slot=document.createElement('button');slot.type='button';slot.className='slot';slot.dataset.number=n;slot.textContent=n;slot.setAttribute('aria-label',`Space for ${n}`);slot.addEventListener('click',()=>tryPlace(slot,selected));slot.addEventListener('dragover',e=>{e.preventDefault();slot.classList.add('over');});slot.addEventListener('dragleave',()=>slot.classList.remove('over'));slot.addEventListener('drop',e=>{e.preventDefault();slot.classList.remove('over');tryPlace(slot,document.querySelector(`.piece[data-number="${e.dataTransfer.getData('text/plain')}"]`));});return slot;}
+    function pointerStart(e){if(e.pointerType==='mouse')return;const piece=e.currentTarget;piece.setPointerCapture(e.pointerId);selected=piece;piece.classList.add('dragging','selected');const move=ev=>{piece.style.transform=`translate(${ev.clientX-e.clientX}px,${ev.clientY-e.clientY}px) scale(1.05)`;piece.style.zIndex=5;};const end=ev=>{piece.removeEventListener('pointermove',move);piece.removeEventListener('pointerup',end);piece.removeEventListener('pointercancel',end);piece.style.transform='';piece.style.zIndex='';piece.classList.remove('dragging');piece.hidden=true;const under=document.elementFromPoint(ev.clientX,ev.clientY);piece.hidden=false;const slot=under?.closest('.slot');if(slot)tryPlace(slot,piece);};piece.addEventListener('pointermove',move);piece.addEventListener('pointerup',end);piece.addEventListener('pointercancel',end);}
+    function setup(){placed=0;selected=null;progress.textContent='0 of 21 pieces placed';message.textContent='Start with any number.';celebration.hidden=true;board.replaceChildren(...numbers.map(makeSlot));pieces.replaceChildren(...shuffle([...numbers]).map(makePiece));}
+    function win(){message.textContent='You completed the whole picture!';celebration.hidden=false;document.querySelector('#play-again').focus();}
+    document.querySelector('#restart').addEventListener('click',setup);document.querySelector('#play-again').addEventListener('click',setup);
+    document.querySelector('#hint').addEventListener('click',()=>{const first=pieces.querySelector('.piece');if(!first){message.textContent='Every piece is already in place!';return;}selectPiece(first);document.querySelector(`.slot[data-number="${first.dataset.number}"]`).focus();message.textContent=`Hint: match ${first.dataset.number} with the space marked ${first.dataset.number}.`;});
+    setup();
+  </script>
+</body>
+</html>

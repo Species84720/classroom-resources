@@ -1,76 +1,5 @@
 [
   {
-    "title": "Dinosaur Adjectives",
-    "slug": "year-2-dinosaur-adjectives",
-    "yearGroup": "Year 2",
-    "subject": "English",
-    "topic": "Adjectives",
-    "learningIntention": "I can identify and use adjectives to describe nouns.",
-    "theme": "Dinosaurs",
-    "labels": [
-      "grammar",
-      "descriptive writing",
-      "nouns",
-      "dinosaurs"
-    ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-dinosaur-adjectives/"
-  },
-  {
-    "title": "Number Spinner",
-    "slug": "year-2-number-spinner",
-    "yearGroup": "Year 2",
-    "subject": "Maths",
-    "topic": "Numbers 1 to 15",
-    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
-    "theme": "Spinning number wheel",
-    "labels": [
-      "number",
-      "1-15",
-      "spinner",
-      "number recognition",
-      "addition",
-      "subtraction",
-      "comparison"
-    ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-number-spinner/"
-  },
-  {
-    "id": "year-2-caterpillar-number-order",
-    "title": "Caterpillar Number Order",
-    "description": "A touch-friendly game where children order 1 to 30 using teacher-controlled clues, instant feedback, rewards and optional background music.",
-    "year_group": "Year 2",
-    "learning_intent": "Order, recognise and sequence whole numbers from 1 to 30.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "number order",
-      "counting",
-      "numeral recognition"
-    ],
-    "themes": [
-      "caterpillars"
-    ],
-    "labels": [
-      "1 to 30",
-      "drag and drop",
-      "touch activity",
-      "independent practice",
-      "sequencing"
-    ],
-    "resource_type": "interactive game",
-    "language": "en-GB",
-    "estimated_minutes": 10,
-    "created": "2026-09-09",
-    "updated": "2026-09-10",
-    "url": "resources/year-2-caterpillar-number-order/"
-  },
-  {
     "id": "year-2-balloon-number-pop",
     "title": "Balloon Number Pop",
     "description": "A colourful Year 2 number-recognition game with randomly placed balloons, varied sizes and shapes, animated floating, and different pop sounds.",
@@ -101,106 +30,6 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-balloon-number-pop/"
-  },
-  {
-    "id": "year-2-race-car-number-lines",
-    "title": "Race Car Number Lines",
-    "description": "A printable Year 2 racing-themed worksheet with configurable number lines and missing-number practice, designed to fit on one A4 page.",
-    "year_group": "Year 2",
-    "learning_intent": "Complete and sequence numbers on short number lines.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number lines",
-      "counting",
-      "number sequences",
-      "missing numbers"
-    ],
-    "themes": [
-      "race cars",
-      "racing"
-    ],
-    "labels": [
-      "1 to 30",
-      "printable",
-      "A4",
-      "worksheet",
-      "number line",
-      "missing numbers"
-    ],
-    "resource_type": "printable worksheet generator",
-    "language": "en-GB",
-    "estimated_minutes": 15,
-    "created": "2026-09-10",
-    "updated": "2026-09-10",
-    "url": "resources/year-2-race-car-number-lines/"
-  },
-  {
-    "id": "year-2-number-quest",
-    "title": "Number Quest 1–30",
-    "description": "A friendly ten-question quiz covering numeral recognition, missing numbers, before and after, and counting quantities from 1 to 30.",
-    "year_group": "Year 2",
-    "learning_intent": "Recognise, count and sequence whole numbers from 1 to 30.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "counting",
-      "number sequences",
-      "missing numbers",
-      "numeral recognition"
-    ],
-    "themes": [
-      "number quest"
-    ],
-    "labels": [
-      "1 to 30",
-      "quiz",
-      "independent practice",
-      "before and after",
-      "quantity matching"
-    ],
-    "resource_type": "interactive quiz",
-    "language": "en-GB",
-    "estimated_minutes": 10,
-    "created": "2026-09-10",
-    "updated": "2026-09-10",
-    "url": "resources/year-2-number-quest/"
-  },
-  {
-    "id": "year-2-missing-numbers-to-50",
-    "title": "Missing Numbers to 50",
-    "description": "A fruit-themed printable Year 2 worksheet for recognising numerals and completing number sequences, including two missing numbers between 45 and 50.",
-    "year_group": "Year 2",
-    "learning_intent": "Recognise and sequence whole numbers to 50.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "counting",
-      "number sequences",
-      "missing numbers",
-      "numeral recognition"
-    ],
-    "themes": [
-      "fruit"
-    ],
-    "labels": [
-      "numbers to 50",
-      "printable",
-      "A4",
-      "worksheet",
-      "missing numbers"
-    ],
-    "resource_type": "printable worksheet",
-    "language": "en-GB",
-    "estimated_minutes": 15,
-    "created": "2026-09-10",
-    "updated": "2026-09-10",
-    "url": "resources/year-2-missing-numbers-to-50/"
   },
   {
     "id": "year-2-balloon-number-pop-30-to-50",
@@ -235,38 +64,40 @@
     "url": "resources/year-2-balloon-number-pop-30-to-50/"
   },
   {
-    "id": "year-2-jungle-number-hide-and-seek-30-to-50",
-    "title": "Jungle Number Hide-and-Seek 30–50",
-    "description": "A touch-friendly Year 2 jungle game where children seek the requested hidden numeral among numbers from 30 to 50.",
+    "id": "year-2-bird-crumb-path-30-to-50",
+    "title": "Bird Crumb Path 30–50",
+    "description": "A Year 2 whole-class missing-number activity with a crumb path from 30 to 50. Birds cover selected numerals; children guess the hidden number, then the teacher taps the bird so it flies away and reveals the answer.",
     "year_group": "Year 2",
-    "learning_intent": "Recognise and identify numerals from 30 to 50.",
+    "learning_intent": "Recognise and identify missing numerals in the sequence from 30 to 50.",
     "subjects": [
       "Mathematics"
     ],
     "topics": [
       "number",
-      "numeral recognition",
-      "numbers to 50"
+      "number sequences",
+      "missing numbers",
+      "numeral recognition"
     ],
     "themes": [
-      "jungle",
-      "curious monkey",
-      "exploration"
+      "birds",
+      "crumb trail",
+      "outdoors"
     ],
     "labels": [
       "30 to 50",
-      "hide and seek",
-      "visual search",
+      "whole-class activity",
+      "missing numbers",
+      "click activity",
       "touch activity",
-      "independent practice",
-      "audio feedback"
+      "randomised",
+      "fly-away animation"
     ],
-    "resource_type": "interactive game",
+    "resource_type": "interactive teaching activity",
     "language": "en-GB",
     "estimated_minutes": 10,
-    "created": "2026-09-10",
-    "updated": "2026-09-10",
-    "url": "resources/year-2-jungle-number-hide-and-seek-30-to-50/"
+    "created": "2026-09-11",
+    "updated": "2026-09-11",
+    "url": "resources/year-2-bird-crumb-path-30-to-50/"
   },
   {
     "id": "year-2-bird-number-song-30-to-50",
@@ -306,39 +137,242 @@
     "url": "resources/year-2-bird-number-song-30-to-50/"
   },
   {
-    "id": "year-2-bird-crumb-path-30-to-50",
-    "title": "Bird Crumb Path 30–50",
-    "description": "A Year 2 whole-class missing-number activity with a crumb path from 30 to 50. Birds cover selected numerals; children guess the hidden number, then the teacher taps the bird so it flies away and reveals the answer.",
+    "id": "year-2-caterpillar-number-order",
+    "title": "Caterpillar Number Order",
+    "description": "A touch-friendly game where children order 1 to 30 using teacher-controlled clues, instant feedback, rewards and optional background music.",
     "year_group": "Year 2",
-    "learning_intent": "Recognise and identify missing numerals in the sequence from 30 to 50.",
+    "learning_intent": "Order, recognise and sequence whole numbers from 1 to 30.",
     "subjects": [
       "Mathematics"
     ],
     "topics": [
       "number",
+      "number order",
+      "counting",
+      "numeral recognition"
+    ],
+    "themes": [
+      "caterpillars"
+    ],
+    "labels": [
+      "1 to 30",
+      "drag and drop",
+      "touch activity",
+      "independent practice",
+      "sequencing"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-09",
+    "updated": "2026-09-10",
+    "url": "resources/year-2-caterpillar-number-order/"
+  },
+  {
+    "title": "Dinosaur Adjectives",
+    "slug": "year-2-dinosaur-adjectives",
+    "yearGroup": "Year 2",
+    "subject": "English",
+    "topic": "Adjectives",
+    "learningIntention": "I can identify and use adjectives to describe nouns.",
+    "theme": "Dinosaurs",
+    "labels": [
+      "grammar",
+      "descriptive writing",
+      "nouns",
+      "dinosaurs"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-dinosaur-adjectives/"
+  },
+  {
+    "id": "year-2-jungle-number-hide-and-seek-30-to-50",
+    "title": "Jungle Number Hide-and-Seek 30–50",
+    "description": "A touch-friendly Year 2 jungle game where children seek the requested hidden numeral among numbers from 30 to 50.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise and identify numerals from 30 to 50.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "numeral recognition",
+      "numbers to 50"
+    ],
+    "themes": [
+      "jungle",
+      "curious monkey",
+      "exploration"
+    ],
+    "labels": [
+      "30 to 50",
+      "hide and seek",
+      "visual search",
+      "touch activity",
+      "independent practice",
+      "audio feedback"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-10",
+    "updated": "2026-09-10",
+    "url": "resources/year-2-jungle-number-hide-and-seek-30-to-50/"
+  },
+  {
+    "id": "year-2-missing-numbers-to-50",
+    "title": "Missing Numbers to 50",
+    "description": "A fruit-themed printable Year 2 worksheet for recognising numerals and completing number sequences, including two missing numbers between 45 and 50.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise and sequence whole numbers to 50.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
       "number sequences",
       "missing numbers",
       "numeral recognition"
     ],
     "themes": [
-      "birds",
-      "crumb trail",
-      "outdoors"
+      "fruit"
+    ],
+    "labels": [
+      "numbers to 50",
+      "printable",
+      "A4",
+      "worksheet",
+      "missing numbers"
+    ],
+    "resource_type": "printable worksheet",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-09-10",
+    "updated": "2026-09-10",
+    "url": "resources/year-2-missing-numbers-to-50/"
+  },
+  {
+    "id": "year-2-number-picture-jigsaw-30-to-50",
+    "title": "Number Picture Jigsaw 30–50",
+    "description": "A touch-friendly Year 2 jigsaw where children match and sequence numbered picture pieces from 30 to 50 to reveal a complete landscape.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise, match and sequence whole numbers from 30 to 50.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "number order",
+      "number sequences",
+      "numeral recognition"
+    ],
+    "themes": [
+      "jigsaw puzzle",
+      "landscape"
     ],
     "labels": [
       "30 to 50",
-      "whole-class activity",
-      "missing numbers",
-      "click activity",
+      "drag and drop",
       "touch activity",
-      "randomised",
-      "fly-away animation"
+      "keyboard accessible",
+      "independent practice",
+      "sequencing"
     ],
-    "resource_type": "interactive teaching activity",
+    "resource_type": "interactive game",
     "language": "en-GB",
     "estimated_minutes": 10,
-    "created": "2026-09-11",
-    "updated": "2026-09-11",
-    "url": "resources/year-2-bird-crumb-path-30-to-50/"
+    "created": "2026-09-13",
+    "updated": "2026-09-13",
+    "url": "resources/year-2-number-picture-jigsaw-30-to-50/"
+  },
+  {
+    "id": "year-2-number-quest",
+    "title": "Number Quest 1–30",
+    "description": "A friendly ten-question quiz covering numeral recognition, missing numbers, before and after, and counting quantities from 1 to 30.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise, count and sequence whole numbers from 1 to 30.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "number sequences",
+      "missing numbers",
+      "numeral recognition"
+    ],
+    "themes": [
+      "number quest"
+    ],
+    "labels": [
+      "1 to 30",
+      "quiz",
+      "independent practice",
+      "before and after",
+      "quantity matching"
+    ],
+    "resource_type": "interactive quiz",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-10",
+    "updated": "2026-09-10",
+    "url": "resources/year-2-number-quest/"
+  },
+  {
+    "title": "Number Spinner",
+    "slug": "year-2-number-spinner",
+    "yearGroup": "Year 2",
+    "subject": "Maths",
+    "topic": "Numbers 1 to 15",
+    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
+    "theme": "Spinning number wheel",
+    "labels": [
+      "number",
+      "1-15",
+      "spinner",
+      "number recognition",
+      "addition",
+      "subtraction",
+      "comparison"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-number-spinner/"
+  },
+  {
+    "id": "year-2-race-car-number-lines",
+    "title": "Race Car Number Lines",
+    "description": "A printable Year 2 racing-themed worksheet with configurable number lines and missing-number practice, designed to fit on one A4 page.",
+    "year_group": "Year 2",
+    "learning_intent": "Complete and sequence numbers on short number lines.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number lines",
+      "counting",
+      "number sequences",
+      "missing numbers"
+    ],
+    "themes": [
+      "race cars",
+      "racing"
+    ],
+    "labels": [
+      "1 to 30",
+      "printable",
+      "A4",
+      "worksheet",
+      "number line",
+      "missing numbers"
+    ],
+    "resource_type": "printable worksheet generator",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-09-10",
+    "updated": "2026-09-10",
+    "url": "resources/year-2-race-car-number-lines/"
   }
 ]
