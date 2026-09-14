@@ -374,5 +374,39 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-race-car-number-lines/"
+  },
+  {
+    "id": "year-2-number-memory-match",
+    "title": "Number Memory Match",
+    "description": "A touch-friendly memory game where the teacher chooses any whole-number range and children find matching numeral pairs.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise, read and match whole-number numerals within a teacher-selected range.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "numeral recognition",
+      "matching",
+      "memory"
+    ],
+    "themes": [
+      "cards"
+    ],
+    "labels": [
+      "teacher configurable",
+      "number range",
+      "memory game",
+      "matching pairs",
+      "touch activity",
+      "keyboard accessible",
+      "independent practice"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-14",
+    "updated": "2026-09-14",
+    "url": "resources/year-2-number-memory-match/"
   }
 ]
