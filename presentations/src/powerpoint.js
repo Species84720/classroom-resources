@@ -14,6 +14,11 @@ export async function exportPPTX(deck) {
     const hasImage=!!s.image, imageWidth=s.layout==='image'?7:5.4, textWidth=hasImage?11.5-imageWidth:12;
     slide.addText(s.body,{x:.65,y:2,w:textWidth,h:4.75,fontSize:24,color:colours.ink.slice(1),fontFace:'Aptos',fit:'shrink',valign:'mid',align:s.layout==='title'?'center':'left'});
     if(hasImage)slide.addImage({data:s.image,x:13.33-imageWidth-.65,y:2,w:imageWidth,h:4.6,sizing:{type:'contain',w:imageWidth,h:4.6},altText:s.imageAlt});
+    for(const object of s.elements||[]){
+      const box={x:object.x/72,y:object.y/72,w:object.width/72,h:object.height/72};
+      if(object.type==='text')slide.addText(object.text,{...box,fontSize:object.fontSize*.75,color:colours.ink.slice(1),fontFace:'Aptos',fit:'shrink',margin:0,breakLine:false});
+      else if(object.image)slide.addImage({data:object.image,...box,sizing:{type:'contain',w:box.w,h:box.h},altText:object.imageAlt});
+    }
     if(s.notes)slide.addNotes(s.notes);
   }
   await pptx.writeFile({fileName:`${safeName(deck.title)}.pptx`});

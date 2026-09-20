@@ -14,7 +14,7 @@
 <main>
   <section class="intro" id="intro">
     <div><p class="eyebrow">A BIG STAGE FOR LITTLE IDEAS</p><h1>Bring your lesson<br>to life.</h1><p>Build a simple slideshow or a zooming journey.<br>One place to create, present and share.</p></div>
-    <div class="intro-actions"><button id="create" class="primary" disabled>Create a presentation</button><label class="file-button">Import PowerPoint or backup<input id="import" type="file" accept=".pptx,.json" disabled></label><button id="demo">Explore an example →</button><p>Google sign-in is needed to create or edit.</p></div>
+    <div class="intro-actions"><button id="create" class="primary" disabled>Create a presentation</button><label class="file-button">Import PowerPoint or backup<input id="import" type="file" accept=".pptx,.json" disabled></label><button id="demo">Explore an example →</button><button id="nested-demo">Try nested zooms + object animations →</button><p>Google sign-in is needed to create or edit.</p></div>
   </section>
   <p id="setup" class="notice" hidden>Google sign-in and saving are not configured yet. You can explore the example now. <a href="SETUP.md">Owner setup guide</a></p>
   <p id="status" role="status" aria-live="polite"></p>
@@ -33,20 +33,41 @@
         <label class="check"><input id="published" type="checkbox"> Share publicly in the classroom library</label>
       </div>
       <div class="editor-grid">
-        <aside class="slide-rail"><h3>Slides</h3><ol id="slide-list"></ol><button id="add">+ Add slide</button><label>Start with a template<select id="template"><option value="">Choose…</option><option value="blank">Blank</option><option value="lesson">Lesson adventure</option><option value="quiz">Think and discuss</option></select></label></aside>
+        <aside class="slide-rail"><h3>Slides</h3><ol id="slide-list"></ol><button id="add">+ Add slide</button><button id="add-child">+ Slide inside this one</button><label>Start with a template<select id="template"><option value="">Choose…</option><option value="blank">Blank</option><option value="lesson">Lesson adventure</option><option value="quiz">Think and discuss</option><option value="nested">Nested topic journey</option></select></label></aside>
         <div class="slide-form"><div class="toolbar"><button id="up">↑ Move earlier</button><button id="down">↓ Move later</button><button id="duplicate">Duplicate</button><button id="remove">Delete slide</button></div>
           <label>Slide title<input id="slide-title" maxlength="180"></label>
           <label>Slide text <span class="hint">A new line makes a new paragraph or reveal step.</span><textarea id="slide-body" rows="6" maxlength="2500"></textarea></label>
-          <div class="two-col"><label>Layout<select id="layout"><option value="split">Text and picture</option><option value="title">Big title</option><option value="image">Picture focus</option></select></label><label>Animation<select id="animation"><option value="none">None</option><option value="fade">Fade in</option><option value="rise">Rise in</option><option value="reveal">Reveal one line at a time</option></select></label></div>
+          <div class="two-col"><label>Layout<select id="layout"><option value="split">Text and picture</option><option value="title">Big title</option><option value="image">Picture focus</option></select></label><label>Slide transition<select id="animation"><option value="none">None</option><option value="fade">Fade in</option><option value="rise">Rise in</option><option value="reveal">Reveal one line at a time</option></select></label></div>
           <div class="toolbar"><label class="file-button">Add a picture<input id="image" type="file" accept="image/png,image/jpeg,image/webp"></label><button id="clear-image">Remove picture</button></div>
           <label>Picture description<input id="image-alt" maxlength="200" placeholder="Describe the picture for accessibility"></label>
+          <details class="feature-panel" open><summary>Objects and animations</summary>
+            <p class="hint">Animate each field separately. Add extra text boxes or pictures, then drag them in the preview.</p>
+            <div class="toolbar"><button id="add-text">+ Text box</button><label class="file-button">+ Extra picture<input id="add-object-image" type="file" accept="image/png,image/jpeg,image/webp"></label></div>
+            <label>Object<select id="object-target"></select></label>
+            <div id="extra-properties" hidden>
+              <label id="object-text-label">Text<textarea id="object-text" rows="3" maxlength="1500"></textarea></label>
+              <label id="object-alt-label">Picture description<input id="object-alt" maxlength="200"></label>
+              <div class="two-col"><label>Left (px)<input id="object-x" type="number" min="0" max="920"></label><label>Top (px)<input id="object-y" type="number" min="0" max="510"></label><label>Width (px)<input id="object-width" type="number" min="40" max="960"></label><label>Height (px)<input id="object-height" type="number" min="30" max="540"></label><label>Text size<input id="object-font" type="number" min="12" max="96"></label></div>
+              <button id="delete-object" class="danger">Remove this object</button>
+            </div>
+            <div class="two-col"><label>Effect<select id="object-effect"><option value="none">Appear (no motion)</option><option value="fade">Fade in</option><option value="rise">Rise in</option><option value="zoom">Grow in</option><option value="spin">Turn in</option></select></label>
+            <label>Start<select id="object-trigger"><option value="enter">When the slide opens</option><option value="click">On a click / Next</option></select></label>
+            <label>Click step<input id="object-order" type="number" min="1" max="20" value="1"></label><label>Duration (ms)<input id="object-duration" type="number" min="0" max="3000" step="50" value="600"></label><label>Delay (ms)<input id="object-delay" type="number" min="0" max="5000" step="50" value="0"></label></div>
+            <p class="hint">Objects with the same click step appear together. Smaller steps play first. Line-by-line text follows these object steps.</p>
+          </details>
           <label>Teaching notes <span class="hint">Hidden during playback. Included in shared decks and downloads.</span><textarea id="notes" maxlength="3000" rows="3"></textarea></label>
         </div>
-        <div class="preview-column"><h3>Slide preview</h3><div id="preview"></div><p class="hint">Choose Present to try transitions and click-to-reveal text.</p><button id="delete-deck" class="danger" hidden>Delete presentation</button></div>
+        <div class="preview-column"><h3>Slide preview</h3><div id="preview"></div><p class="hint">Choose Present to try transitions and click-to-reveal text.</p><details class="feature-panel" id="zoom-settings" open><summary>Zoom canvas</summary>
+          <p class="hint">Drag slides on this map, or use the position fields. The slide list controls the presentation order.</p>
+          <svg id="canvas-map" role="group" aria-label="Slide arrangement map"></svg>
+          <label>Place inside<select id="parent-slide"></select></label>
+          <div class="two-col"><label>Horizontal position<input id="canvas-x" type="number" step="any" min="-20000" max="20000"></label><label>Vertical position<input id="canvas-y" type="number" step="any" min="-20000" max="20000"></label><label>Size (%)<input id="canvas-scale" type="number" min="1" max="300" step="any"></label></div>
+          <p id="canvas-description" class="hint"></p>
+          </details><button id="delete-deck" class="danger" hidden>Delete presentation</button></div>
       </div>
       </fieldset>
     </div>
-    <div id="viewer"><div class="viewer-options"><label>Playback style<select id="view-mode"><option value="classic">Classic slides</option><option value="zoom">Zoom journey (Three.js)</option></select></label><button id="fullscreen">Full screen</button><button id="exit-show" hidden>Return to editor</button></div><div id="stage" tabindex="0" aria-label="Slideshow. Use left and right arrow keys to navigate."></div><div class="play-controls"><button id="prev" aria-label="Previous slide">← Previous</button><button id="overview">Overview</button><p id="slide-status" aria-live="polite"></p><button id="next">Next →</button></div><p class="hint">← → or Space to move · Home / End · O for overview · Esc to leave playback</p></div>
+    <div id="viewer"><div class="viewer-options"><label>Playback style<select id="view-mode"><option value="classic">Classic slides</option><option value="zoom">Zoom journey (Three.js)</option></select></label><button id="fullscreen">Full screen</button><button id="exit-show" hidden>Return to editor</button></div><nav id="zoom-navigation" class="toolbar" aria-label="Zoom navigation" hidden><button id="zoom-parent">Zoom out to parent</button><div id="zoom-children" class="toolbar"></div></nav><div id="stage" tabindex="0" aria-label="Slideshow. Use left and right arrow keys to navigate."></div><div class="play-controls"><button id="prev" aria-label="Previous slide">← Previous</button><button id="overview">Overview</button><p id="slide-status" aria-live="polite"></p><button id="next">Next →</button></div><p class="hint">← → or Space to move · Home / End · O for overview · Backspace to parent · Esc to leave playback</p></div>
   </section>
 </main>
 <footer>Made for the classroom. No student accounts needed. <a href="SETUP.md">Setup and help</a></footer>

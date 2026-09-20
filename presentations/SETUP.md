@@ -37,15 +37,19 @@ Any signed-in Google user can create their own presentations. Existing presentat
 
 ## Using the studio
 
-- Sign in, choose **Create a presentation**, then use a blank, lesson or discussion template.
+- Sign in, choose **Create a presentation**, then use a blank, lesson, discussion or nested-topic template.
 - Add and duplicate slides, move them earlier/later, and choose a title, picture or split layout.
 - Add PNG, JPEG or WebP pictures. Images are resized and embedded; no separate storage bucket is needed.
-- Choose Classic slides or a Three.js Zoom journey. Each slide supports no animation, fade, rise or one-line-at-a-time reveal.
+- Choose Classic slides or a Three.js Zoom journey. Whole-slide transitions remain available, alongside separate animations for each title, main text block, main picture and added object.
+- Under **Objects and animations**, choose a field or object. Pick Appear, Fade, Rise, Grow or Turn, and set the duration and delay in milliseconds. Choose **When the slide opens** or **On a click / Next**. Objects with the same click step appear together; lower step numbers play first. Line-by-line text starts after the object click steps. Previous hides the latest build again.
+- Add up to 20 extra text boxes and pictures per slide. Select them in the Object menu or preview; drag extra objects to position them, or use the numeric left/top/width/height controls. Text boxes also have a font-size control. These extra objects are included as editable items in `.pptx` exports.
+- Use **Slide inside this one** to create a nested zoom target, or choose **Place inside** on an existing slide. Nest up to four levels deep. The Zoom canvas map supports drag placement and keyboard selection, with position and size fields for precise placement. A nested slide’s coordinates and size are relative to its parent. Top-level slides can be freely positioned and resized.
+- Next follows the slide-list order. Click smaller slides or use **Zoom into…** buttons to explore another branch. **Zoom out to parent** (or Backspace when the stage is focused) returns to the containing slide. Overview shows the whole canvas. Reordering slides does not break nesting; deleting a parent promotes its children while preserving their positions. Choose the **Try nested zooms + object animations** example to explore without signing in.
 - Save explicitly. Unsaved changes trigger a warning before leaving. A version check prevents overwriting a newer save from another tab; download a JSON backup before reloading a conflicting edit.
 - In playback use Previous/Next, arrow keys, Space, Home/End, full screen or Overview. Reduced-motion preferences disable transitions.
 - **Download .pptx** creates editable PowerPoint slides with text, images and teaching notes. Web animations and zoom journeys do not transfer to PowerPoint.
 - **Import PowerPoint** supports `.pptx` text and one embedded raster picture per slide, simplified into the studio's layouts. Original animations, complex formatting, charts, tables, video, audio and extra images are not preserved. Legacy `.ppt` files are not supported. Review imported content before saving.
-- JSON backups preserve the studio's layouts, notes and animation settings. Importing creates a new private presentation owned by the importing teacher; it cannot overwrite someone else's work.
+- JSON backups preserve the studio's layouts, notes, all object animations and the nested canvas. Older studio backups and saved decks load automatically with their original content and default object animations. Importing creates a new private presentation owned by the importing teacher; it cannot overwrite someone else's work.
 - Up to 40 slides and 700 KB per presentation (including embedded pictures). Large imports are rejected; some pictures may be omitted during import to stay within this limit.
 - Shared presentations, including teaching notes and embedded pictures, are public. Drafts are accessible only to their creator. The site does not collect student accounts or student responses. Firebase handles teacher sign-in and session storage; presentation records store a creator UID, not their name or email. Google/Firebase receive the requests necessary for authentication and storage.
 

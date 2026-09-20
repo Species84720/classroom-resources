@@ -42,7 +42,7 @@ The skill will inspect the existing resource and modify it in place by default.
 
 ## Presentation Studio
 
-Use **Create or edit a PowerPoint** in the catalogue to open the studio. It provides classic slides and Three.js zoom journeys, templates, text and images, slide ordering, animations, keyboard/full-screen playback, simple `.pptx` import/export and JSON backups. Published presentations appear under the **PowerPoints** type filter.
+Use **Create or edit a PowerPoint** in the catalogue to open the studio. It provides classic slides and Three.js zoom journeys, templates, individually animated text boxes and images, freely arranged nested slides, slide ordering, keyboard/full-screen playback, simple `.pptx` import/export and JSON backups. Published presentations appear under the **PowerPoints** type filter.
 
 **One-time configuration is required for Google login and saving:** follow [Presentation Studio setup](presentations/SETUP.md) to connect Firebase Authentication and Firestore and deploy the creator-only security rules. Until configured, the example presentation is available but creating/editing is disabled.
 
