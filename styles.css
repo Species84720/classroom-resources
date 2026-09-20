@@ -37,3 +37,8 @@ input:focus-visible, select:focus-visible, button:focus-visible, a:focus-visible
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
 }
+
+.filters { grid-template-columns: 2fr 1fr 1fr 1fr auto; }
+.studio-link { display: inline-block; padding: .7rem 1rem; border-radius: .65rem; background: var(--accent); color: white; font-weight: 700; text-decoration: none; }
+@media (max-width: 900px) { .filters { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 500px) { .filters { grid-template-columns: 1fr; } }

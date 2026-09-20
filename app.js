@@ -4,6 +4,7 @@ const els = {
   year: document.querySelector('#year'),
   subject: document.querySelector('#subject'),
   clear: document.querySelector('#clear'),
+  type: document.querySelector('#type'),
   resources: document.querySelector('#resources'),
   status: document.querySelector('#status')
 };
@@ -36,6 +37,8 @@ function render() {
   const subject = els.subject.value;
 
   const shown = state.resources.filter(r => {
+    const category = r.resource_type === 'powerpoint' ? 'powerpoint' : /game|quiz|spinner|matching/i.test(r.resource_type) ? 'game' : 'resource';
+    if (els.type.value && category !== els.type.value) return false;
     if (q && !searchableText(r).includes(q)) return false;
     if (year && r.year_group !== year) return false;
     if (subject && !(r.subjects || []).includes(subject)) return false;
@@ -63,7 +66,7 @@ function render() {
 
     const tags = document.createElement('div');
     tags.className = 'tags';
-    const tagValues = [...(r.topics || []), ...(r.themes || []), ...(r.labels || [])].slice(0, 8);
+    const tagValues = [r.resource_type, ...(r.topics || []), ...(r.themes || []), ...(r.labels || [])].slice(0, 8);
     for (const value of tagValues) {
       const span = document.createElement('span');
       span.className = 'tag';
@@ -73,7 +76,7 @@ function render() {
 
     const link = document.createElement('a');
     link.href = r.url;
-    link.textContent = 'Open resource';
+    link.textContent = r.resource_type === 'powerpoint' ? 'Open PowerPoint' : 'Open resource';
     link.setAttribute('aria-label', `Open ${r.title}`);
 
     article.append(h, description, intent, meta, tags, link);
@@ -93,18 +96,40 @@ async function init() {
     fillSelect(els.year, years);
     fillSelect(els.subject, unique('subjects'));
     render();
+    loadPresentations();
   } catch (err) {
     els.status.textContent = 'The resource catalogue could not be loaded.';
     console.error(err);
   }
 }
 
-for (const el of [els.search, els.year, els.subject]) el.addEventListener('input', render);
+for (const el of [els.search, els.year, els.subject, els.type]) el.addEventListener('input', render);
 els.clear.addEventListener('click', () => {
   els.search.value = '';
   els.year.value = '';
   els.subject.value = '';
+  els.type.value = '';
   render();
   els.search.focus();
 });
 init();
+
+async function loadPresentations() {
+  try {
+    const { listPublished } = await import('./presentations/dist/cloud.js');
+    const decks = await listPublished();
+    for (const deck of decks) {
+      state.resources.push({ title: deck.title, description: deck.description, year_group: deck.year_group,
+        subjects: [deck.subject], resource_type: 'powerpoint', learning_intent: deck.description || 'Explore this classroom presentation.',
+        estimated_minutes: 10, url: `presentations/?id=${encodeURIComponent(deck.id)}`, topics: [], themes: [], labels: ['slides', 'presentation'] });
+    }
+    const years = new Set([...els.year.options].map(o => o.value));
+    const subjects = new Set([...els.subject.options].map(o => o.value));
+    fillSelect(els.year, [...new Set(decks.map(d => d.year_group))].filter(v => !years.has(v)));
+    fillSelect(els.subject, [...new Set(decks.map(d => d.subject))].filter(v => !subjects.has(v)));
+    render();
+  } catch (error) {
+    document.querySelector('#presentation-status').textContent = 'Shared PowerPoints could not be loaded. The other resources are still available.';
+    console.error(error);
+  }
+}

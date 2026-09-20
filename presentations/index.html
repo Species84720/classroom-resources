@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Presentation Studio · Classroom Resources</title>
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+<header class="topbar">
+  <a href="../" class="brand">← Classroom library</a>
+  <span class="studio-name">Presentation Studio</span>
+  <div class="account"><span id="account-name"></span><button id="login">Sign in with Google</button><button id="logout" hidden>Sign out</button></div>
+</header>
+<main>
+  <section class="intro" id="intro">
+    <div><p class="eyebrow">A BIG STAGE FOR LITTLE IDEAS</p><h1>Bring your lesson<br>to life.</h1><p>Build a simple slideshow or a zooming journey.<br>One place to create, present and share.</p></div>
+    <div class="intro-actions"><button id="create" class="primary" disabled>Create a presentation</button><label class="file-button">Import PowerPoint or backup<input id="import" type="file" accept=".pptx,.json" disabled></label><button id="demo">Explore an example →</button><p>Google sign-in is needed to create or edit.</p></div>
+  </section>
+  <p id="setup" class="notice" hidden>Google sign-in and saving are not configured yet. You can explore the example now. <a href="SETUP.md">Owner setup guide</a></p>
+  <p id="status" role="status" aria-live="polite"></p>
+  <section id="library"><div class="section-heading"><h2>PowerPoints</h2><label>Show <select id="scope"><option value="published">Shared presentations</option><option value="mine">My presentations</option></select></label></div><div id="decks" class="deck-grid"></div></section>
+  <section id="workspace" hidden aria-label="Presentation workspace">
+    <div class="workspace-top"><div><p id="permission" class="eyebrow"></p><h2 id="deck-heading"></h2></div><div class="toolbar"><button id="close">Back to presentations</button><button id="edit" hidden>Edit presentation</button><button id="present" class="primary">▶ Present</button><button id="export">Download .pptx</button><button id="backup">Download backup</button><button id="save" class="primary" hidden>Save</button></div></div>
+    <div id="editor" hidden>
+      <fieldset id="editor-fields">
+      <div class="deck-settings">
+        <label>Presentation title<input id="title" maxlength="120" required></label>
+        <label>Year group<input id="year" maxlength="40" required></label>
+        <label>Subject<input id="subject" maxlength="60" required></label>
+        <label>Style<select id="mode"><option value="classic">Classic slides</option><option value="zoom">Zoom journey (Three.js)</option></select></label>
+        <label>Colours<select id="theme"><option value="ocean">Ocean</option><option value="meadow">Meadow</option><option value="sunshine">Sunshine</option><option value="space">Space</option></select></label>
+        <label class="description">Description<input id="description" maxlength="600"></label>
+        <label class="check"><input id="published" type="checkbox"> Share publicly in the classroom library</label>
+      </div>
+      <div class="editor-grid">
+        <aside class="slide-rail"><h3>Slides</h3><ol id="slide-list"></ol><button id="add">+ Add slide</button><label>Start with a template<select id="template"><option value="">Choose…</option><option value="blank">Blank</option><option value="lesson">Lesson adventure</option><option value="quiz">Think and discuss</option></select></label></aside>
+        <div class="slide-form"><div class="toolbar"><button id="up">↑ Move earlier</button><button id="down">↓ Move later</button><button id="duplicate">Duplicate</button><button id="remove">Delete slide</button></div>
+          <label>Slide title<input id="slide-title" maxlength="180"></label>
+          <label>Slide text <span class="hint">A new line makes a new paragraph or reveal step.</span><textarea id="slide-body" rows="6" maxlength="2500"></textarea></label>
+          <div class="two-col"><label>Layout<select id="layout"><option value="split">Text and picture</option><option value="title">Big title</option><option value="image">Picture focus</option></select></label><label>Animation<select id="animation"><option value="none">None</option><option value="fade">Fade in</option><option value="rise">Rise in</option><option value="reveal">Reveal one line at a time</option></select></label></div>
+          <div class="toolbar"><label class="file-button">Add a picture<input id="image" type="file" accept="image/png,image/jpeg,image/webp"></label><button id="clear-image">Remove picture</button></div>
+          <label>Picture description<input id="image-alt" maxlength="200" placeholder="Describe the picture for accessibility"></label>
+          <label>Teaching notes <span class="hint">Hidden during playback. Included in shared decks and downloads.</span><textarea id="notes" maxlength="3000" rows="3"></textarea></label>
+        </div>
+        <div class="preview-column"><h3>Slide preview</h3><div id="preview"></div><p class="hint">Choose Present to try transitions and click-to-reveal text.</p><button id="delete-deck" class="danger" hidden>Delete presentation</button></div>
+      </div>
+      </fieldset>
+    </div>
+    <div id="viewer"><div class="viewer-options"><label>Playback style<select id="view-mode"><option value="classic">Classic slides</option><option value="zoom">Zoom journey (Three.js)</option></select></label><button id="fullscreen">Full screen</button><button id="exit-show" hidden>Return to editor</button></div><div id="stage" tabindex="0" aria-label="Slideshow. Use left and right arrow keys to navigate."></div><div class="play-controls"><button id="prev" aria-label="Previous slide">← Previous</button><button id="overview">Overview</button><p id="slide-status" aria-live="polite"></p><button id="next">Next →</button></div><p class="hint">← → or Space to move · Home / End · O for overview · Esc to leave playback</p></div>
+  </section>
+</main>
+<footer>Made for the classroom. No student accounts needed. <a href="SETUP.md">Setup and help</a></footer>
+<script src="config.js"></script><script type="module" src="dist/studio.js"></script>
+</body></html>

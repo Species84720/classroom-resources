@@ -30,7 +30,7 @@ This means two resources can teach the same concept but have different themes su
 
 ## Privacy
 
-The starter site has no trackers, cookies, analytics, accounts, or student-data collection.
+The catalogue and classroom resources have no trackers, analytics or student accounts. The optional Presentation Studio uses Google sign-in through Firebase for teachers, stores a creator UID with each presentation, and uses authentication session storage. Shared presentations (including teaching notes) are public; drafts are creator-only. See the setup guide for details.
 
 ## Improving existing resources
 
@@ -39,3 +39,11 @@ You can continue developing a finished resource instead of creating a new one. F
 `Improve the existing Year 3 fractions game: make it more mobile-friendly, add a second level, and keep the same URL.`
 
 The skill will inspect the existing resource and modify it in place by default.
+
+## Presentation Studio
+
+Use **Create or edit a PowerPoint** in the catalogue to open the studio. It provides classic slides and Three.js zoom journeys, templates, text and images, slide ordering, animations, keyboard/full-screen playback, simple `.pptx` import/export and JSON backups. Published presentations appear under the **PowerPoints** type filter.
+
+**One-time configuration is required for Google login and saving:** follow [Presentation Studio setup](presentations/SETUP.md) to connect Firebase Authentication and Firestore and deploy the creator-only security rules. Until configured, the example presentation is available but creating/editing is disabled.
+
+Development: `npm ci`, `npm test`, `npm run build:site`. The Pages workflow builds and publishes `_site/`. Existing resources retain their URLs.
