@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f0df">
+  <title>Duckling Number Parade 41–50 | Year 2</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="game-shell">
+    <header class="game-header">
+      <div>
+        <p class="eyebrow">YEAR 2 • NUMBER ORDER</p>
+        <h1>Put the ducklings in order</h1>
+        <p class="instruction">Drag each duckling onto the path, from 41 to 50.</p>
+      </div>
+      <button id="newRound" type="button">Mix again</button>
+    </header>
+
+    <section class="progress-wrap" aria-label="Game progress">
+      <div class="progress-label"><span>Duckling parade</span><strong id="progress">0 of 10</strong></div>
+      <div class="progress-track" aria-hidden="true"><span id="progressBar"></span></div>
+    </section>
+
+    <section class="pond-scene" aria-label="Number ordering game">
+      <div class="sun" aria-hidden="true"></div>
+      <div class="cloud cloud-one" aria-hidden="true"></div>
+      <div class="cloud cloud-two" aria-hidden="true"></div>
+      <div class="reeds reeds-left" aria-hidden="true">⌇⌇⌇</div>
+      <div class="reeds reeds-right" aria-hidden="true">⌇⌇</div>
+
+      <div class="path-panel">
+        <h2>The counting path</h2>
+        <p class="path-help">Drop the smallest number first.</p>
+        <ol id="numberPath" class="number-path" aria-label="Empty places for numbers 41 to 50"></ol>
+      </div>
+
+      <div class="bank-panel">
+        <div class="bank-heading">
+          <h2>Duckling pond</h2>
+          <button id="hintButton" class="quiet" type="button">Give me a hint</button>
+        </div>
+        <div id="duckBank" class="duck-bank" aria-label="Shuffled ducklings"></div>
+      </div>
+    </section>
+
+    <p id="message" class="message" role="status" aria-live="polite">Find 41 to begin the parade.</p>
+  </main>
+
+  <template id="duckTemplate">
+    <button class="duck-card" type="button" draggable="true">
+      <span class="duck" aria-hidden="true">
+        <span class="tail"></span><span class="body"></span><span class="wing"></span>
+        <span class="head"><span class="eye"></span><span class="beak"></span></span>
+        <span class="feet">⌁</span>
+      </span>
+      <span class="number"></span>
+    </button>
+  </template>
+
+  <div id="celebration" class="celebration" hidden role="dialog" aria-modal="true" aria-labelledby="celebrationTitle">
+    <div class="celebration-card">
+      <div class="grown-ducks" aria-hidden="true">🦆 🦆 🦆</div>
+      <p class="eyebrow">PARADE COMPLETE!</p>
+      <h2 id="celebrationTitle">The ducklings grew!</h2>
+      <p>You put 41 to 50 in the right order.</p>
+      <button id="playAgain" type="button">Play again</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

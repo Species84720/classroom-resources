@@ -1,5 +1,44 @@
 [
   {
+    "title": "Dinosaur Adjectives",
+    "slug": "year-2-dinosaur-adjectives",
+    "yearGroup": "Year 2",
+    "subject": "English",
+    "topic": "Adjectives",
+    "learningIntention": "I can identify and use adjectives to describe nouns.",
+    "theme": "Dinosaurs",
+    "labels": [
+      "grammar",
+      "descriptive writing",
+      "nouns",
+      "dinosaurs"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-dinosaur-adjectives/"
+  },
+  {
+    "title": "Number Spinner",
+    "slug": "year-2-number-spinner",
+    "yearGroup": "Year 2",
+    "subject": "Maths",
+    "topic": "Numbers 1 to 15",
+    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
+    "theme": "Spinning number wheel",
+    "labels": [
+      "number",
+      "1-15",
+      "spinner",
+      "number recognition",
+      "addition",
+      "subtraction",
+      "comparison"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-number-spinner/"
+  },
+  {
     "id": "year-2-balloon-number-pop",
     "title": "Balloon Number Pop",
     "description": "A colourful Year 2 number-recognition game with randomly placed balloons, varied sizes and shapes, animated floating, and different pop sounds.",
@@ -169,22 +208,39 @@
     "url": "resources/year-2-caterpillar-number-order/"
   },
   {
-    "title": "Dinosaur Adjectives",
-    "slug": "year-2-dinosaur-adjectives",
-    "yearGroup": "Year 2",
-    "subject": "English",
-    "topic": "Adjectives",
-    "learningIntention": "I can identify and use adjectives to describe nouns.",
-    "theme": "Dinosaurs",
-    "labels": [
-      "grammar",
-      "descriptive writing",
-      "nouns",
-      "dinosaurs"
+    "id": "year-2-duckling-number-parade-41-to-50",
+    "title": "Duckling Number Parade 41–50",
+    "description": "A calm, touch-friendly ordering game where children arrange numbered ducklings from 41 to 50 and watch them grow when the parade is complete.",
+    "year_group": "Year 2",
+    "learning_intent": "Order, recognise and sequence whole numbers from 41 to 50.",
+    "subjects": [
+      "Mathematics"
     ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-dinosaur-adjectives/"
+    "topics": [
+      "number",
+      "number order",
+      "counting",
+      "numeral recognition"
+    ],
+    "themes": [
+      "ducklings",
+      "pond life",
+      "growing animals"
+    ],
+    "labels": [
+      "41 to 50",
+      "drag and drop",
+      "touch activity",
+      "keyboard accessible",
+      "independent practice",
+      "sequencing"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-20",
+    "updated": "2026-09-20",
+    "url": "resources/year-2-duckling-number-parade-41-to-50/"
   },
   {
     "id": "year-2-jungle-number-hide-and-seek-30-to-50",
@@ -424,27 +480,6 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-number-quest/"
-  },
-  {
-    "title": "Number Spinner",
-    "slug": "year-2-number-spinner",
-    "yearGroup": "Year 2",
-    "subject": "Maths",
-    "topic": "Numbers 1 to 15",
-    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
-    "theme": "Spinning number wheel",
-    "labels": [
-      "number",
-      "1-15",
-      "spinner",
-      "number recognition",
-      "addition",
-      "subtraction",
-      "comparison"
-    ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-number-spinner/"
   },
   {
     "id": "year-2-race-car-number-lines",
