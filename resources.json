@@ -221,6 +221,41 @@
     "url": "resources/year-2-jungle-number-hide-and-seek-30-to-50/"
   },
   {
+    "id": "year-2-listen-and-write-number-spinner",
+    "title": "Listen & Write Number Spinner 1–20",
+    "description": "A whole-class Year 2 listening activity that randomly speaks a number from 1 to 20 while hiding the numeral, ready for children to write it on their whiteboards and reveal the answer.",
+    "year_group": "Year 2",
+    "learning_intent": "Listen to, recognise and write numerals from 1 to 20.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "listening",
+      "numeral recognition",
+      "number formation"
+    ],
+    "themes": [
+      "listening game",
+      "whiteboards"
+    ],
+    "labels": [
+      "1 to 20",
+      "spoken numbers",
+      "audio",
+      "whiteboard activity",
+      "whole-class activity",
+      "randomised",
+      "answer reveal"
+    ],
+    "resource_type": "interactive teaching activity",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-20",
+    "updated": "2026-09-20",
+    "url": "resources/year-2-listen-and-write-number-spinner/"
+  },
+  {
     "id": "year-2-missing-numbers-to-50",
     "title": "Missing Numbers to 50",
     "description": "A fruit-themed printable Year 2 worksheet for recognising numerals and completing number sequences, including two missing numbers between 45 and 50.",
@@ -252,6 +287,76 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-missing-numbers-to-50/"
+  },
+  {
+    "id": "year-2-number-memory-match",
+    "title": "Number Memory Match",
+    "description": "A touch-friendly memory game where the teacher chooses any whole-number range and children find matching numeral pairs.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise, read and match whole-number numerals within a teacher-selected range.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "numeral recognition",
+      "matching",
+      "memory"
+    ],
+    "themes": [
+      "cards"
+    ],
+    "labels": [
+      "teacher configurable",
+      "number range",
+      "memory game",
+      "matching pairs",
+      "touch activity",
+      "keyboard accessible",
+      "independent practice"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-14",
+    "updated": "2026-09-14",
+    "url": "resources/year-2-number-memory-match/"
+  },
+  {
+    "id": "year-2-number-nest-sort",
+    "title": "Number Nest Sort 1–30",
+    "description": "A calm, touch-friendly Year 2 game where children drag numbered eggs into nests labelled 1–10, 11–20 and 21–30.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise, compare and sort whole-number numerals from 1 to 30 by range.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "numeral recognition",
+      "number ranges",
+      "sorting"
+    ],
+    "themes": [
+      "eggs",
+      "birds",
+      "nests",
+      "nature"
+    ],
+    "labels": [
+      "1 to 30",
+      "drag and drop",
+      "touch activity",
+      "keyboard accessible",
+      "independent practice",
+      "number sorting"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-20",
+    "updated": "2026-09-20",
+    "url": "resources/year-2-number-nest-sort/"
   },
   {
     "id": "year-2-number-picture-jigsaw-30-to-50",
@@ -342,41 +447,6 @@
     "url": "resources/year-2-number-spinner/"
   },
   {
-    "id": "year-2-listen-and-write-number-spinner",
-    "title": "Listen & Write Number Spinner 1–20",
-    "description": "A whole-class Year 2 listening activity that randomly speaks a number from 1 to 20 while hiding the numeral, ready for children to write it on their whiteboards and reveal the answer.",
-    "year_group": "Year 2",
-    "learning_intent": "Listen to, recognise and write numerals from 1 to 20.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "listening",
-      "numeral recognition",
-      "number formation"
-    ],
-    "themes": [
-      "listening game",
-      "whiteboards"
-    ],
-    "labels": [
-      "1 to 20",
-      "spoken numbers",
-      "audio",
-      "whiteboard activity",
-      "whole-class activity",
-      "randomised",
-      "answer reveal"
-    ],
-    "resource_type": "interactive teaching activity",
-    "language": "en-GB",
-    "estimated_minutes": 10,
-    "created": "2026-09-20",
-    "updated": "2026-09-20",
-    "url": "resources/year-2-listen-and-write-number-spinner/"
-  },
-  {
     "id": "year-2-race-car-number-lines",
     "title": "Race Car Number Lines",
     "description": "A printable Year 2 racing-themed worksheet with configurable number lines and missing-number practice, designed to fit on one A4 page.",
@@ -409,39 +479,5 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-race-car-number-lines/"
-  },
-  {
-    "id": "year-2-number-memory-match",
-    "title": "Number Memory Match",
-    "description": "A touch-friendly memory game where the teacher chooses any whole-number range and children find matching numeral pairs.",
-    "year_group": "Year 2",
-    "learning_intent": "Recognise, read and match whole-number numerals within a teacher-selected range.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "numeral recognition",
-      "matching",
-      "memory"
-    ],
-    "themes": [
-      "cards"
-    ],
-    "labels": [
-      "teacher configurable",
-      "number range",
-      "memory game",
-      "matching pairs",
-      "touch activity",
-      "keyboard accessible",
-      "independent practice"
-    ],
-    "resource_type": "interactive game",
-    "language": "en-GB",
-    "estimated_minutes": 10,
-    "created": "2026-09-14",
-    "updated": "2026-09-14",
-    "url": "resources/year-2-number-memory-match/"
   }
 ]

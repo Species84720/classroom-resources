@@ -1,0 +1,16 @@
+{
+  "id": "year-2-number-nest-sort",
+  "title": "Number Nest Sort 1–30",
+  "description": "A calm, touch-friendly Year 2 game where children drag numbered eggs into nests labelled 1–10, 11–20 and 21–30.",
+  "year_group": "Year 2",
+  "learning_intent": "Recognise, compare and sort whole-number numerals from 1 to 30 by range.",
+  "subjects": ["Mathematics"],
+  "topics": ["number", "numeral recognition", "number ranges", "sorting"],
+  "themes": ["eggs", "birds", "nests", "nature"],
+  "labels": ["1 to 30", "drag and drop", "touch activity", "keyboard accessible", "independent practice", "number sorting"],
+  "resource_type": "interactive game",
+  "language": "en-GB",
+  "estimated_minutes": 10,
+  "created": "2026-09-20",
+  "updated": "2026-09-20"
+}
