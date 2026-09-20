@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Listen & Write Number Spinner – Year 2</title>
+  <style>
+    :root{--ink:#17324d;--blue:#2563eb;--navy:#173f72;--yellow:#ffd166;--pink:#ff8fab;--mint:#80ed99;--sky:#90e0ef}
+    *{box-sizing:border-box}
+    body{margin:0;min-height:100vh;font-family:"Trebuchet MS",Arial,sans-serif;color:var(--ink);background:linear-gradient(160deg,#dff4ff 0%,#fff7d6 55%,#ffe7f1 100%);display:grid;place-items:center;padding:18px}
+    main{width:min(100%,980px)}
+    header{text-align:center;margin-bottom:14px}
+    h1{font-size:clamp(2rem,5vw,3.6rem);margin:.15em 0;color:var(--navy);text-shadow:0 3px 0 #fff}
+    .subtitle{font-size:clamp(1rem,2vw,1.25rem);margin:0}
+    .game{background:#fff;border:4px solid var(--navy);border-radius:28px;padding:clamp(18px,4vw,38px);box-shadow:0 14px 0 rgba(23,63,114,.18);position:relative;overflow:hidden}
+    .decor{position:absolute;font-size:clamp(2rem,5vw,4rem);opacity:.22;user-select:none}
+    .d1{left:20px;top:15px;transform:rotate(-12deg)}.d2{right:24px;top:18px;transform:rotate(12deg)}.d3{right:30px;bottom:20px}
+    .listen-card{max-width:700px;margin:auto;text-align:center;position:relative;z-index:1}
+    .speaker{width:clamp(130px,23vw,200px);aspect-ratio:1;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;font-size:clamp(4rem,10vw,7rem);background:conic-gradient(var(--yellow),var(--pink),var(--sky),var(--mint),var(--yellow));border:6px solid #fff;outline:4px solid var(--navy);transition:transform .2s}
+    .speaker.talking{animation:pulse .55s ease-in-out infinite alternate}
+    @keyframes pulse{to{transform:scale(1.08) rotate(3deg);filter:drop-shadow(0 0 18px #ffd166)}}
+    #instruction{font-size:clamp(1.25rem,3vw,2rem);font-weight:800;min-height:2.5em;margin:.4em 0}
+    .answer{min-height:140px;border:4px dashed #7aa7cf;border-radius:22px;background:#f5fbff;display:grid;place-items:center;margin:18px auto;max-width:430px;padding:12px}
+    #number{font-size:clamp(4.5rem,14vw,8rem);font-weight:900;line-height:1;color:var(--navy)}
+    #number.hidden{font-size:clamp(1.2rem,3vw,1.6rem);color:#526a7e;font-weight:700}
+    .buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+    button{border:0;border-radius:16px;padding:15px 22px;font:800 clamp(1rem,2.4vw,1.25rem)/1 "Trebuchet MS",Arial,sans-serif;cursor:pointer;box-shadow:0 5px 0 rgba(0,0,0,.22);transition:transform .08s,box-shadow .08s}
+    button:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(0,0,0,.22)}
+    button:focus-visible{outline:4px solid #111;outline-offset:3px}
+    button:disabled{opacity:.48;cursor:not-allowed}
+    #newNumber{background:var(--blue);color:#fff}#repeat{background:var(--yellow);color:#382b00}#reveal{background:#e85d8e;color:#fff}
+    .tip{margin:22px 0 0;font-size:1rem;color:#526a7e}
+    .status{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    @media(max-width:520px){body{padding:10px}.game{border-width:3px}.buttons{display:grid}.buttons button{width:100%}.answer{min-height:115px}}
+    @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important}}
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div aria-hidden="true" style="font-size:2.7rem">👂 ✏️ 🔢</div>
+      <h1>Listen &amp; Write</h1>
+      <p class="subtitle"><strong>Numbers 1–20</strong> · Hear it, write it, then check it!</p>
+    </header>
+    <section class="game" aria-labelledby="instruction">
+      <span class="decor d1" aria-hidden="true">⭐</span><span class="decor d2" aria-hidden="true">🔢</span><span class="decor d3" aria-hidden="true">✏️</span>
+      <div class="listen-card">
+        <div class="speaker" id="speaker" aria-hidden="true">🔊</div>
+        <p id="instruction">Press “Say a number” and listen carefully.</p>
+        <div class="answer">
+          <div id="number" class="hidden">The number is hidden.<br>Write what you hear!</div>
+        </div>
+        <div class="buttons">
+          <button id="newNumber" type="button">🎲 Say a number</button>
+          <button id="repeat" type="button" disabled>🔊 Hear it again</button>
+          <button id="reveal" type="button" disabled>👀 Show answer</button>
+        </div>
+        <p class="tip">Teacher tip: children write the number on their whiteboards before you show the answer.</p>
+        <p id="status" class="status" aria-live="polite"></p>
+      </div>
+    </section>
+  </main>
+  <script>
+    const newButton=document.getElementById('newNumber');
+    const repeatButton=document.getElementById('repeat');
+    const revealButton=document.getElementById('reveal');
+    const numberBox=document.getElementById('number');
+    const instruction=document.getElementById('instruction');
+    const speaker=document.getElementById('speaker');
+    const status=document.getElementById('status');
+    let currentNumber=null;
+    let lastNumber=null;
+    let voices=[];
+
+    function loadVoices(){voices=window.speechSynthesis?speechSynthesis.getVoices():[]}
+    loadVoices();
+    if(window.speechSynthesis)speechSynthesis.addEventListener('voiceschanged',loadVoices);
+
+    function chooseNumber(){
+      let next;
+      do{next=Math.floor(Math.random()*20)+1}while(next===lastNumber);
+      lastNumber=next;
+      currentNumber=next;
+      numberBox.className='hidden';
+      numberBox.innerHTML='The number is hidden.<br>Write what you hear!';
+      instruction.textContent='Listen carefully… then write the number!';
+      repeatButton.disabled=false;
+      revealButton.disabled=false;
+      speakNumber();
+    }
+
+    function speakNumber(){
+      if(currentNumber===null)return;
+      if(!('speechSynthesis' in window)){
+        status.textContent='Speech is not supported by this browser.';
+        instruction.textContent='This browser cannot speak. Try Chrome, Edge or Safari.';
+        return;
+      }
+      speechSynthesis.cancel();
+      const message=new SpeechSynthesisUtterance(String(currentNumber));
+      const preferred=voices.find(v=>v.lang==='en-GB')||voices.find(v=>v.lang.startsWith('en'))||voices[0];
+      if(preferred)message.voice=preferred;
+      message.lang=preferred?.lang||'en-GB';
+      message.rate=.72;
+      message.pitch=1.05;
+      message.volume=1;
+      message.onstart=()=>{speaker.classList.add('talking');status.textContent='The number is being spoken.'};
+      message.onend=()=>{speaker.classList.remove('talking');status.textContent='The number has been spoken.'};
+      message.onerror=()=>{speaker.classList.remove('talking');status.textContent='The number could not be spoken. Please try again.'};
+      speechSynthesis.speak(message);
+    }
+
+    function revealNumber(){
+      if(currentNumber===null)return;
+      numberBox.className='';
+      numberBox.textContent=currentNumber;
+      instruction.textContent='Check your whiteboard. Did you write '+currentNumber+'?';
+      status.textContent='The answer is '+currentNumber+'.';
+    }
+
+    newButton.addEventListener('click',chooseNumber);
+    repeatButton.addEventListener('click',speakNumber);
+    revealButton.addEventListener('click',revealNumber);
+  </script>
+</body>
+</html>
