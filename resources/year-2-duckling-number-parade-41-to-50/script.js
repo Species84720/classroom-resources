@@ -8,6 +8,23 @@ const progressBar = document.querySelector('#progressBar');
 const celebration = document.querySelector('#celebration');
 let nextNumber = 41;
 let selected = null;
+let audioContext = null;
+
+function chirp(step) {
+  try {
+    audioContext ||= new (window.AudioContext || window.webkitAudioContext)();
+    const oscillator = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    oscillator.type = 'sine';
+    oscillator.frequency.setValueAtTime(420 + step * 32, audioContext.currentTime);
+    oscillator.frequency.exponentialRampToValueAtTime(650 + step * 35, audioContext.currentTime + 0.1);
+    gain.gain.setValueAtTime(0.055, audioContext.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.16);
+    oscillator.connect(gain).connect(audioContext.destination);
+    oscillator.start();
+    oscillator.stop(audioContext.currentTime + 0.17);
+  } catch { /* The game remains fully usable without sound. */ }
+}
 
 function shuffle(values) {
   const copy = [...values];
@@ -70,16 +87,26 @@ function tryPlace(number) {
     return;
   }
   const slot = path.querySelector(`[data-number="${number}"]`);
-  slot.textContent = number;
+  slot.replaceChildren();
+  const grownDuck = template.content.firstElementChild.querySelector('.duck').cloneNode(true);
+  grownDuck.classList.add('grown-duck');
+  grownDuck.style.setProperty('--growth', String(0.52 + (number - 41) * 0.055));
+  const label = document.createElement('span');
+  label.className = 'slot-label';
+  label.textContent = number;
+  slot.append(grownDuck, label);
   slot.classList.add('filled');
+  slot.classList.add('spark');
   slot.classList.remove('ready');
   card.remove();
+  chirp(number - 41);
+  window.setTimeout(() => slot.classList.remove('spark'), 750);
   nextNumber += 1;
   const placed = nextNumber - 41;
   progress.textContent = `${placed} of 10`;
   progressBar.style.width = `${placed * 10}%`;
   if (nextNumber === 51) {
-    message.textContent = 'Brilliant counting! The whole parade is in order.';
+    message.textContent = 'Brilliant! Your tiny duckling grew into a big duck!';
     window.setTimeout(() => { celebration.hidden = false; document.querySelector('#playAgain').focus(); }, 350);
   } else {
     message.textContent = `Great! Now find ${nextNumber}.`;
