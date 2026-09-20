@@ -342,6 +342,41 @@
     "url": "resources/year-2-number-spinner/"
   },
   {
+    "id": "year-2-listen-and-write-number-spinner",
+    "title": "Listen & Write Number Spinner 1–20",
+    "description": "A whole-class Year 2 listening activity that randomly speaks a number from 1 to 20 while hiding the numeral, ready for children to write it on their whiteboards and reveal the answer.",
+    "year_group": "Year 2",
+    "learning_intent": "Listen to, recognise and write numerals from 1 to 20.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "listening",
+      "numeral recognition",
+      "number formation"
+    ],
+    "themes": [
+      "listening game",
+      "whiteboards"
+    ],
+    "labels": [
+      "1 to 20",
+      "spoken numbers",
+      "audio",
+      "whiteboard activity",
+      "whole-class activity",
+      "randomised",
+      "answer reveal"
+    ],
+    "resource_type": "interactive teaching activity",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-09-20",
+    "updated": "2026-09-20",
+    "url": "resources/year-2-listen-and-write-number-spinner/"
+  },
+  {
     "id": "year-2-race-car-number-lines",
     "title": "Race Car Number Lines",
     "description": "A printable Year 2 racing-themed worksheet with configurable number lines and missing-number practice, designed to fit on one A4 page.",
