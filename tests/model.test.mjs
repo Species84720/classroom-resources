@@ -38,3 +38,25 @@ test('click steps group simultaneous objects and validate animation values',()=>
 test('object geometry, IDs and images cannot bypass validation',()=>{
   const deck=newDeck('blank');const e={id:'extra',type:'image',text:'',image:'javascript:alert(1)',imageAlt:'',x:0,y:0,width:100,height:100,fontSize:24,animation:defaultAnimation()};deck.slides[0].elements=[e];assert.throws(()=>validateDeck(deck),/raster/);e.image='';e.x=950;assert.throws(()=>validateDeck(deck),/Object X/);e.x=0;deck.slides[0].elements.push({...e});assert.throws(()=>validateDeck(deck),/Duplicate object/);
 });
+
+import { EditHistory } from '../presentations/src/edit-history.js';
+import { moveBox, resizeBox } from '../presentations/src/object-box.js';
+test('history groups typing, reverses whole gestures, supports redo and clears branches',()=>{
+  const h=new EditHistory(),start={deck:{title:'Start',slides:[]},published:false,selected:0};h.reset(start);
+  h.record({...start,deck:{title:'S',slides:[]}},'title',1000);h.record({...start,deck:{title:'So',slides:[]}},'title',1200);
+  assert.equal(h.past.length,1);assert.equal(h.undo().deck.title,'Start');assert.equal(h.redo().deck.title,'So');
+  h.record({...h.current,published:true});assert.equal(h.undo().published,false);h.record({...h.current,deck:{title:'New branch',slides:[]}});assert.equal(h.redo(),null);
+  const result=h.undo();result.deck.title='Mutated outside';assert.notEqual(h.current.deck.title,'Mutated outside');
+  h.reset(start);assert.equal(h.undo(),null);assert.equal(h.redo(),null);
+});
+test('box movement and all resize edges remain inside the slide with a usable minimum size',()=>{
+  const b={x:100,y:100,width:300,height:160,fontSize:32};assert.equal(moveBox(b,1000,1000).x,660);assert.equal(moveBox(b,-1000,-1000).y,0);
+  for(const handle of ['nw','n','ne','e','se','s','sw','w'])for(const delta of [-2000,2000]){
+    const r=resizeBox(b,handle,delta,delta);assert.ok(r.x>=0&&r.y>=0&&r.x+r.width<=960&&r.y+r.height<=540);assert.ok(r.width>=40&&r.height>=30);
+  }
+});
+test('manual positions of main slide items survive validation and reject out-of-bounds boxes',()=>{
+  const d=newDeck();d.slides[0].boxes={title:{x:60,y:50,width:700,height:100,fontSize:44}};
+  assert.deepEqual(validateDeck(d).slides[0].boxes.title,d.slides[0].boxes.title);
+  d.slides[0].boxes.title.x=500;assert.throws(()=>validateDeck(d),/Object X/);
+});

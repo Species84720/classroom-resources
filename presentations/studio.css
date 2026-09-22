@@ -18,3 +18,15 @@
 #zoom-navigation button { font-size:.85rem; }
 #zoom-parent { background:#e6f1f3; }
 #viewer:fullscreen #zoom-navigation { flex-shrink:0; }
+
+/* Selection controls stay in screen pixels when the slide is scaled. */
+#preview [data-object] { cursor:move;touch-action:none;user-select:none; }
+#preview img { -webkit-user-drag:none; }
+#preview .selected-object { outline:none; }
+.selection-overlay { position:absolute;z-index:10;border:2px solid #147a96;pointer-events:none; }
+#preview .resize-handle { position:absolute;width:22px;height:22px;min-height:22px;padding:0;border:2px solid #147a96;border-radius:4px;background:white;pointer-events:auto;touch-action:none; }
+.handle-nw { left:0;top:0;cursor:nwse-resize; }.handle-ne { right:0;top:0;cursor:nesw-resize; }
+.handle-sw { left:0;bottom:0;cursor:nesw-resize; }.handle-se { right:0;bottom:0;cursor:nwse-resize; }
+.handle-n { left:50%;top:0;transform:translateX(-50%);cursor:ns-resize; }.handle-s { left:50%;bottom:0;transform:translateX(-50%);cursor:ns-resize; }
+.handle-w { left:0;top:50%;transform:translateY(-50%);cursor:ew-resize; }.handle-e { right:0;top:50%;transform:translateY(-50%);cursor:ew-resize; }
+@media(pointer:coarse){#preview .resize-handle {width:28px;height:28px;min-height:28px;} .handle-n,.handle-s,.handle-w,.handle-e {display:none;} }

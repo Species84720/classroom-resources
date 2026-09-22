@@ -9,11 +9,12 @@ export async function exportPPTX(deck) {
   const pptx = new PptxGenJS(); pptx.layout='LAYOUT_WIDE'; pptx.title=deck.title; pptx.subject=deck.description; pptx.author='Classroom Resources'; pptx.lang='en-GB';
   const colours=THEMES[deck.theme];
   for(const s of deck.slides){
+    const positioned=(key,fallback)=>{const b=s.boxes?.[key];return b?{...fallback,x:b.x/72,y:b.y/72,w:b.width/72,h:b.height/72,fontSize:b.fontSize*.75,margin:0}:fallback;};
     const slide=pptx.addSlide();slide.background={color:colours.background.slice(1)};
-    slide.addText(s.title,{x:.65,y:.5,w:12,h:1.35,fontSize:32,bold:true,color:colours.ink.slice(1),fontFace:'Aptos',breakLine:false,fit:'shrink',align:s.layout==='title'?'center':'left'});
+    slide.addText(s.title,positioned('title',{x:.65,y:.5,w:12,h:1.35,fontSize:32,bold:true,color:colours.ink.slice(1),fontFace:'Aptos',breakLine:false,fit:'shrink',align:s.layout==='title'?'center':'left'}));
     const hasImage=!!s.image, imageWidth=s.layout==='image'?7:5.4, textWidth=hasImage?11.5-imageWidth:12;
-    slide.addText(s.body,{x:.65,y:2,w:textWidth,h:4.75,fontSize:24,color:colours.ink.slice(1),fontFace:'Aptos',fit:'shrink',valign:'mid',align:s.layout==='title'?'center':'left'});
-    if(hasImage)slide.addImage({data:s.image,x:13.33-imageWidth-.65,y:2,w:imageWidth,h:4.6,sizing:{type:'contain',w:imageWidth,h:4.6},altText:s.imageAlt});
+    slide.addText(s.body,positioned('body',{x:.65,y:2,w:textWidth,h:4.75,fontSize:24,color:colours.ink.slice(1),fontFace:'Aptos',fit:'shrink',valign:'mid',align:s.layout==='title'?'center':'left'}));
+    if(hasImage){const box=positioned('image',{x:13.33-imageWidth-.65,y:2,w:imageWidth,h:4.6});slide.addImage({data:s.image,...box,sizing:{type:'contain',w:box.w,h:box.h},altText:s.imageAlt});}
     for(const object of s.elements||[]){
       const box={x:object.x/72,y:object.y/72,w:object.width/72,h:object.height/72};
       if(object.type==='text')slide.addText(object.text,{...box,fontSize:object.fontSize*.75,color:colours.ink.slice(1),fontFace:'Aptos',fit:'shrink',margin:0,breakLine:false});

@@ -2,17 +2,34 @@ import { newDeck, newSlide, validateDeck, moveSlide, canEdit, demoDeck, nestedDe
 import * as cloud from './cloud.js';
 import { Player, renderPreview } from './player.js';
 import { downloadJSON, exportPPTX, importPresentation, compressImage } from './powerpoint.js';
-import { uid, defaultCanvas, framesFor, removeSlide, freeChildCanvas } from './features.js';
+import { uid, defaultCanvas, framesFor, removeSlide, freeChildCanvas, defaultAnimation } from './features.js';
+import { EditHistory } from './edit-history.js';
 import { FeatureEditor } from './editor-features.js';
 const $ = id => document.getElementById(id);
 let user=null, record=null, deck=null, selected=0, editing=false, dirty=false, saving=false, libraryRequest=0, opening=0;
+const editHistory=new EditHistory();
+let cleanFingerprint='',editGroup=null,groupTimer;
+const snapshot=()=>({deck,published:$('published').checked,selected,objectId:featureEditor.objectId});
+function historyButtons(){const enabled=!!deck&&editing&&editable()&&!saving&&!$('editor').hidden;$('undo').hidden=!editing||!editable();$('redo').hidden=!editing||!editable();$('undo').disabled=!enabled||!editHistory.past.length;$('redo').disabled=!enabled||!editHistory.future.length;}
+function normaliseEditingState(){deck.slides.forEach((s,i)=>{s.canvas ||= defaultCanvas(i,!!s.parentId);s.animations ||= {};s.boxes ||= {};s.elements ||= [];for(const key of ['title','body','image'])s.animations[key] ||= defaultAnimation();});}
 const message = text => { $('status').textContent=text; };
 function report(error){ console.error(error); const code=error.code||''; message(code.includes('popup-closed')?'Sign-in was cancelled.':code.includes('popup-blocked')?'Allow the Google sign-in popup, then try again.':code.includes('permission-denied')?'This presentation is private, or you do not have permission to edit it.':code.includes('unauthorized-domain')?'This site must be added to Firebase Authentication’s authorised domains.':error.message||'Something went wrong. Please try again.'); }
 function action(id, fn){$(id).addEventListener('click',()=>Promise.resolve().then(fn).catch(report));}
 function editable(){return !!user && (!record || canEdit(record,user));}
 function guard(){if(!editable()||!editing||saving)throw new Error('Sign in as the creator to edit this presentation.');}
 function leave(){if(saving){message('Please wait for saving to finish.');return false;}return !dirty||confirm('You have unsaved changes. Discard them?');}
-function changed(){dirty=true; $('save').textContent='Save changes';renderPreview($('preview'),deck,selected);}
+function changed({group=editGroup}={}){
+  normaliseEditingState();editHistory.record(snapshot(),group);dirty=editHistory.key(snapshot())!==cleanFingerprint;
+  $('save').textContent=dirty?'Save changes':'Save';renderPreview($('preview'),deck,selected);featureEditor.decorate();historyButtons();
+}
+function restoreEdit(direction){
+  guard();if($('editor').hidden)return;featureEditor.cancelGesture?.();
+  const state=direction==='undo'?editHistory.undo():editHistory.redo();if(!state)return;
+  deck=state.deck;selected=Math.min(state.selected,deck.slides.length-1);featureEditor.objectId=state.objectId;
+  $('published').checked=state.published;dirty=editHistory.key(state)!==cleanFingerprint;$('deck-heading').textContent=deck.title;
+  showEditor();message(direction==='undo'?'Undid the last edit.':'Redid the last edit.');
+}
+
 const player=new Player($('stage'), state=>{
   $('slide-status').textContent=state.overview?`Overview · ${state.count} slides`:`${state.index+1} / ${state.count}${state.reveal?` · ${state.reveal}`:''}`;
   $('prev').disabled=state.atStart&&!state.overview;$('next').disabled=state.atEnd&&!state.overview;
@@ -23,6 +40,7 @@ const player=new Player($('stage'), state=>{
   slides.filter(s=>state.overview?!s.parentId:s.parentId===slides[state.index].id).forEach(s=>{const b=document.createElement('button');b.textContent=`Zoom into ${s.title||'Untitled slide'}`;b.onclick=()=>player.go(slides.indexOf(s));$('zoom-children').append(b);});
 });
 const featureEditor=new FeatureEditor(()=>({deck,selected}),guard,changed,index=>{selected=index;fillSlide();},report);
+featureEditor.redrawPreview=()=>{if(deck&&editing){renderPreview($('preview'),deck,selected);featureEditor.decorate();}};
 function syncAccess(){
   $('create').disabled=!user;$('import').disabled=!user;$('login').hidden=!!user;$('login').disabled=!cloud.isConfigured();$('logout').hidden=!user;
   $('account-name').textContent=user?user.displayName||'Signed in':'';
@@ -32,6 +50,7 @@ function syncAccess(){
     $('permission').textContent=record?.id?(canEdit(record,user)?'YOUR PRESENTATION':'VIEW ONLY'):(editable()?'NEW PRESENTATION':'EXAMPLE · VIEW ONLY');
     $('delete-deck').hidden=!record?.id||!canEdit(record,user);
   }
+  historyButtons();
 }
 async function refreshLibrary(){
   const ticket=++libraryRequest; const mine=$('scope').value==='mine';
@@ -62,12 +81,13 @@ function open(value, metadata=null, edit=false){
   opening++;deck=validateDeck(value);record=metadata;selected=0;dirty=false;editing=edit;
   $('intro').hidden=true;$('library').hidden=true;$('workspace').hidden=false;$('deck-heading').textContent=deck.title;
   const url=new URL(location.href);url.search='';if(record?.id)url.searchParams.set('id',record.id);else url.searchParams.set('demo',record?.demo||'1');history.replaceState(null,'',url);
-  if(editing)showEditor();else showViewer();syncAccess();
+  $('published').checked=!!record?.published;
+  if(editing)showEditor();else showViewer();editHistory.reset(snapshot());cleanFingerprint=editHistory.key(snapshot());syncAccess();
 }
 function showEditor(){
   editing=true;player.stop();document.body.classList.remove('is-presenting');$('editor').hidden=false;$('viewer').hidden=true;
   for(const [id,key]of Object.entries({title:'title',year:'year_group',subject:'subject',mode:'mode',theme:'theme',description:'description'}))$(id).value=deck[key];
-  $('published').checked=!!record?.published;$('save').textContent=dirty?'Save changes':'Save';fillSlide();syncAccess();
+  $('save').textContent=dirty?'Save changes':'Save';fillSlide();syncAccess();
 }
 function fillSlide(){
   const slide=deck.slides[selected];
@@ -89,6 +109,7 @@ for(const [id,key]of Object.entries({'slide-title':'title','slide-body':'body',l
   $(id).addEventListener('input',()=>{if(!editable()||saving)return;deck.slides[selected][key]=$(id).value;changed();if(id==='slide-title')$('slide-list').children[selected].firstChild.textContent=`${selected+1}. ${$(id).value||'Untitled slide'}`;});
 }
 $('published').addEventListener('change',()=>{if(editable())changed();});
+action('undo',()=>restoreEdit('undo'));action('redo',()=>restoreEdit('redo'));
 action('login',()=>cloud.signIn());action('logout',async()=>{if(!leave())return;await cloud.signOut();});
 action('create',()=>{if(!user)throw new Error('Sign in with Google first.');if(leave())open(newDeck(),null,true);});
 action('demo',()=>{if(leave())open(demoDeck(),{ownerId:'example'},false);});
@@ -106,7 +127,7 @@ action('clear-image',()=>{guard();deck.slides[selected].image='';changed();fillS
 $('import').addEventListener('change',async()=>{const file=$('import').files[0];$('import').value='';if(!file)return;try{if(!user||!leave())return;const ticket=++opening, importingUser=user.uid;message('Importing presentation…');const result=await importPresentation(file);if(ticket!==opening||user?.uid!==importingUser)return;open(result.deck,null,true);dirty=true;$('save').textContent='Save changes';message(result.warning||'Backup imported. Save to create your own copy.');}catch(e){report(e);}});
 action('save',async()=>{
   guard();validateDeck(deck);saving=true;$('save').disabled=true;syncAccess();message('Saving…');
-  try{const saved=await cloud.saveDeck(record?.id,deck,$('published').checked,record?.version);record={...record,...saved};dirty=false;$('save').textContent='Saved';history.replaceState(null,'',`?id=${encodeURIComponent(saved.id)}`);message(saved.published?'Saved and shared in the classroom library.':'Saved as a private draft.');}
+  try{const saved=await cloud.saveDeck(record?.id,deck,$('published').checked,record?.version);record={...record,...saved};dirty=false;cleanFingerprint=editHistory.key(snapshot());editHistory.breakGroup();$('save').textContent='Saved';history.replaceState(null,'',`?id=${encodeURIComponent(saved.id)}`);message(saved.published?'Saved and shared in the classroom library.':'Saved as a private draft.');}
   finally{saving=false;$('save').disabled=false;syncAccess();}
 });
 action('delete-deck',async()=>{guard();if(!record?.id||!confirm('Permanently delete this presentation?'))return;await cloud.deleteDeck(record.id);dirty=false;$('close').click();message('Presentation deleted.');});
@@ -129,8 +150,21 @@ document.addEventListener('keydown',event=>{
   if(event.key.toLowerCase()==='o')player.toggleOverview();
   if(event.key==='Escape'){document.body.classList.remove('is-presenting');if(editing&&editable())showEditor();}
 });
+for(const type of ['click','pointerdown','input','change'])document.addEventListener(type,event=>{
+  if(!deck||!editing||$('editor').hidden)return;
+  editHistory.context(selected,featureEditor.objectId);
+  clearTimeout(groupTimer);
+  if(type==='input'||type==='change'){editGroup=`field:${selected}:${event.target.id}`;groupTimer=setTimeout(()=>{editGroup=null;},0);}
+  else{editGroup=null;editHistory.breakGroup();}
+},true);
+document.addEventListener('keydown',()=>{if(deck&&editing&&!$('editor').hidden)editHistory.context(selected,featureEditor.objectId);},true);
+document.addEventListener('keydown',event=>{
+  if(!deck||!editing||$('editor').hidden||!editable()||saving||event.altKey||!(event.ctrlKey||event.metaKey))return;
+  const key=event.key.toLowerCase();if(key!=='z'&&key!=='y')return;
+  event.preventDefault();if(event.isComposing)return;restoreEdit(key==='y'||event.shiftKey?'redo':'undo');
+});
 window.addEventListener('beforeunload',event=>{if(dirty){event.preventDefault();event.returnValue='';}});
-new ResizeObserver(()=>{if(deck&&editing&&!$('editor').hidden)renderPreview($('preview'),deck,selected);}).observe($('preview'));
+new ResizeObserver(()=>{if(deck&&editing&&!$('editor').hidden){renderPreview($('preview'),deck,selected);featureEditor.decorate();}}).observe($('preview'));
 async function init(){
   $('setup').hidden=cloud.isConfigured();syncAccess();
   await cloud.watchAuth(next=>{user=next;syncAccess();refreshLibrary();});

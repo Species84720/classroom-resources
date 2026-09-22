@@ -20,7 +20,7 @@
   <p id="status" role="status" aria-live="polite"></p>
   <section id="library"><div class="section-heading"><h2>PowerPoints</h2><label>Show <select id="scope"><option value="published">Shared presentations</option><option value="mine">My presentations</option></select></label></div><div id="decks" class="deck-grid"></div></section>
   <section id="workspace" hidden aria-label="Presentation workspace">
-    <div class="workspace-top"><div><p id="permission" class="eyebrow"></p><h2 id="deck-heading"></h2></div><div class="toolbar"><button id="close">Back to presentations</button><button id="edit" hidden>Edit presentation</button><button id="present" class="primary">▶ Present</button><button id="export">Download .pptx</button><button id="backup">Download backup</button><button id="save" class="primary" hidden>Save</button></div></div>
+    <div class="workspace-top"><div><p id="permission" class="eyebrow"></p><h2 id="deck-heading"></h2></div><div class="toolbar"><button id="close">Back to presentations</button><button id="edit" hidden>Edit presentation</button><button id="present" class="primary">▶ Present</button><button id="export">Download .pptx</button><button id="backup">Download backup</button><button id="undo" hidden disabled title="Undo (Ctrl/Cmd+Z)">↶ Undo</button><button id="redo" hidden disabled title="Redo (Ctrl/Cmd+Shift+Z or Ctrl+Y)">↷ Redo</button><button id="save" class="primary" hidden>Save</button></div></div>
     <div id="editor" hidden>
       <fieldset id="editor-fields">
       <div class="deck-settings">
@@ -41,14 +41,14 @@
           <div class="toolbar"><label class="file-button">Add a picture<input id="image" type="file" accept="image/png,image/jpeg,image/webp"></label><button id="clear-image">Remove picture</button></div>
           <label>Picture description<input id="image-alt" maxlength="200" placeholder="Describe the picture for accessibility"></label>
           <details class="feature-panel" open><summary>Objects and animations</summary>
-            <p class="hint">Animate each field separately. Add extra text boxes or pictures, then drag them in the preview.</p>
+            <p class="hint">Select a title, text box or picture to move, resize or animate it. Drag its handles in the preview, or use the position and size fields.</p>
             <div class="toolbar"><button id="add-text">+ Text box</button><label class="file-button">+ Extra picture<input id="add-object-image" type="file" accept="image/png,image/jpeg,image/webp"></label></div>
             <label>Object<select id="object-target"></select></label>
             <div id="extra-properties" hidden>
               <label id="object-text-label">Text<textarea id="object-text" rows="3" maxlength="1500"></textarea></label>
               <label id="object-alt-label">Picture description<input id="object-alt" maxlength="200"></label>
-              <div class="two-col"><label>Left (px)<input id="object-x" type="number" min="0" max="920"></label><label>Top (px)<input id="object-y" type="number" min="0" max="510"></label><label>Width (px)<input id="object-width" type="number" min="40" max="960"></label><label>Height (px)<input id="object-height" type="number" min="30" max="540"></label><label>Text size<input id="object-font" type="number" min="12" max="96"></label></div>
-              <button id="delete-object" class="danger">Remove this object</button>
+              <div class="two-col"><label>Left (px)<input id="object-x" type="number" step="any" min="0" max="920"></label><label>Top (px)<input id="object-y" type="number" step="any" min="0" max="510"></label><label>Width (px)<input id="object-width" type="number" step="any" min="40" max="960"></label><label>Height (px)<input id="object-height" type="number" step="any" min="30" max="540"></label><label>Text size<input id="object-font" type="number" min="12" max="96"></label></div>
+              <button id="delete-object" class="danger">Remove this object</button><button id="reset-boxes" type="button">Reset main items to layout</button>
             </div>
             <div class="two-col"><label>Effect<select id="object-effect"><option value="none">Appear (no motion)</option><option value="fade">Fade in</option><option value="rise">Rise in</option><option value="zoom">Grow in</option><option value="spin">Turn in</option></select></label>
             <label>Start<select id="object-trigger"><option value="enter">When the slide opens</option><option value="click">On a click / Next</option></select></label>
@@ -57,7 +57,7 @@
           </details>
           <label>Teaching notes <span class="hint">Hidden during playback. Included in shared decks and downloads.</span><textarea id="notes" maxlength="3000" rows="3"></textarea></label>
         </div>
-        <div class="preview-column"><h3>Slide preview</h3><div id="preview"></div><p class="hint">Choose Present to try transitions and click-to-reveal text.</p><details class="feature-panel" id="zoom-settings" open><summary>Zoom canvas</summary>
+        <div class="preview-column"><h3>Slide preview</h3><div id="preview" tabindex="0" role="group" aria-label="Editable slide preview. Select an item to move it or use its resize handles. Arrow keys move the selected item; Shift makes larger steps."></div><p class="hint">Select any item to drag it. Drag a corner or edge handle to resize. Arrow keys move the selection; Shift moves 10 pixels. Choose Present to try animations.</p><details class="feature-panel" id="zoom-settings" open><summary>Zoom canvas</summary>
           <p class="hint">Drag slides on this map, or use the position fields. The slide list controls the presentation order.</p>
           <svg id="canvas-map" role="group" aria-label="Slide arrangement map"></svg>
           <label>Place inside<select id="parent-slide"></select></label>

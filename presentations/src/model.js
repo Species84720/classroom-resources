@@ -7,7 +7,7 @@ export const THEMES = {
   space: { background: '#17243d', ink: '#ffffff', accent: '#b9d6ff' },
 };
 export function newSlide(title = 'Your slide title', body = 'Add an explanation, a question or an activity.') {
-  return { id:uid(), parentId:null, canvas:null, animations:{}, elements:[], title, body, image: '', imageAlt: '', layout: 'split', animation: 'fade', notes: '' };
+  return { id:uid(), parentId:null, canvas:null, animations:{}, boxes:{}, elements:[], title, body, image: '', imageAlt: '', layout: 'split', animation: 'fade', notes: '' };
 }
 export function newDeck(template = 'lesson') {
   const slides = template === 'blank' ? [newSlide()] : template === 'quiz' ? [
@@ -44,6 +44,12 @@ export function validateDeck(raw) {
       const c = s.canvas || defaultCanvas(index,!!parentId);
       const canvas = { x:number(c.x,-20000,20000,'Canvas X'), y:number(c.y,-20000,20000,'Canvas Y'), scale:number(c.scale,.005,3,'Slide size') };
       if (parentId && canvas.scale > .8) throw new Error('A nested slide must be smaller than its parent (80% or less).');
+      const boxes={};
+      if(s.boxes!=null && (typeof s.boxes!=='object'||Array.isArray(s.boxes)))throw new Error('Invalid object positions.');
+      for(const key of ['title','body','image'])if(s.boxes?.[key]){
+        const b=s.boxes[key],width=number(b.width,40,960,'Object width'),height=number(b.height,30,540,'Object height');
+        boxes[key]={x:number(b.x,0,960-width,'Object X'),y:number(b.y,0,540-height,'Object Y'),width,height,fontSize:number(b.fontSize,12,96,'Font size')};
+      }
       const animations = Object.fromEntries(['title','body','image'].map(key=>[key,normaliseAnimation(s.animations?.[key])]));
       if (s.elements !== undefined && (!Array.isArray(s.elements) || s.elements.length>20)) throw new Error('Use at most 20 extra objects per slide.');
       const elements = (s.elements||[]).map(e=>{
@@ -55,7 +61,7 @@ export function validateDeck(raw) {
           x:number(e.x,0,960-width,'Object X'),y:number(e.y,0,540-height,'Object Y'),width,height,fontSize:number(e.fontSize,12,96,'Font size'),animation:normaliseAnimation(e.animation)};
       });
       if(new Set(elements.map(e=>e.id)).size!==elements.length)throw new Error('Duplicate object IDs.');
-      return { id,parentId,canvas,animations,elements,title: text(s.title, 180, 'Slide title'), body: text(s.body, 2500, 'Slide text'), image, imageAlt: text(s.imageAlt, 200, 'Image description'), notes: text(s.notes, 3000, 'Notes'), layout: s.layout, animation: s.animation };
+      return { id,parentId,canvas,animations,boxes,elements,title: text(s.title, 180, 'Slide title'), body: text(s.body, 2500, 'Slide text'), image, imageAlt: text(s.imageAlt, 200, 'Image description'), notes: text(s.notes, 3000, 'Notes'), layout: s.layout, animation: s.animation };
     }),
   };
   if(new Set(deck.slides.map(s=>s.id)).size!==deck.slides.length)throw new Error('Duplicate slide IDs.');

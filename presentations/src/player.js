@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { CSS3DRenderer, CSS3DObject } from 'three/addons/renderers/CSS3DRenderer.js';
+import { applyObjectBox } from './object-box.js';
 import { THEMES } from './model.js';
 import { framesFor, sceneBounds, clickSteps } from './features.js';
 import { ObjectAnimation } from './object-animation.js';
@@ -31,6 +32,9 @@ export function slideElement(slide, theme, number, animate = false, reveal = Inf
     Object.assign(box.style,{position:'absolute',left:`${object.x}px`,top:`${object.y}px`,width:`${object.width}px`,height:`${object.height}px`,fontSize:`${object.fontSize}px`});
     if(object.type==='image'){const img=document.createElement('img');img.src=object.image;img.alt=object.imageAlt;box.append(img);}else box.textContent=object.text;
     el.append(box);
+  }
+  for(const key of ['title','body','image'])if(slide.boxes?.[key]){
+    const node=el.querySelector(`[data-object="${key}"]`);if(node){el.append(node);applyObjectBox(node,slide.boxes[key]);}
   }
   return el;
 }
