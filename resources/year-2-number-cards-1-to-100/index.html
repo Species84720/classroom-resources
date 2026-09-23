@@ -24,26 +24,26 @@
       border-radius: 2.7rem; break-inside: avoid; page-break-inside: avoid;
     }
     .number {
-      display: grid; place-items: center; width: 9.5rem; aspect-ratio: 1;
+      display: grid; place-items: center; width: 11rem; aspect-ratio: 1;
       margin: 1rem 0 .8rem; border-radius: 50%; color: #fff;
-      background: var(--accent); font-size: 5rem; font-weight: 800; line-height: 1;
+      background: var(--accent); font-size: 6rem; font-weight: 800; line-height: 1;
     }
     .word { margin: 0 0 1.1rem; font-family: Georgia, serif; font-size: clamp(1.8rem, 4vw, 3rem); font-style: italic; text-align: center; }
     .dots {
       display: grid; grid-template-columns: repeat(10, 1fr); gap: .45rem;
-      width: min(100%, 25rem); align-content: start; justify-items: center;
+      width: min(100%, 29rem); align-content: start; justify-items: center;
     }
-    .dot { width: min(1.65rem, 100%); aspect-ratio: 1; border-radius: 50%; background: var(--accent); }
+    .dot { width: min(2rem, 100%); aspect-ratio: 1; border-radius: 50%; background: var(--accent); }
     @media print {
       @page { size: A4 landscape; margin: 6mm; }
       body { background: #fff; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
       .toolbar { display: none; }
       .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6mm; padding: 0; }
       .card { height: 198mm; min-height: 0; border-width: 3mm; border-radius: 11mm; padding: 4mm 7mm 6mm; }
-      .number { width: 35mm; margin: 3mm 0 2mm; font-size: 19mm; }
-      .word { margin: 0 0 4mm; font-size: 11mm; }
-      .dots { width: 100mm; gap: 2mm; }
-      .dot { width: 7.5mm; }
+      .number { width: 42mm; margin: 3mm 0 2mm; font-size: 23mm; }
+      .word { margin: 0 0 4mm; font-size: 13mm; }
+      .dots { width: 116mm; gap: 2.4mm; }
+      .dot { width: 9.4mm; }
     }
   </style>
 </head>
