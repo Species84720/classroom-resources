@@ -514,5 +514,39 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-race-car-number-lines/"
+  },
+  {
+    "id": "year-2-number-cards-1-to-100",
+    "title": "Number Cards 1–100",
+    "description": "A printable set of 100 number cards with numerals, written number names and quantity dots arranged in rows of ten.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise, read and represent whole numbers from 1 to 100 using numerals, number names and quantities grouped in tens.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "numeral recognition",
+      "number names",
+      "place value"
+    ],
+    "themes": [
+      "number cards"
+    ],
+    "labels": [
+      "1 to 100",
+      "printable",
+      "A4",
+      "dot representation",
+      "groups of ten",
+      "place value"
+    ],
+    "resource_type": "printable flash cards",
+    "language": "en-GB",
+    "estimated_minutes": 20,
+    "created": "2026-09-23",
+    "updated": "2026-09-23",
+    "url": "resources/year-2-number-cards-1-to-100/"
   }
 ]
