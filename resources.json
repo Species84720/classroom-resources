@@ -518,9 +518,9 @@
   {
     "id": "year-2-number-cards-1-to-100",
     "title": "Number Cards 1–100",
-    "description": "A printable set of 100 number cards with numerals, written number names and quantity dots arranged in rows of ten.",
+    "description": "A printable set of 100 number cards with numerals, written number names, joined towers of ten and loose unit cubes.",
     "year_group": "Year 2",
-    "learning_intent": "Recognise, read and represent whole numbers from 1 to 100 using numerals, number names and quantities grouped in tens.",
+    "learning_intent": "Recognise, read and represent whole numbers from 1 to 100 using numerals, number names, tens and ones.",
     "subjects": [
       "Mathematics"
     ],
@@ -538,8 +538,8 @@
       "1 to 100",
       "printable",
       "A4",
-      "dot representation",
-      "groups of ten",
+      "base-ten blocks",
+      "tens and ones",
       "place value"
     ],
     "resource_type": "printable flash cards",
