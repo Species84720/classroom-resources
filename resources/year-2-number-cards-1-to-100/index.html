@@ -30,15 +30,15 @@
     }
     .word { margin: 0 0 1.1rem; font-family: Georgia, serif; font-size: clamp(1.8rem, 4vw, 3rem); font-style: italic; text-align: center; }
     .blocks {
-      display: flex; flex-direction: row; gap: 1rem; width: 100%;
+      display: flex; flex-direction: row; gap: .45rem; width: 100%;
       align-items: flex-end; justify-content: center;
     }
-    .tens, .ones { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; align-content: flex-end; gap: .45rem; }
-    .tens { flex: 0 1 auto; min-width: 0; }
-    .ones { flex: 0 0 auto; max-width: 7.1rem; }
-    .tower { display: grid; grid-template-rows: repeat(10, 1fr); width: 2rem; }
+    .tens, .ones { display: flex; justify-content: center; align-items: flex-end; gap: .12rem; }
+    .tens { flex: 0 0 auto; flex-wrap: nowrap; }
+    .ones { flex: 0 0 auto; flex-wrap: wrap; width: calc(var(--block-size) * 3 + .24rem); align-content: flex-end; }
+    .tower { display: grid; grid-template-rows: repeat(10, 1fr); width: var(--block-size); }
     .cube {
-      width: 2rem; aspect-ratio: 1; border: 1px solid #ffffffcc;
+      width: var(--block-size); aspect-ratio: 1; border: 1px solid #ffffffcc;
       background: linear-gradient(135deg, color-mix(in srgb, var(--accent), white 22%), var(--accent));
       box-shadow: inset -.15rem -.15rem 0 #0001, inset .12rem .12rem 0 #fff4;
     }
@@ -85,6 +85,7 @@
       card.style.setProperty('--accent', colours[(number - 1) % colours.length]);
       const tenCount = Math.floor(number / 10);
       const oneCount = number % 10;
+      card.style.setProperty('--block-size', tenCount >= 7 ? '1rem' : tenCount >= 5 ? '1.25rem' : tenCount >= 3 ? '1.5rem' : '1.75rem');
       card.setAttribute('aria-label', `${number}, ${word}: ${tenCount} tens and ${oneCount} ones`);
 
       const numeral = document.createElement('div');
