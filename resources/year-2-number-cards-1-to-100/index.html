@@ -48,14 +48,29 @@
     .loose-cube { border-radius: .2rem; box-shadow: inset -.2rem -.2rem 0 #0002, inset .15rem .15rem 0 #fff5, .12rem .15rem .2rem #0002; }
     @media print {
       @page { size: A4 landscape; margin: 6mm; }
-      body { background: #fff; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+      html, body { margin: 0; padding: 0; background: #fff; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
       .toolbar { display: none; }
-      .cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6mm; padding: 0; }
-      .card { height: 198mm; min-height: 0; border-width: 3mm; border-radius: 11mm; padding: 4mm 7mm 6mm; }
-      .number { width: 42mm; margin: 3mm 0 2mm; font-size: 23mm; }
-      .word { margin: 0 0 4mm; font-size: 13mm; }
-      .dots { width: 116mm; gap: 2.4mm; }
-      .dot { width: 9.4mm; }
+      /* A4 landscape printable area: 285mm × 198mm. Four cards per sheet. */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: repeat(2, 96mm);
+        gap: 6mm;
+        padding: 0;
+        width: 100%;
+      }
+      .card {
+        width: 100%; height: 96mm; min-height: 0; min-width: 0;
+        border-width: 2mm; border-radius: 7mm; padding: 2mm 4mm;
+        grid-template-rows: auto auto minmax(0, 1fr);
+        break-inside: avoid; page-break-inside: avoid;
+      }
+      .number { width: 21mm; margin: 1mm 0; font-size: 12mm; }
+      .word { margin: 0 0 2mm; font-size: 7mm; }
+      .blocks { gap: 2mm; align-content: flex-start; }
+      /* Start a fresh sheet after each group of four cards. */
+      .card:nth-child(4n + 1) { break-before: page; page-break-before: always; }
+      .card:first-child { break-before: auto; page-break-before: auto; }
     }
   </style>
 </head>
