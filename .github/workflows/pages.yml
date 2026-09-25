@@ -30,10 +30,10 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build:site
-      - name: Install PDF browser
-        run: npx playwright install --with-deps chromium
+      - name: Install PDF generator
+        run: python -m pip install reportlab
       - name: Generate downloadable flashcards PDF
-        run: node scripts/generate-number-cards-pdf.mjs
+        run: python scripts/generate-number-cards-pdf.py
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload static site
