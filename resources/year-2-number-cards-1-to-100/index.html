@@ -15,9 +15,142 @@
     }
     .toolbar h1 { margin: 0; font-size: clamp(1rem, 2.4vw, 1.5rem); }
     button { border: 0; border-radius: .6rem; padding: .65rem 1rem; font: inherit; font-weight: 700; cursor: pointer; }
-    button:focus-visible, .download:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
-    .download { display: inline-block; border-radius: .6rem; padding: .65rem 1rem; background: #fff; color: #16324f; text-decoration: none; font-weight: 700; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.25rem; padding: 1.25rem; }
+    button:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
+    .print-button { background: #fff; color: #16324f; }
+    .cards { padding: 1.25rem; }
+    .sheet { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem; }
+    .card {
+      --accent: #00aa56; min-height: 620px; padding: 1rem 1.2rem 1.35rem;
+      display: grid; grid-template-rows: auto auto 1fr; justify-items: center;
+      align-items: start; background: #fff; border: 8px solid var(--accent);
+      border-radius: 2.7rem; break-inside: avoid; page-break-inside: avoid;
+    }
+    .number {
+      display: grid; place-items: center; width: 11rem; aspect-ratio: 1;
+      margin: 1rem 0 .8rem; border-radius: 50%; color: #fff;
+      background: var(--accent); font-size: 6rem; font-weight: 800; line-height: 1;
+    }
+    .word { margin: 0 0 1.1rem; font-family: Georgia, serif; font-size: clamp(1.8rem, 4vw, 3rem); font-style: italic; text-align: center; }
+    .blocks {
+      display: flex; flex-wrap: wrap; gap: .45rem; width: 100%;
+      align-content: flex-start; align-items: flex-start; justify-content: center;
+    }
+    .tens, .ones { display: flex; justify-content: center; gap: .12rem; }
+    /* Never wrap tens: if the ones don't fit, only the ones move below. */
+    .tens { flex: 0 0 auto; flex-wrap: nowrap; align-items: flex-start; }
+    .ones { flex: 0 0 auto; flex-wrap: wrap; width: calc(var(--block-size) * 3 + .24rem); align-content: flex-start; align-items: flex-start; }
+    .tower { display: grid; grid-template-rows: repeat(10, 1fr); width: var(--block-size); }
+    .cube {
+      width: var(--block-size); aspect-ratio: 1; border: 1px solid #ffffffcc;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--accent), white 22%), var(--accent));
+      box-shadow: inset -.15rem -.15rem 0 #0001, inset .12rem .12rem 0 #fff4;
+    }
+    .tower .cube:first-child { border-radius: .2rem .2rem 0 0; }
+    .tower .cube:last-child { border-radius: 0 0 .2rem .2rem; }
+    .loose-cube { border-radius: .2rem; box-shadow: inset -.2rem -.2rem 0 #0002, inset .15rem .15rem 0 #fff5, .12rem .15rem .2rem #0002; }
+    @media print {
+      @page { size: A4 portrait; margin: 0; }
+      html, body {
+        margin: 0; padding: 0; background: #fff;
+        print-color-adjust: exact; -webkit-print-color-adjust: exact;
+      }
+      .toolbar { display: none !important; }
+      .cards { padding: 0; margin: 0; }
+      .sheet {
+        width: 210mm;
+        height: 297mm;
+        padding: 6mm;
+        margin: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        gap: 6mm;
+        break-after: page;
+        page-break-after: always;
+        overflow: hidden;
+      }
+      .sheet:last-child {
+        break-after: auto;
+        page-break-after: auto;
+      }
+      .card {
+        width: 96mm;
+        height: 139.5mm;
+        min-width: 0;
+        min-height: 0;
+        margin: 0;
+        padding: 2mm 3mm 3mm;
+        border-width: 2mm;
+        border-radius: 7mm;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+      .number {
+        flex: 0 0 auto;
+        width: 25mm;
+        margin: 1mm 0 .5mm;
+        font-size: 15mm;
+      }
+      .word {
+        flex: 0 0 auto;
+        margin: 0 0 1mm;
+        font-size: 7mm;
+        line-height: 1;
+      }
+      .blocks {
+        flex: 1 1 auto;
+        min-height: 0;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1mm;
+        align-content: flex-start;
+        align-items: flex-start;
+        justify-content: center;
+        margin: 0;
+      }
+      .tens, .ones { gap: .7mm; }
+      .tower { width: var(--print-block-size); }
+      .tower .cube {
+        width: var(--print-block-size);
+        height: var(--print-tower-cell-height);
+        aspect-ratio: auto;
+      }
+      .loose-cube {
+        width: var(--print-block-size);
+        height: var(--print-block-size);
+        aspect-ratio: 1;
+      }
+      .ones {
+        width: calc(var(--print-block-size) * 3 + 1.4mm);
+      }
+    }
+type html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Number Cards 1–100</title>
+  <style>
+    :root { color-scheme: light; font-family: "Trebuchet MS", Arial, sans-serif; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: #252225; background: #eef5f5; }
+    .toolbar {
+      position: sticky; top: 0; z-index: 10; display: flex; gap: 1rem;
+      align-items: center; justify-content: space-between; padding: .8rem 1.25rem;
+      background: #16324f; color: white; box-shadow: 0 2px 10px #0003;
+    }
+    .toolbar h1 { margin: 0; font-size: clamp(1rem, 2.4vw, 1.5rem); }
+    button { border: 0; border-radius: .6rem; padding: .65rem 1rem; font: inherit; font-weight: 700; cursor: pointer; }
+    button:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
+    .print-button { background: #fff; color: #16324f; }
+    .cards { padding: 1.25rem; }
+    .sheet { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.25rem; margin-bottom: 1.25rem; }
     .card {
       --accent: #00aa56; min-height: 620px; padding: 1rem 1.2rem 1.35rem;
       display: grid; grid-template-rows: auto auto 1fr; justify-items: center;
@@ -81,7 +214,7 @@
 <body>
   <header class="toolbar">
     <h1>Number Cards 1–100</h1>
-    <a class="download" href="./number-cards-1-to-100.pdf" download="number-cards-1-to-100.pdf">Download PDF</a>
+    <button class="print-button" type="button" onclick="window.print()">Print / Save as PDF</button>
   </header>
   <main class="cards" id="cards" aria-label="Number cards from 1 to 100"></main>
   <script>
@@ -108,8 +241,13 @@
       card.style.setProperty('--block-size', tenCount >= 7 ? '1.2rem' : tenCount >= 5 ? '1.45rem' : tenCount >= 3 ? '1.7rem' : '2rem');
       card.style.setProperty('--print-block-size',
         number <= 10 ? '13mm' :
-        number <= 30 ? '9.5mm' :
-        number <= 50 ? '8mm' : '6.2mm'
+        number <= 30 ? '10mm' :
+        number <= 50 ? '8.5mm' : '6.5mm'
+      );
+      card.style.setProperty('--print-tower-cell-height',
+        number <= 10 ? '8.5mm' :
+        number <= 30 ? '7.5mm' :
+        number <= 50 ? '7mm' : '6.2mm'
       );
       card.setAttribute('aria-label', `${number}, ${word}: ${tenCount} tens and ${oneCount} ones`);
 
@@ -156,7 +294,15 @@
 
     const cards = document.getElementById('cards');
     const fragment = document.createDocumentFragment();
-    for (let number = 1; number <= 100; number += 1) fragment.append(makeCard(number));
+    for (let start = 1; start <= 100; start += 4) {
+      const sheet = document.createElement('section');
+      sheet.className = 'sheet';
+      sheet.setAttribute('aria-label', `Cards ${start} to ${Math.min(start + 3, 100)}`);
+      for (let number = start; number <= Math.min(start + 3, 100); number += 1) {
+        sheet.append(makeCard(number));
+      }
+      fragment.append(sheet);
+    }
     cards.append(fragment);
 
   </script>
