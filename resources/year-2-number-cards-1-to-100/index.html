@@ -15,7 +15,8 @@
     }
     .toolbar h1 { margin: 0; font-size: clamp(1rem, 2.4vw, 1.5rem); }
     button { border: 0; border-radius: .6rem; padding: .65rem 1rem; font: inherit; font-weight: 700; cursor: pointer; }
-    button:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
+    button:focus-visible, .download:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
+    .download { display: inline-block; border-radius: .6rem; padding: .65rem 1rem; background: #fff; color: #16324f; text-decoration: none; font-weight: 700; }
     .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.25rem; padding: 1.25rem; }
     .card {
       --accent: #00aa56; min-height: 620px; padding: 1rem 1.2rem 1.35rem;
@@ -77,7 +78,7 @@
 <body>
   <header class="toolbar">
     <h1>Number Cards 1–100</h1>
-    <button type="button" id="print">Print all cards</button>
+    <a class="download" href="./number-cards-1-to-100.pdf" download="number-cards-1-to-100.pdf">Download PDF</a>
   </header>
   <main class="cards" id="cards" aria-label="Number cards from 1 to 100"></main>
   <script>
@@ -149,7 +150,7 @@
     const fragment = document.createDocumentFragment();
     for (let number = 1; number <= 100; number += 1) fragment.append(makeCard(number));
     cards.append(fragment);
-    document.getElementById('print').addEventListener('click', () => window.print());
+
   </script>
 </body>
 </html>
