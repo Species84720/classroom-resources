@@ -30,12 +30,13 @@
     }
     .word { margin: 0 0 1.1rem; font-family: Georgia, serif; font-size: clamp(1.8rem, 4vw, 3rem); font-style: italic; text-align: center; }
     .blocks {
-      display: flex; flex-direction: row; gap: .45rem; width: 100%;
-      align-items: flex-end; justify-content: center;
+      display: flex; flex-wrap: wrap; gap: .45rem; width: 100%;
+      align-content: flex-start; align-items: flex-start; justify-content: center;
     }
-    .tens, .ones { display: flex; justify-content: center; align-items: flex-end; gap: .12rem; }
-    .tens { flex: 0 0 auto; flex-wrap: nowrap; }
-    .ones { flex: 0 0 auto; flex-wrap: wrap; width: calc(var(--block-size) * 3 + .24rem); align-content: flex-end; }
+    .tens, .ones { display: flex; justify-content: center; gap: .12rem; }
+    /* Never wrap tens: if the ones don't fit, only the ones move below. */
+    .tens { flex: 0 0 auto; flex-wrap: nowrap; align-items: flex-start; }
+    .ones { flex: 0 0 auto; flex-wrap: wrap; width: calc(var(--block-size) * 3 + .24rem); align-content: flex-start; align-items: flex-start; }
     .tower { display: grid; grid-template-rows: repeat(10, 1fr); width: var(--block-size); }
     .cube {
       width: var(--block-size); aspect-ratio: 1; border: 1px solid #ffffffcc;
