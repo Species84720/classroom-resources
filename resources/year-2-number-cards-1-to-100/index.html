@@ -30,10 +30,12 @@
     }
     .word { margin: 0 0 1.1rem; font-family: Georgia, serif; font-size: clamp(1.8rem, 4vw, 3rem); font-style: italic; text-align: center; }
     .blocks {
-      display: grid; gap: 1rem; width: min(100%, 29rem);
-      align-content: start; justify-items: center;
+      display: flex; flex-direction: row; gap: 1rem; width: 100%;
+      align-items: flex-end; justify-content: center;
     }
-    .tens, .ones { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: .45rem; }
+    .tens, .ones { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-end; align-content: flex-end; gap: .45rem; }
+    .tens { flex: 0 1 auto; min-width: 0; }
+    .ones { flex: 0 0 auto; max-width: 7.1rem; }
     .tower { display: grid; grid-template-rows: repeat(10, 1fr); width: 2rem; }
     .cube {
       width: 2rem; aspect-ratio: 1; border: 1px solid #ffffffcc;
