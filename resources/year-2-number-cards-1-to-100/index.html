@@ -67,11 +67,14 @@
         break-inside: avoid; page-break-inside: avoid;
       }
       .number { width: 25mm; margin: 1mm 0; font-size: 15mm; }
-      .word { margin: 0 0 2mm; font-size: 7mm; }
-      .blocks { gap: 2mm; align-content: flex-start; }
-      /* Start a fresh sheet after each group of four cards. */
-      .card:nth-child(4n + 1) { break-before: page; page-break-before: always; }
-      .card:first-child { break-before: auto; page-break-before: auto; }
+      .word { margin: 0 0 .5mm; font-size: 7mm; line-height: 1; }
+      .blocks { gap: 1mm; align-content: flex-start; margin-top: 0; }
+      .tens, .ones { gap: .6mm; }
+      .tower { width: var(--print-block-size); }
+      .cube { width: var(--print-block-size); }
+      .tower .cube { width: var(--print-block-size); height: var(--print-block-size); aspect-ratio: 1; }
+      .loose-cube { width: var(--print-block-size); height: var(--print-block-size); aspect-ratio: 1; }
+      .ones { width: calc(var(--print-block-size) * 3 + 1.2mm); }
     }
   </style>
 </head>
@@ -103,6 +106,11 @@
       const tenCount = Math.floor(number / 10);
       const oneCount = number % 10;
       card.style.setProperty('--block-size', tenCount >= 7 ? '1.2rem' : tenCount >= 5 ? '1.45rem' : tenCount >= 3 ? '1.7rem' : '2rem');
+      card.style.setProperty('--print-block-size',
+        number <= 10 ? '13mm' :
+        number <= 30 ? '9.5mm' :
+        number <= 50 ? '8mm' : '6.2mm'
+      );
       card.setAttribute('aria-label', `${number}, ${word}: ${tenCount} tens and ${oneCount} ones`);
 
       const numeral = document.createElement('div');
