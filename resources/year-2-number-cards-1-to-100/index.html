@@ -66,7 +66,7 @@
         grid-template-rows: auto auto minmax(0, 1fr);
         break-inside: avoid; page-break-inside: avoid;
       }
-      .number { width: 21mm; margin: 1mm 0; font-size: 12mm; }
+      .number { width: 25mm; margin: 1mm 0; font-size: 15mm; }
       .word { margin: 0 0 2mm; font-size: 7mm; }
       .blocks { gap: 2mm; align-content: flex-start; }
       /* Start a fresh sheet after each group of four cards. */
@@ -102,7 +102,7 @@
       card.style.setProperty('--accent', colours[(number - 1) % colours.length]);
       const tenCount = Math.floor(number / 10);
       const oneCount = number % 10;
-      card.style.setProperty('--block-size', tenCount >= 7 ? '1rem' : tenCount >= 5 ? '1.25rem' : tenCount >= 3 ? '1.5rem' : '1.75rem');
+      card.style.setProperty('--block-size', tenCount >= 7 ? '1.2rem' : tenCount >= 5 ? '1.45rem' : tenCount >= 3 ? '1.7rem' : '2rem');
       card.setAttribute('aria-label', `${number}, ${word}: ${tenCount} tens and ${oneCount} ones`);
 
       const numeral = document.createElement('div');
