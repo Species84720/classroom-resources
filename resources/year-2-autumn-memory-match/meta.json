@@ -1,0 +1,32 @@
+{
+  "id": "year-2-autumn-memory-match",
+  "title": "Autumn Memory Match",
+  "description": "Match pairs of autumn pictures, with teacher controls to choose 2–7 pairs or select individual pictures.",
+  "year_group": "Year 2",
+  "learning_intent": "Recognise and match identical pictures, practise visual memory and name autumn objects and animals.",
+  "subjects": [
+    "English"
+  ],
+  "topics": [
+    "visual memory",
+    "matching",
+    "autumn vocabulary"
+  ],
+  "themes": [
+    "autumn",
+    "woodland animals"
+  ],
+  "labels": [
+    "memory game",
+    "matching pairs",
+    "teacher configurable",
+    "touch activity",
+    "keyboard accessible"
+  ],
+  "resource_type": "interactive game",
+  "language": "en-GB",
+  "estimated_minutes": 10,
+  "created": "2026-10-06",
+  "updated": "2026-10-06"
+}
+
