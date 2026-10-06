@@ -39,6 +39,38 @@
     "url": "resources/year-2-number-spinner/"
   },
   {
+    "id": "year-2-autumn-memory-match",
+    "title": "Autumn Memory Match",
+    "description": "Match pairs of autumn pictures, with teacher controls to choose 2–7 pairs or select individual pictures.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise and match identical pictures, practise visual memory and name autumn objects and animals.",
+    "subjects": [
+      "English"
+    ],
+    "topics": [
+      "visual memory",
+      "matching",
+      "autumn vocabulary"
+    ],
+    "themes": [
+      "autumn",
+      "woodland animals"
+    ],
+    "labels": [
+      "memory game",
+      "matching pairs",
+      "teacher configurable",
+      "touch activity",
+      "keyboard accessible"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-10-06",
+    "updated": "2026-10-06",
+    "url": "resources/year-2-autumn-memory-match/"
+  },
+  {
     "id": "year-2-balloon-number-pop",
     "title": "Balloon Number Pop",
     "description": "A colourful Year 2 number-recognition game with randomly placed balloons, varied sizes and shapes, animated floating, and different pop sounds.",
@@ -345,6 +377,40 @@
     "url": "resources/year-2-missing-numbers-to-50/"
   },
   {
+    "id": "year-2-number-cards-1-to-100",
+    "title": "Number Cards 1–100",
+    "description": "A printable set of 100 number cards with numerals, written number names, joined towers of ten and loose unit cubes.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise, read and represent whole numbers from 1 to 100 using numerals, number names, tens and ones.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "numeral recognition",
+      "number names",
+      "place value"
+    ],
+    "themes": [
+      "number cards"
+    ],
+    "labels": [
+      "1 to 100",
+      "printable",
+      "A4",
+      "base-ten blocks",
+      "tens and ones",
+      "place value"
+    ],
+    "resource_type": "printable flash cards",
+    "language": "en-GB",
+    "estimated_minutes": 20,
+    "created": "2026-09-23",
+    "updated": "2026-09-23",
+    "url": "resources/year-2-number-cards-1-to-100/"
+  },
+  {
     "id": "year-2-number-memory-match",
     "title": "Number Memory Match",
     "description": "A touch-friendly memory game where the teacher chooses any whole-number range and children find matching numeral pairs.",
@@ -514,39 +580,5 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-race-car-number-lines/"
-  },
-  {
-    "id": "year-2-number-cards-1-to-100",
-    "title": "Number Cards 1–100",
-    "description": "A printable set of 100 number cards with numerals, written number names, joined towers of ten and loose unit cubes.",
-    "year_group": "Year 2",
-    "learning_intent": "Recognise, read and represent whole numbers from 1 to 100 using numerals, number names, tens and ones.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "counting",
-      "numeral recognition",
-      "number names",
-      "place value"
-    ],
-    "themes": [
-      "number cards"
-    ],
-    "labels": [
-      "1 to 100",
-      "printable",
-      "A4",
-      "base-ten blocks",
-      "tens and ones",
-      "place value"
-    ],
-    "resource_type": "printable flash cards",
-    "language": "en-GB",
-    "estimated_minutes": 20,
-    "created": "2026-09-23",
-    "updated": "2026-09-23",
-    "url": "resources/year-2-number-cards-1-to-100/"
   }
 ]
