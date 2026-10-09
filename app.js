@@ -90,7 +90,15 @@ async function init() {
   try {
     const response = await fetch('resources.json', { cache: 'no-store' });
     if (!response.ok) throw new Error('Catalogue could not be loaded');
-    state.resources = await response.json();
+    state.resources = (await response.json()).map(resource => ({
+      ...resource,
+      year_group: resource.year_group || resource.yearGroup || '',
+      learning_intent: resource.learning_intent || resource.learningIntention || '',
+      resource_type: resource.resource_type || resource.resourceType || '',
+      subjects: resource.subjects || (resource.subject ? [resource.subject] : []),
+      topics: resource.topics || (resource.topic ? [resource.topic] : []),
+      themes: resource.themes || (resource.theme ? [resource.theme] : [])
+    }));
 
     const years = [...new Set(state.resources.map(r => r.year_group))].sort((a,b) => a.localeCompare(b, 'en-GB', {numeric:true}));
     fillSelect(els.year, years);
