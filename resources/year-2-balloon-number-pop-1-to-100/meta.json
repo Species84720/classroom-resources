@@ -1,0 +1,31 @@
+{
+  "id": "year-2-balloon-number-pop-1-to-100",
+  "title": "Balloon Number Pop 1–100",
+  "description": "A colourful Year 2 number-recognition game with 21 random numbers from 1 to 100 per round, animated floating and different pop sounds. Pop any balloon in any order.",
+  "year_group": "Year 2",
+  "learning_intent": "Recognise and read numerals from 1 to 100.",
+  "subjects": [
+    "Mathematics"
+  ],
+  "topics": [
+    "number",
+    "counting",
+    "numeral recognition"
+  ],
+  "themes": [
+    "balloons"
+  ],
+  "labels": [
+    "1 to 100",
+    "click activity",
+    "touch activity",
+    "sound",
+    "randomised",
+    "number recognition"
+  ],
+  "resource_type": "interactive game",
+  "language": "en-GB",
+  "estimated_minutes": 10,
+  "created": "2026-10-09",
+  "updated": "2026-10-09"
+}
