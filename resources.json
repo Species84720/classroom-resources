@@ -1,44 +1,5 @@
 [
   {
-    "title": "Dinosaur Adjectives",
-    "slug": "year-2-dinosaur-adjectives",
-    "yearGroup": "Year 2",
-    "subject": "English",
-    "topic": "Adjectives",
-    "learningIntention": "I can identify and use adjectives to describe nouns.",
-    "theme": "Dinosaurs",
-    "labels": [
-      "grammar",
-      "descriptive writing",
-      "nouns",
-      "dinosaurs"
-    ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-dinosaur-adjectives/"
-  },
-  {
-    "title": "Number Spinner",
-    "slug": "year-2-number-spinner",
-    "yearGroup": "Year 2",
-    "subject": "Maths",
-    "topic": "Numbers 1 to 15",
-    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
-    "theme": "Spinning number wheel",
-    "labels": [
-      "number",
-      "1-15",
-      "spinner",
-      "number recognition",
-      "addition",
-      "subtraction",
-      "comparison"
-    ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-number-spinner/"
-  },
-  {
     "id": "year-2-autumn-memory-match",
     "title": "Autumn Memory Match",
     "description": "Match pairs of autumn pictures, with teacher controls to choose 2–7 pairs or select individual pictures.",
@@ -238,6 +199,24 @@
     "created": "2026-09-09",
     "updated": "2026-09-10",
     "url": "resources/year-2-caterpillar-number-order/"
+  },
+  {
+    "title": "Dinosaur Adjectives",
+    "slug": "year-2-dinosaur-adjectives",
+    "yearGroup": "Year 2",
+    "subject": "English",
+    "topic": "Adjectives",
+    "learningIntention": "I can identify and use adjectives to describe nouns.",
+    "theme": "Dinosaurs",
+    "labels": [
+      "grammar",
+      "descriptive writing",
+      "nouns",
+      "dinosaurs"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-dinosaur-adjectives/"
   },
   {
     "id": "year-2-duckling-number-parade-41-to-50",
@@ -546,6 +525,62 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-number-quest/"
+  },
+  {
+    "title": "Number Spinner",
+    "slug": "year-2-number-spinner",
+    "yearGroup": "Year 2",
+    "subject": "Maths",
+    "topic": "Numbers 1 to 15",
+    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
+    "theme": "Spinning number wheel",
+    "labels": [
+      "number",
+      "1-15",
+      "spinner",
+      "number recognition",
+      "addition",
+      "subtraction",
+      "comparison"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-number-spinner/"
+  },
+  {
+    "id": "year-2-open-the-box-numbers",
+    "title": "Open the Box! Number Challenge",
+    "description": "Open 15 numbered mystery boxes in three sets of five to practise missing numbers, numbers before and after, and true-or-false number statements. Reveal the answers when ready.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise, order and sequence numbers to 70, including before, after and between.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "number sequences",
+      "missing numbers",
+      "before and after",
+      "true or false"
+    ],
+    "themes": [
+      "mystery boxes",
+      "gifts"
+    ],
+    "labels": [
+      "open the box",
+      "15 questions",
+      "three sets",
+      "whole-class activity",
+      "answer reveal",
+      "touch activity"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-10-09",
+    "updated": "2026-10-09",
+    "url": "resources/year-2-open-the-box-numbers/"
   },
   {
     "id": "year-2-race-car-number-lines",
