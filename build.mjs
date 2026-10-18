@@ -6,5 +6,5 @@ await build({ entryPoints:['presentations/src/studio.js','presentations/src/clou
 if(process.argv.includes('--site')){
   const { cp } = await import('node:fs/promises');
   await rm('_site',{recursive:true,force:true});await mkdir('_site');
-  for(const path of ['index.html','app.js','styles.css','resources.json','resources','presentations']) await cp(path,`_site/${path}`,{recursive:true,filter:source=>!source.includes('/src')});
+  for(const path of ['index.html','app.js','styles.css','resources.json','resources','presentations','open-the-box-tens-and-ones']) await cp(path,`_site/${path}`,{recursive:true,filter:source=>!source.includes('/src')});
 }
