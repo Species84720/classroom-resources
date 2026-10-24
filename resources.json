@@ -650,8 +650,8 @@
   },
   {
     "id": "year-2-witch-apple-cart",
-    "title": "Witch's Apple Cart — Tens and Ones",
-    "description": "Fill a friendly witch's cart with trays of ten apples and single apples, then test her magic potion. Random targets from 1 to 100 or a fixed URL target, with touch, mouse and keyboard controls.",
+    "title": "Witch's Magic Cart — Tens and Ones",
+    "description": "Make a three-ingredient potion with trays of ten and single apples, dragon eggs and purple frogs. Choose a number range, a specific number list, ingredient order or a fixed target, with spoken requests, sound and desktop-friendly celebrations.",
     "year_group": "Year 2",
     "learning_intent": "Represent numbers to 100 using groups of ten and ones, understanding that one group of ten has the same value as ten individual objects.",
     "subjects": [
@@ -666,6 +666,8 @@
     "themes": [
       "witches",
       "apples",
+      "dragon eggs",
+      "purple frogs",
       "magic potions"
     ],
     "labels": [
@@ -674,7 +676,11 @@
       "keyboard accessible",
       "groups of ten",
       "teacher configurable",
-      "randomised"
+      "randomised",
+      "number range",
+      "specific number list",
+      "three-question recipe",
+      "spoken instructions"
     ],
     "resource_type": "interactive game",
     "language": "en-GB",

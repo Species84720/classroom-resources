@@ -1,21 +1,38 @@
 <!doctype html>
 <html lang="en-GB">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Witch's Apple Cart — Tens and Ones</title><link rel="preload" as="image" href="assets/witch-ready.webp"><link rel="preload" as="image" href="assets/witch-sad.webp"><link rel="stylesheet" href="style.css"><script src="script.js" defer></script></head>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Witch's Magic Cart — Tens and Ones</title><link rel="preload" as="image" href="assets/witch-ready.webp"><link rel="preload" as="image" href="assets/witch-sad.webp"><link rel="stylesheet" href="style.css"><script type="module" src="script.js"></script></head>
 <body>
-<header><a href="../../">← All resources</a><span>Year 2 · Tens and ones</span><button id="sound" aria-pressed="false">Sound off</button></header>
+<header><a href="../../">← All resources</a><span>Year 2 · Tens and ones</span><div class="toolbar"><span class="sound-status">Sound on</span><button id="hear">Hear the request</button><button id="motion" aria-pressed="true">Animations on</button></div></header>
 <main>
-<div class="heading"><div><p class="eyebrow">THE LITTLE WITCH’S POTION SHOP</p><h1>Witch's Apple Cart</h1></div><div class="recipe"><span>Today’s potion needs</span><div><strong id="target">32</strong> apples</div></div></div>
+<div class="heading"><div><p class="eyebrow">THE LITTLE WITCH’S POTION SHOP</p><h1>Witch's Magic Cart</h1></div><div class="recipe"><span id="question">Ingredient 1 of 3</span><div><strong id="target">32</strong> <span id="ingredient-name">apples</span></div></div></div>
+<ol id="progress" class="recipe-progress" aria-label="Three-ingredient potion recipe"></ol>
 <p class="instructions" id="instructions">Drag apples from the table into the cart. A whole tray is <b>10 apples</b>!</p>
 <section class="scene" aria-label="Witch's potion workshop">
 <div class="scene-caption" aria-hidden="true">The enchanted apple orchard</div><div class="fireflies" aria-hidden="true"><i></i><i></i><i></i></div>
-<div class="table-area"><h2><span aria-hidden="true">01</span> Pick your apples</h2><div class="tabletop"><button class="supply ten" id="ten" data-value="10" aria-label="Add a tray of 10 apples to the cart"><span class="tray" aria-hidden="true"></span><strong>Tray of ten</strong><small>10 apples together</small></button><button class="supply one" id="one" data-value="1" aria-label="Add one apple to the cart"><span class="large-apple apple" aria-hidden="true"></span><strong>Single apple</strong><small>1 apple</small></button></div><p>Drag a tray or an apple.<br>Or tap to add it to the cart.</p></div>
+<div class="table-area"><h2><span aria-hidden="true">01</span> <span id="pick-title">Pick your apples</span></h2><div class="tabletop"><button class="supply ten" id="ten" data-value="10" aria-label="Add a tray of 10 apples to the cart"><span class="tray" aria-hidden="true"></span><strong>Tray of ten</strong><small>10 apples together</small></button><button class="supply one" id="one" data-value="1" aria-label="Add one apple to the cart"><span class="large-apple apple" aria-hidden="true"></span><strong>Single apple</strong><small>1 apple</small></button></div><p>Drag a tray or an apple.<br>Or tap to add it to the cart.</p></div>
 <div class="cart-area"><h2><span aria-hidden="true">02</span> Fill the cart</h2><div id="cart" class="cart" tabindex="0" role="group" aria-label="Apple cart. Drop apples here." aria-describedby="cart-help"><div id="cargo"></div><p id="empty">Drop your apples here</p></div><div class="wheels" aria-hidden="true"><i></i><i></i></div><p id="cart-help">Tap apples in the cart to take them out.</p><div class="count"><span><b id="tens">0</b> tens</span><span><b id="ones">0</b> ones</span><strong id="total" hidden>0 apples</strong></div></div>
 <div class="witch-area"><div id="speech" class="speech">Can you help me make my potion?</div>
 <div id="witch" role="img" aria-label="A friendly witch waiting for her apples"><img class="witch-ready" src="assets/witch-ready.webp" width="1024" height="1536" alt="" draggable="false"><img class="witch-sad" src="assets/witch-sad.webp" width="1024" height="1536" alt="" draggable="false"></div>
 <div id="pot" class="pot" aria-label="A bubbling magic cauldron"><div class="bubbles" aria-hidden="true"><i></i><i></i><i></i><i></i></div><div class="liquid"></div><span aria-hidden="true">✦</span></div><div class="fire" aria-hidden="true">✧ ✧ ✧</div></div>
 </section>
-<div class="actions"><button id="submit" class="primary">✦ Brew the potion!</button><button id="undo">Undo</button><button id="clear">Empty cart</button><button id="next">New potion →</button></div>
+<div class="actions"><button id="submit" class="primary">✦ Brew the potion!</button><button id="undo">Undo</button><button id="clear">Empty cart</button><button id="next" disabled>Next ingredient →</button><button id="restart">Start again</button></div>
 <p id="feedback" role="status" aria-live="polite" aria-atomic="true">Count in tens, then count the ones. Submit when you are ready.</p>
-<details><summary>Teacher options &amp; how to play</summary><p>Learning intention: represent numbers to 100 using groups of ten and ones. Each tray contains exactly ten apples. Any correct combination is accepted; after success, compare it with the tens-and-ones form.</p><p>Drag with a mouse, touch screen or pen. You can also tap a supply, or focus it and press Enter/Space. Tap a cart item to remove it. Undo reverses the last add, removal or clear.</p><label><input type="checkbox" id="show-total"> Show the running apple total</label><p>Set a fixed target with <code>?target=32</code> (whole numbers 1–100). Without a valid target, each round chooses a random number. New potion keeps a fixed URL target; otherwise it chooses a different number.</p><p id="url-note"></p></details>
+<details><summary>Teacher options &amp; how to play</summary>
+<p>Represent numbers to 100 using groups of ten and ones. Every tray contains exactly ten of the current ingredient. Complete all three ingredients to make the potion; incorrect answers can be corrected. Sound is on and starts with your first tap or key press. Use Hear the request to repeat it.</p>
+<p>Drag with a mouse, touch screen or pen, or tap a supply. Keyboard: focus a supply and press Enter/Space; focus a cart item and press Enter/Space to remove it. Undo reverses an add, removal or clear. Animations on overrides the device’s reduced-motion setting; use Animations off whenever needed.</p>
+<label><input type="checkbox" id="show-total"> Show the running ingredient total</label>
+<form id="settings">
+<fieldset><legend>Choose the numbers</legend><div class="settings-row"><label>Minimum<input id="min" type="number" min="1" max="100" step="1" required value="1"></label><label>Maximum<input id="max" type="number" min="1" max="100" step="1" required value="100"></label></div>
+<label>Or choose only these numbers<input id="numbers" type="text" inputmode="numeric" placeholder="43, 22, 64" aria-describedby="numbers-help"></label><p id="numbers-help">Comma-separated whole numbers from 1 to 100. A list takes priority over the range. Numbers are drawn without repeating until the list or range is used up.</p>
+<label>Optional fixed target (overrides list and range)<input id="fixed" type="number" min="1" max="100" step="1" placeholder="e.g. 32"></label></fieldset>
+<fieldset><legend>Choose the three ingredients</legend><div class="settings-row">
+<label>Question 1<select id="item-0"><option value="random">Random</option><option value="apples">Apples</option><option value="eggs">Dragon eggs</option><option value="frogs">Purple frogs</option></select></label>
+<label>Question 2<select id="item-1"><option value="random">Random</option><option value="apples">Apples</option><option value="eggs">Dragon eggs</option><option value="frogs">Purple frogs</option></select></label>
+<label>Question 3<select id="item-2"><option value="random">Random</option><option value="apples">Apples</option><option value="eggs">Dragon eggs</option><option value="frogs">Purple frogs</option></select></label>
+</div><p>With all three set to Random, each potion uses apples, dragon eggs and purple frogs in a random order.</p></fieldset>
+<button type="submit">Apply settings &amp; start a new potion</button><p id="settings-status" role="status"></p>
+</form>
+<p>URL examples: <code>?min=20&amp;max=50</code>, <code>?numbers=43,22,64</code>, or <code>?numbers=43,22,64&amp;items=apples,eggs,frogs</code>. Ingredient choices follow the listed order; a shorter list repeats to fill three questions. <code>?target=32</code> keeps the same number for all three questions. Add <code>&amp;motion=off</code> to disable animation.</p>
+</details>
 </main><div id="confetti" aria-hidden="true"></div>
 </body></html>
