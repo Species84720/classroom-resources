@@ -132,7 +132,7 @@ action('save',async()=>{
 });
 action('delete-deck',async()=>{guard();if(!record?.id||!confirm('Permanently delete this presentation?'))return;await cloud.deleteDeck(record.id);dirty=false;$('close').click();message('Presentation deleted.');});
 action('backup',()=>downloadJSON(deck));
-action('export',async()=>{validateDeck(deck);message('Preparing PowerPoint…');await exportPPTX(deck);message('PowerPoint downloaded. Web animations and zoom journeys play in this studio; the .pptx contains editable static slides.');});
+action('export',async()=>{validateDeck(deck);message('Preparing PowerPoint…');await exportPPTX(deck);message('PowerPoint downloaded. The .pptx contains editable text, pictures, notes and native object animations. Zoom journeys become ordered slides.');});
 action('present',()=>{validateDeck(deck);showViewer(true);});
 action('exit-show',()=>{if(editing&&editable())showEditor();});
 action('fullscreen',async()=>{if(document.fullscreenElement)await document.exitFullscreen();else if($('viewer').requestFullscreen)await $('viewer').requestFullscreen();else message('Use your browser’s full-screen option on this device.');});
