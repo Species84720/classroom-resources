@@ -647,5 +647,40 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-race-car-number-lines/"
+  },
+  {
+    "id": "year-2-witch-apple-cart",
+    "title": "Witch's Apple Cart — Tens and Ones",
+    "description": "Fill a friendly witch's cart with trays of ten apples and single apples, then test her magic potion. Random targets from 1 to 100 or a fixed URL target, with touch, mouse and keyboard controls.",
+    "year_group": "Year 2",
+    "learning_intent": "Represent numbers to 100 using groups of ten and ones, understanding that one group of ten has the same value as ten individual objects.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "place value",
+      "tens and ones",
+      "counting",
+      "numbers to 100"
+    ],
+    "themes": [
+      "witches",
+      "apples",
+      "magic potions"
+    ],
+    "labels": [
+      "drag and drop",
+      "touch activity",
+      "keyboard accessible",
+      "groups of ten",
+      "teacher configurable",
+      "randomised"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-10-24",
+    "updated": "2026-10-24",
+    "url": "resources/year-2-witch-apple-cart/"
   }
 ]

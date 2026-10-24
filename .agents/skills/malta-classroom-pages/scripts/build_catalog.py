@@ -6,13 +6,17 @@ from pathlib import Path
 def main():
     root = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
     resources_dir = root / "resources"
-    items = []
+    # Preserve older catalogue-only resources while refreshing metadata-backed ones.
+    existing = root / "resources.json"
+    items = json.loads(existing.read_text(encoding="utf-8")) if existing.exists() else []
     if resources_dir.exists():
         for meta in sorted(resources_dir.glob("*/meta.json")):
             try:
                 data = json.loads(meta.read_text(encoding="utf-8"))
                 slug = meta.parent.name
                 data["url"] = f"resources/{slug}/"
+                items = [item for item in items if item.get("url") != data["url"]
+                         and item.get("id", item.get("slug")) != data["id"]]
                 items.append(data)
             except Exception as e:
                 raise SystemExit(f"Could not parse {meta}: {e}")

@@ -29,6 +29,10 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      - name: Install browser for apple cart interaction checks
+        run: npx playwright install --with-deps chromium
+      - name: Check apple cart game
+        run: node tests/witch-apple-cart.ui.mjs
       - run: npm run build:site
       - name: Configure Pages
         uses: actions/configure-pages@v5
