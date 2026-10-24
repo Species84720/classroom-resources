@@ -24,7 +24,6 @@
   }
   function neutral() {
     document.body.classList.remove('happy','sad');
-    $('mouth').setAttribute('d','M114 151Q131 164 149 151');
     $('witch').setAttribute('aria-label','A friendly witch waiting for her apples');
     $('pot').setAttribute('aria-label','A bubbling magic cauldron');
     $('speech').textContent = 'Count the tens, then the ones!';
@@ -102,7 +101,6 @@
     const amount=total(); neutral();
     if (amount === target) {
       won=true;document.body.classList.add('happy');
-      $('mouth').setAttribute('d','M112 148Q131 176 152 148Z');
       $('witch').setAttribute('aria-label','The witch is happy! Her potion worked.');
       $('pot').setAttribute('aria-label','The successful potion sparkles and bubbles!');
       $('speech').textContent='Hooray! My potion worked!';
@@ -115,7 +113,7 @@
         clearTimeout(celebrationTimer);celebrationTimer=setTimeout(()=>$('confetti').replaceChildren(),3200);
       }
     } else {
-      document.body.classList.add('sad');$('mouth').setAttribute('d','M114 159Q131 143 149 159');
+      document.body.classList.add('sad');
       $('witch').setAttribute('aria-label','The witch is crying because the potion did not work. You can help her try again.');
       $('pot').setAttribute('aria-label','The potion fizzles into grey bubbles. Try again.');
       $('speech').textContent='Oh dear! My potion fizzled. Let’s try again!';

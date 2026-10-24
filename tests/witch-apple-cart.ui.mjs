@@ -5,9 +5,9 @@ import { resolve, extname } from 'node:path';
 const root = resolve('resources/year-2-witch-apple-cart');
 const server = createServer(async (req,res) => {
   try {
-    const name = new URL(req.url, 'http://localhost').pathname.split('/').pop() || 'index.html';
-    if (!['index.html','style.css','script.js'].includes(name)) { res.writeHead(404).end(); return; }
-    res.setHeader('Content-Type', {'.html':'text/html','.css':'text/css','.js':'application/javascript'}[extname(name)]);
+    const name = new URL(req.url, 'http://localhost').pathname.slice(1) || 'index.html';
+    if (!['index.html','style.css','script.js','assets/witch-ready.webp','assets/witch-sad.webp','assets/apple.webp','assets/orchard.webp'].includes(name)) { res.writeHead(404).end(); return; }
+    res.setHeader('Content-Type', {'.html':'text/html','.css':'text/css','.js':'application/javascript','.webp':'image/webp'}[extname(name)]);
     res.end(await readFile(resolve(root,name)));
   } catch { res.writeHead(500).end(); }
 });
@@ -19,8 +19,10 @@ try {
  const page=await browser.newPage({viewport:{width:1280,height:900}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
  const url=`http://127.0.0.1:${server.address().port}/`;
  await page.goto(url+'?target=32');
+ await page.locator('#witch img').evaluateAll(images=>Promise.all(images.map(image=>image.decode())));
  assert.equal(await page.locator('#target').textContent(),'32');
  assert.equal(await page.locator('#ten .apple').count(),10);
+ for (const asset of ['orchard','apple']) assert.equal((await page.request.get(url+'assets/'+asset+'.webp')).status(),200);
  const source=await page.locator('#ten').boundingBox(),dest=await page.locator('#cart').boundingBox();
  await page.mouse.move(source.x+source.width/2,source.y+source.height/2);await page.mouse.down();await page.mouse.move(dest.x+dest.width/2,dest.y+dest.height/2,{steps:12});await page.mouse.up();
  assert.equal(await page.locator('#tens').textContent(),'1');
@@ -29,7 +31,7 @@ try {
 
  await page.locator('#submit').click();assert(await page.locator('body').evaluate(e=>e.classList.contains('happy')));assert.match(await page.locator('#feedback').textContent(),/3 tens and 2 ones/);
  await page.locator('#next').click();assert.equal(await page.locator('#target').textContent(),'32');
- await page.locator('#one').click();await page.locator('#submit').click();assert(await page.locator('body').evaluate(e=>e.classList.contains('sad')));
+ await page.locator('#one').click();await page.locator('#submit').click();assert(await page.locator('body').evaluate(e=>e.classList.contains('sad')));await page.waitForTimeout(250);assert.equal(await page.locator('.witch-sad').evaluate(e=>getComputedStyle(e).opacity),'1');assert.equal(await page.locator('.witch-ready').evaluate(e=>getComputedStyle(e).opacity),'0');
  await page.locator('#one').click();assert(!(await page.locator('body').evaluate(e=>e.classList.contains('sad'))));
  await page.locator('.cart-item').first().click();assert.equal(await page.locator('#ones').textContent(),'1');await page.locator('#undo').click();assert.equal(await page.locator('#ones').textContent(),'2');await page.locator('#clear').click();assert.equal(await page.locator('#ones').textContent(),'0');await page.locator('#undo').click();assert.equal(await page.locator('#ones').textContent(),'2');
  for(const [target,tens,ones] of [[1,0,1],[10,1,0],[100,10,0]]){
@@ -40,7 +42,7 @@ try {
  await page.goto(url+'?target=10');const s=await page.locator('#ten').boundingBox();await page.mouse.move(s.x+20,s.y+20);await page.mouse.down();await page.mouse.move(5,5,{steps:10});await page.mouse.up();assert.equal(await page.locator('#tens').textContent(),'0');
  const touch=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});const mobile=await touch.newPage();await mobile.goto(url+'?target=32');await mobile.locator('#ten').tap();assert.equal(await mobile.locator('#tens').textContent(),'1');assert(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await mobile.setViewportSize({width:320,height:1000});assert(await mobile.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
- const client=await touch.newCDPSession(mobile);const a=await mobile.locator('#one').boundingBox(),b=await mobile.locator('#cart').boundingBox();await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:a.x+a.width/2,y:a.y+a.height/2}]});await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:b.x+b.width/2,y:b.y+b.height/2}]});await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await mobile.locator('#ones').textContent(),'1');
+ await mobile.locator('#cart').scrollIntoViewIfNeeded();const client=await touch.newCDPSession(mobile);const a=await mobile.locator('#one').boundingBox(),b=await mobile.locator('#cart').boundingBox();await client.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:a.x+a.width/2,y:a.y+a.height/2}]});await client.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{x:b.x+b.width/2,y:b.y+b.height/2}]});await client.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});assert.equal(await mobile.locator('#ones').textContent(),'1');
  assert.deepEqual(errors,[]);console.log('PASS: mouse drag, touch drag/tap, keyboard, remove/undo/clear, both outcomes, 1/10/32/100 targets, invalid URL fallback, random rounds and 320px layout.');
 } finally {
   await browser?.close();
