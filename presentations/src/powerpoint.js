@@ -1,28 +1,41 @@
+import { addPowerPointAnimations } from './pptx-animations.js';
 import { newDeck, newSlide, validateDeck, THEMES, MAX_SLIDES } from './model.js';
 export function downloadJSON(deck) {
   const url = URL.createObjectURL(new Blob([JSON.stringify(validateDeck(deck),null,2)],{type:'application/json'}));
   const a=document.createElement('a');a.href=url;a.download=`${safeName(deck.title)}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 const safeName = title => title.replace(/[^a-z0-9 -]/gi,'').trim().slice(0,80)||'presentation';
-export async function exportPPTX(deck) {
+export async function createPPTX(deck) {
+  deck=validateDeck(deck);
   const { default:PptxGenJS }=await import('pptxgenjs');
   const pptx = new PptxGenJS(); pptx.layout='LAYOUT_WIDE'; pptx.title=deck.title; pptx.subject=deck.description; pptx.author='Classroom Resources'; pptx.lang='en-GB';
   const colours=THEMES[deck.theme];
   for(const s of deck.slides){
     const positioned=(key,fallback)=>{const b=s.boxes?.[key];return b?{...fallback,x:b.x/72,y:b.y/72,w:b.width/72,h:b.height/72,fontSize:b.fontSize*.75,margin:0}:fallback;};
     const slide=pptx.addSlide();slide.background={color:colours.background.slice(1)};
-    slide.addText(s.title,positioned('title',{x:.65,y:.5,w:12,h:1.35,fontSize:32,bold:true,color:colours.ink.slice(1),fontFace:'Aptos',breakLine:false,fit:'shrink',align:s.layout==='title'?'center':'left'}));
+    slide.addText(s.title,positioned('title',{x:.65,y:.5,w:12,h:1.35,objectName:'classroom-title',fontSize:32,bold:true,color:colours.ink.slice(1),fontFace:'Aptos',breakLine:false,fit:'shrink',align:s.layout==='title'?'center':'left'}));
     const hasImage=!!s.image, imageWidth=s.layout==='image'?7:5.4, textWidth=hasImage?11.5-imageWidth:12;
-    slide.addText(s.body,positioned('body',{x:.65,y:2,w:textWidth,h:4.75,fontSize:24,color:colours.ink.slice(1),fontFace:'Aptos',fit:'shrink',valign:'mid',align:s.layout==='title'?'center':'left'}));
-    if(hasImage){const box=positioned('image',{x:13.33-imageWidth-.65,y:2,w:imageWidth,h:4.6});slide.addImage({data:s.image,...box,sizing:{type:'contain',w:box.w,h:box.h},altText:s.imageAlt});}
+    slide.addText(s.body,positioned('body',{x:.65,y:2,w:textWidth,h:4.75,objectName:'classroom-body',fontSize:24,color:colours.ink.slice(1),fontFace:'Aptos',fit:'shrink',valign:'mid',align:s.layout==='title'?'center':'left'}));
+    if(hasImage){const box=positioned('image',{x:13.33-imageWidth-.65,y:2,w:imageWidth,h:4.6});slide.addImage({objectName:'classroom-image',data:s.image,...box,sizing:{type:'contain',w:box.w,h:box.h},altText:s.imageAlt});}
     for(const object of s.elements||[]){
       const box={x:object.x/72,y:object.y/72,w:object.width/72,h:object.height/72};
-      if(object.type==='text')slide.addText(object.text,{...box,fontSize:object.fontSize*.75,color:colours.ink.slice(1),fontFace:'Aptos',fit:'shrink',margin:0,breakLine:false});
-      else if(object.image)slide.addImage({data:object.image,...box,sizing:{type:'contain',w:box.w,h:box.h},altText:object.imageAlt});
+      if(object.type==='text')slide.addText(object.text,{...box,objectName:`classroom-${object.id}`,fontSize:object.fontSize*.75,color:colours.ink.slice(1),fontFace:'Aptos',fit:'shrink',margin:0,breakLine:false});
+      else if(object.image)slide.addImage({objectName:`classroom-${object.id}`,data:object.image,...box,sizing:{type:'contain',w:box.w,h:box.h},altText:object.imageAlt});
     }
     if(s.notes)slide.addNotes(s.notes);
   }
-  await pptx.writeFile({fileName:`${safeName(deck.title)}.pptx`});
+  const {default:JSZip}=await import('jszip');
+  const zip=await JSZip.loadAsync(await pptx.write({outputType:'arraybuffer'}));
+  for(let i=0;i<deck.slides.length;i++){
+    const path=`ppt/slides/slide${i+1}.xml`;
+    zip.file(path,addPowerPointAnimations(await zip.file(path).async('string'),deck.slides[i]));
+  }
+  return zip.generateAsync({type:'uint8array',compression:'DEFLATE'});
+}
+export async function exportPPTX(deck) {
+  const bytes=await createPPTX(deck);
+  const url=URL.createObjectURL(new Blob([bytes],{type:'application/vnd.openxmlformats-officedocument.presentationml.presentation'}));
+  const a=document.createElement('a');a.href=url;a.download=`${safeName(deck.title)}.pptx`;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 function xml(source){
   const doc=new DOMParser().parseFromString(source,'application/xml');

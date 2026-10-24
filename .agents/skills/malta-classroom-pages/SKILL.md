@@ -1,8 +1,7 @@
 ---
 name: malta-classroom-pages
-description: Create, catalogue, validate, commit, and publish child-oriented static lesson resources to a public GitHub Pages repository for a teacher in Malta. Use when asked to create, adapt, duplicate, label, publish, or update a classroom web resource. Requires a year group for every resource; asks for it if missing. Defaults to UK English and English language unless another language is requested.
+description: Create editable animated PowerPoint/PPTX lesson presentations and child-oriented static lesson resources; catalogue, validate, commit, and publish them to a public GitHub Pages repository for a teacher in Malta. Use when asked for a PowerPoint, PPTX, slide deck, lesson presentation, or to create, adapt, duplicate, label, publish, or update a classroom web resource. Requires a year group for every resource; asks for it if missing. Defaults to UK English and English language unless another language is requested.
 license: MIT
-compatibility: Intended for OpenAI Codex with shell, filesystem, git, and network access to an authenticated GitHub repository. Python 3 is used for catalogue and metadata validation scripts.
 metadata:
   author: classroom-resource-workflow
   version: "1.0.0"
@@ -29,6 +28,14 @@ Build static, child-oriented classroom resources and publish them into the confi
 - Do not require student accounts.
 - Avoid unnecessary external network requests.
 - Accessibility is mandatory: semantic HTML, keyboard operation, visible focus, sufficient contrast, readable type, labelled controls, and no interaction that depends only on colour.
+
+## PowerPoint requests
+
+Route explicit **PowerPoint**, **power point**, **PPTX**, **PPT**, **slide deck**, or **lesson presentation** requests to [references/POWERPOINT.md](references/POWERPOINT.md) before the web-resource workflow below. Prefer an editable `.pptx` when the teacher requests a PowerPoint, even if they also call it a resource. Use the zoom studio when the teacher explicitly requests a Prezi-style or zoom journey. If the desired format is genuinely ambiguous, ask which format they want.
+
+For PowerPoints, automatically plan a simple age-appropriate story and add suitable generated illustrations when they support the learning or visual theme; follow the image preparation steps in the PowerPoint reference. Respect explicit requests for plain or image-free slides. Do not ask the teacher to request illustrations separately.
+
+For PowerPoints, establish subject, learning intention, visual/story theme, year group, slide count and animation preference. Ask only for missing details together in one short intake. Do not use the web-resource rule that themes are optional for PowerPoints. A teacher may explicitly choose a plain theme or no animations. Retain answers across turns, including short replies such as “dinosaurs, 8 slides, gentle”. Do not interpret those follow-up answers as a new resource request. Do not apply lesson intake requirements to maintenance of the tool itself.
 
 ## Required intake
 

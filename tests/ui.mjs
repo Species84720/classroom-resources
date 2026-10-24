@@ -119,7 +119,11 @@ try{
   await page.click('#save');await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('Saved as'));
   const jsonDownload=page.waitForEvent('download');await page.click('#backup');await(await jsonDownload).saveAs('.test-output/nested-backup.json');
   const backup=JSON.parse(await readFile('.test-output/nested-backup.json','utf8'));const detailed=backup.slides.find(s=>s.title==='A nested detail');assert.ok(detailed.parentId);assert.equal(detailed.elements[0].animation.order,2);
-  const objectExport=page.waitForEvent('download');await page.click('#export');await(await objectExport).saveAs('.test-output/objects.pptx');const objectsZip=await JSZip.loadAsync(await readFile('.test-output/objects.pptx'));assert.match(await objectsZip.file('ppt/slides/slide3.xml').async('string'),/independently animated/);
+  const objectExport=page.waitForEvent('download');await page.click('#export');await(await objectExport).saveAs('.test-output/objects.pptx');const objectsZip=await JSZip.loadAsync(await readFile('.test-output/objects.pptx'));const objectXml=await objectsZip.file('ppt/slides/slide3.xml').async('string');assert.match(objectXml,/independently animated/);assert.match(objectXml,/<p:timing>/);assert.match(objectXml,/nodeType="clickEffect"/);
+  for(const file of Object.values(objectsZip.files).filter(f=>/^ppt\/slides\/slide\d+\.xml$/.test(f.name))){
+    const source=await file.async('string');
+    assert.equal(await page.evaluate(source=>new DOMParser().parseFromString(source,'application/xml').getElementsByTagName('parsererror').length,source),0);
+  }
   // Reordering and parent deletion keep references valid.
   await page.click('#up');await page.click('#down');await page.locator('#slide-list button').nth(1).click();await page.click('#remove');await page.click('#save');await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('Saved as'));
   await page.click('#close');await page.selectOption('#scope','mine');await page.locator('.deck-card').filter({hasText:'Untitled presentation'}).getByRole('button',{name:'Edit',exact:true}).click();

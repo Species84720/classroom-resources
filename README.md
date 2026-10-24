@@ -42,8 +42,18 @@ The skill will inspect the existing resource and modify it in place by default.
 
 ## Presentation Studio
 
-Use **Create or edit a PowerPoint** in the catalogue to open the studio. It provides classic slides and Three.js zoom journeys, templates, draggable and resizable slide items, undo/redo, individually animated text boxes and images, freely arranged nested slides, slide ordering, keyboard/full-screen playback, simple `.pptx` import/export and JSON backups. Published presentations appear under the **PowerPoints** type filter.
+Use **Create or edit a PowerPoint** in the catalogue to open the studio. It provides classic slides and Three.js zoom journeys, templates, draggable and resizable slide items, undo/redo, individually animated text boxes and images, freely arranged nested slides, slide ordering, keyboard/full-screen playback, editable animated `.pptx` export and simple import and JSON backups. Published presentations appear under the **PowerPoints** type filter.
 
 **One-time configuration is required for Google login and saving:** follow [Presentation Studio setup](presentations/SETUP.md) to connect Firebase Authentication and Firestore and deploy the creator-only security rules. Until configured, the example presentation is available but creating/editing is disabled.
 
 Development: `npm ci`, `npm test`, `npm run build:site`. The Pages workflow builds and publishes `_site/`. Existing resources retain their URLs.
+
+## Ask the AI for a PowerPoint
+
+Say **“Create a PowerPoint”**, **“Make a PPTX”**, or **“Create a lesson slide deck”** in Codex with this repository selected. The classroom skill asks for missing subject, specific learning objective, visual/story theme, year group, slide count and animation preference. This is an AI-assisted repository workflow; the static studio does not contain an AI chat service.
+
+Example: `Create an 8-slide PowerPoint for Year 2 Mathematics teaching tens and ones to 50, with a dinosaur theme and click-to-reveal animations. Include teacher notes and an editable PPTX download.`
+
+The workflow creates real lesson content, a downloadable editable `presentation.pptx` with native animations, and a studio JSON backup. See [PowerPoint workflow](.agents/skills/malta-classroom-pages/references/POWERPOINT.md). Teachers can modify text, pictures, notes and animations in desktop PowerPoint. Zoom journeys export as ordered slides.
+
+PowerPoint requests also use an age-appropriate story thread and suitable illustrations by default, when these support the lesson or theme. The AI uses available image-generation tools to prepare consistent characters/scenes, then embeds pictures in the PPTX and backup. Teachers do not need to request images separately. Text stays editable; illustrations can be moved, resized or replaced. Plain/image-free preferences are respected. The packaging CLI accepts local `imagePath` assets; it does not itself call an image model.
