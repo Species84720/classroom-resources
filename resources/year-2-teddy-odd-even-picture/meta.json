@@ -1,0 +1,35 @@
+{
+  "id": "year-2-teddy-odd-even-picture",
+  "title": "Teddy's Secret Picture – Odd and Even",
+  "description": "Solve eight teddy-bear clues for the next odd or even number, then colour those numbers on a 1–100 grid to reveal a hidden heart.",
+  "year_group": "Year 2",
+  "learning_intent": "Find the next odd or even number by counting forwards in twos, and identify numbers on a hundred-square grid.",
+  "subjects": [
+    "Mathematics"
+  ],
+  "topics": [
+    "odd and even",
+    "number sequences",
+    "counting in twos",
+    "hundred square"
+  ],
+  "themes": [
+    "teddy bears",
+    "pixel picture",
+    "secret heart"
+  ],
+  "labels": [
+    "odd numbers",
+    "even numbers",
+    "1 to 100",
+    "picture reveal",
+    "touch activity",
+    "keyboard accessible",
+    "whole-class activity"
+  ],
+  "resource_type": "interactive game",
+  "language": "en-GB",
+  "estimated_minutes": 10,
+  "created": "2026-11-08",
+  "updated": "2026-11-08"
+}
