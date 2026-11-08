@@ -39,6 +39,33 @@
     "url": "resources/year-2-number-spinner/"
   },
   {
+    "id": "open-the-box-more-less-grade-2",
+    "title": "Open the Box – More and Less",
+    "description": "Twenty number boxes practising one more, one less, ten more and ten less.",
+    "year_group": "Grade 2",
+    "learning_intent": "Find one more, one less, ten more and ten less than two-digit numbers and 100.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "place value",
+      "mental arithmetic"
+    ],
+    "themes": [],
+    "labels": [
+      "more and less",
+      "number challenge",
+      "open the box"
+    ],
+    "resource_type": "game",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-10-25",
+    "updated": "2026-10-25",
+    "url": "resources/open-the-box-more-less-grade-2/"
+  },
+  {
     "id": "year-2-autumn-memory-match",
     "title": "Autumn Memory Match",
     "description": "Match pairs of autumn pictures, with teacher controls to choose 2–7 pairs or select individual pictures.",
@@ -443,6 +470,39 @@
     "url": "resources/year-2-number-cards-1-to-100/"
   },
   {
+    "id": "number-fishing",
+    "title": "Number Fishing — Even and Odd",
+    "description": "Catch swimming numbered fish to find the next even or odd number. The fish hanging from the rod shows the current number, with varied starting numbers each round.",
+    "year_group": "Year 2",
+    "learning_intent": "Identify the next even or odd number by counting forwards in twos.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number sequences",
+      "even and odd numbers",
+      "counting in twos"
+    ],
+    "themes": [
+      "fishing",
+      "fish",
+      "ocean"
+    ],
+    "labels": [
+      "moving fish",
+      "touch activity",
+      "keyboard accessible",
+      "randomised",
+      "number fishing"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-08",
+    "updated": "2026-11-08",
+    "url": "resources/number-fishing/"
+  },
+  {
     "id": "year-2-number-memory-match",
     "title": "Number Memory Match",
     "description": "A touch-friendly memory game where the teacher chooses any whole-number range and children find matching numeral pairs.",
@@ -725,32 +785,5 @@
     "created": "2026-10-24",
     "updated": "2026-10-24",
     "url": "resources/year-2-witch-apple-cart/"
-  },
-  {
-    "id": "open-the-box-more-less-grade-2",
-    "title": "Open the Box – More and Less",
-    "description": "Twenty number boxes practising one more, one less, ten more and ten less.",
-    "year_group": "Grade 2",
-    "learning_intent": "Find one more, one less, ten more and ten less than two-digit numbers and 100.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "place value",
-      "mental arithmetic"
-    ],
-    "themes": [],
-    "labels": [
-      "more and less",
-      "number challenge",
-      "open the box"
-    ],
-    "resource_type": "game",
-    "language": "en-GB",
-    "estimated_minutes": 15,
-    "created": "2026-10-25",
-    "updated": "2026-10-25",
-    "url": "resources/open-the-box-more-less-grade-2/"
   }
 ]

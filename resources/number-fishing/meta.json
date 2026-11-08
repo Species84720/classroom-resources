@@ -1,0 +1,32 @@
+{
+  "id": "number-fishing",
+  "title": "Number Fishing — Even and Odd",
+  "description": "Catch swimming numbered fish to find the next even or odd number. The fish hanging from the rod shows the current number, with varied starting numbers each round.",
+  "year_group": "Year 2",
+  "learning_intent": "Identify the next even or odd number by counting forwards in twos.",
+  "subjects": [
+    "Mathematics"
+  ],
+  "topics": [
+    "number sequences",
+    "even and odd numbers",
+    "counting in twos"
+  ],
+  "themes": [
+    "fishing",
+    "fish",
+    "ocean"
+  ],
+  "labels": [
+    "moving fish",
+    "touch activity",
+    "keyboard accessible",
+    "randomised",
+    "number fishing"
+  ],
+  "resource_type": "interactive game",
+  "language": "en-GB",
+  "estimated_minutes": 10,
+  "created": "2026-11-08",
+  "updated": "2026-11-08"
+}
