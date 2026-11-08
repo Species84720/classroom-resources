@@ -41,7 +41,7 @@
   {
     "id": "open-the-box-more-less-grade-2",
     "title": "Open the Box – More and Less",
-    "description": "Twenty number boxes practising one more, one less, ten more and ten less.",
+    "description": "Fifteen numbered boxes with one more, one less, ten more and ten less questions.",
     "year_group": "Grade 2",
     "learning_intent": "Find one more, one less, ten more and ten less than two-digit numbers and 100.",
     "subjects": [
@@ -638,6 +638,35 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-number-quest/"
+  },
+  {
+    "id": "year-2-open-the-box-odd-even",
+    "title": "Open the Box – Odd and Even",
+    "description": "Open 15 numbered boxes to identify odd and even numbers and find the next odd or even number. Reveal each answer when ready.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise odd and even numbers and find the next odd or even number.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "odd and even",
+      "number sequences"
+    ],
+    "themes": [],
+    "labels": [
+      "open the box",
+      "odd numbers",
+      "even numbers",
+      "counting in twos",
+      "answer reveal"
+    ],
+    "resource_type": "game",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-11-08",
+    "updated": "2026-11-08",
+    "url": "resources/year-2-open-the-box-odd-even/"
   },
   {
     "id": "year-2-open-the-box-numbers",
