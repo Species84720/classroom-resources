@@ -1,15 +1,14 @@
-// Sixteen outline squares form an actual pixel heart, with a central notch,
+// Eleven outline squares form a smaller, recognisable pixel heart, with a central notch,
 // rounded lobes, sloping sides and a pointed bottom. No interior is filled.
 // Each string is one row; # is an answer square and . is left blank.
 const HEART_ART=[
-  '.##..##.',
-  '#..##..#',
-  '#......#',
-  '.#....#.',
-  '..#..#..',
-  '...##...'
+  '.##.##.',
+  '#.....#',
+  '.#...#.',
+  '..#.#..',
+  '...#...'
 ];
-const HEART_TEMPLATE=HEART_ART.flatMap((line,row)=>[...line].flatMap((mark,col)=>mark==='#'?[row*10+col+1]:[]));
+const HEART_TEMPLATE=HEART_ART.flatMap((line,row)=>[...line].flatMap((mark,col)=>mark==='#'?[(row+1)*10+col+1]:[]));
 const HEART=Array.from(HEART_TEMPLATE);
 function shuffle(items){for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]]}return items}
 function newMystery(){const rowShift=Math.floor(Math.random()*5);const colShift=Math.floor(Math.random()*3);HEART.splice(0,HEART.length,...HEART_TEMPLATE.map(n=>n+10*rowShift+colShift));clues.splice(0,clues.length,...shuffle(HEART.map((target,i)=>({target,start:target-2,type:target%2?'odd':'even',id:i}))))}
