@@ -1,8 +1,9 @@
-// Eleven outline squares form a smaller, recognisable pixel heart, with a central notch,
+// Fourteen outline squares form a smaller, recognisable pixel heart, with a central notch,
 // rounded lobes, sloping sides and a pointed bottom. No interior is filled.
 // Each string is one row; # is an answer square and . is left blank.
 const HEART_ART=[
   '.##.##.',
+  '#..#..#',
   '#.....#',
   '.#...#.',
   '..#.#..',
