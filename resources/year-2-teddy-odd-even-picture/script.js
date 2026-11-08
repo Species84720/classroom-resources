@@ -1,8 +1,18 @@
-// Sixteen squares make a symmetrical hollow heart. Shift it around the grid each round.
-const HEART_TEMPLATE=[13,14,17,18,22,25,26,29,32,39,43,48,54,57,65,66];
+// Sixteen outline squares form an actual pixel heart, with a central notch,
+// rounded lobes, sloping sides and a pointed bottom. No interior is filled.
+// Each string is one row; # is an answer square and . is left blank.
+const HEART_ART=[
+  '.##..##.',
+  '#..##..#',
+  '#......#',
+  '.#....#.',
+  '..#..#..',
+  '...##...'
+];
+const HEART_TEMPLATE=HEART_ART.flatMap((line,row)=>[...line].flatMap((mark,col)=>mark==='#'?[row*10+col+1]:[]));
 const HEART=Array.from(HEART_TEMPLATE);
 function shuffle(items){for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]]}return items}
-function newMystery(){const rowShift=Math.floor(Math.random()*4);const colShift=Math.floor(Math.random()*3)-1;HEART.splice(0,HEART.length,...HEART_TEMPLATE.map(n=>n+10*rowShift+colShift));shuffle(clues);clues.splice(0,clues.length,...shuffle(HEART.map((target,i)=>({target,start:target-2,type:target%2?'odd':'even',id:i}))))}
+function newMystery(){const rowShift=Math.floor(Math.random()*5);const colShift=Math.floor(Math.random()*3);HEART.splice(0,HEART.length,...HEART_TEMPLATE.map(n=>n+10*rowShift+colShift));clues.splice(0,clues.length,...shuffle(HEART.map((target,i)=>({target,start:target-2,type:target%2?'odd':'even',id:i}))))}
 // Selected clue type always matches the parity of the target, so the answer is target - 2.
 const grid=document.querySelector('#grid'),bears=document.querySelector('#bears');
 const status=document.querySelector('#feedback'),progress=document.querySelector('#progress-text'),bar=document.querySelector('#progress-bar'),win=document.querySelector('#win');
