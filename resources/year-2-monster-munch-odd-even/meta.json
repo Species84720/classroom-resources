@@ -1,0 +1,33 @@
+{
+  "id": "year-2-monster-munch-odd-even",
+  "title": "Monster Munch! Odd or Even?",
+  "description": "Reveal mystery numbers and drag them to the correct hungry monster. Animated munching, sound effects, hints, stars and a celebration make odd-and-even sorting fun.",
+  "year_group": "Year 2",
+  "learning_intent": "Recognise and sort odd and even numbers by examining the ones digit.",
+  "subjects": [
+    "Mathematics"
+  ],
+  "topics": [
+    "number",
+    "odd and even",
+    "number classification"
+  ],
+  "themes": [
+    "friendly monsters",
+    "feeding game"
+  ],
+  "labels": [
+    "odd numbers",
+    "even numbers",
+    "drag and drop",
+    "touch activity",
+    "munching animation",
+    "sound effects",
+    "instant feedback"
+  ],
+  "resource_type": "interactive game",
+  "language": "en-GB",
+  "estimated_minutes": 10,
+  "created": "2026-11-08",
+  "updated": "2026-11-08"
+}
