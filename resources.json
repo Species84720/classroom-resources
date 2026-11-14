@@ -1,71 +1,5 @@
 [
   {
-    "title": "Dinosaur Adjectives",
-    "slug": "year-2-dinosaur-adjectives",
-    "yearGroup": "Year 2",
-    "subject": "English",
-    "topic": "Adjectives",
-    "learningIntention": "I can identify and use adjectives to describe nouns.",
-    "theme": "Dinosaurs",
-    "labels": [
-      "grammar",
-      "descriptive writing",
-      "nouns",
-      "dinosaurs"
-    ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-dinosaur-adjectives/"
-  },
-  {
-    "title": "Number Spinner",
-    "slug": "year-2-number-spinner",
-    "yearGroup": "Year 2",
-    "subject": "Maths",
-    "topic": "Numbers 1 to 15",
-    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
-    "theme": "Spinning number wheel",
-    "labels": [
-      "number",
-      "1-15",
-      "spinner",
-      "number recognition",
-      "addition",
-      "subtraction",
-      "comparison"
-    ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-number-spinner/"
-  },
-  {
-    "id": "open-the-box-more-less-grade-2",
-    "title": "Open the Box – More and Less",
-    "description": "Fifteen numbered boxes with one more, one less, ten more and ten less questions.",
-    "year_group": "Grade 2",
-    "learning_intent": "Find one more, one less, ten more and ten less than two-digit numbers and 100.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "place value",
-      "mental arithmetic"
-    ],
-    "themes": [],
-    "labels": [
-      "more and less",
-      "number challenge",
-      "open the box"
-    ],
-    "resource_type": "game",
-    "language": "en-GB",
-    "estimated_minutes": 15,
-    "created": "2026-10-25",
-    "updated": "2026-10-25",
-    "url": "resources/open-the-box-more-less-grade-2/"
-  },
-  {
     "id": "year-2-autumn-memory-match",
     "title": "Autumn Memory Match",
     "description": "Match pairs of autumn pictures, with teacher controls to choose 2–7 pairs or select individual pictures.",
@@ -299,6 +233,24 @@
     "url": "resources/year-2-caterpillar-number-order/"
   },
   {
+    "title": "Dinosaur Adjectives",
+    "slug": "year-2-dinosaur-adjectives",
+    "yearGroup": "Year 2",
+    "subject": "English",
+    "topic": "Adjectives",
+    "learningIntention": "I can identify and use adjectives to describe nouns.",
+    "theme": "Dinosaurs",
+    "labels": [
+      "grammar",
+      "descriptive writing",
+      "nouns",
+      "dinosaurs"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-dinosaur-adjectives/"
+  },
+  {
     "id": "year-2-duckling-number-parade-41-to-50",
     "title": "Duckling Number Parade 41–50",
     "description": "An engaging, touch-friendly ordering game where children arrange numbered ducklings from 41 to 50 and see each duck grow along the counting path.",
@@ -366,6 +318,38 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-jungle-number-hide-and-seek-30-to-50/"
+  },
+  {
+    "id": "grade-2-kangaroo-jump-two",
+    "title": "Kangaroo's Two Little Hops",
+    "description": "Teacher-led 1–100 grid: hop through both numbers and leave red curved jump marks.",
+    "year_group": "Grade 2",
+    "learning_intent": "Count forwards in ones to demonstrate adding two on a hundred square.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting forwards",
+      "addition",
+      "hundred square"
+    ],
+    "themes": [
+      "kangaroo",
+      "animals"
+    ],
+    "labels": [
+      "counting in twos",
+      "jump +2",
+      "teacher-led",
+      "interactive number grid"
+    ],
+    "resource_type": "interactive teaching activity",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-14",
+    "updated": "2026-11-14",
+    "url": "resources/grade-2-kangaroo-jump-two/"
   },
   {
     "id": "year-2-listen-and-write-number-spinner",
@@ -672,6 +656,54 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-number-quest/"
+  },
+  {
+    "title": "Number Spinner",
+    "slug": "year-2-number-spinner",
+    "yearGroup": "Year 2",
+    "subject": "Maths",
+    "topic": "Numbers 1 to 15",
+    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
+    "theme": "Spinning number wheel",
+    "labels": [
+      "number",
+      "1-15",
+      "spinner",
+      "number recognition",
+      "addition",
+      "subtraction",
+      "comparison"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-number-spinner/"
+  },
+  {
+    "id": "open-the-box-more-less-grade-2",
+    "title": "Open the Box – More and Less",
+    "description": "Fifteen numbered boxes with one more, one less, ten more and ten less questions.",
+    "year_group": "Grade 2",
+    "learning_intent": "Find one more, one less, ten more and ten less than two-digit numbers and 100.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "place value",
+      "mental arithmetic"
+    ],
+    "themes": [],
+    "labels": [
+      "more and less",
+      "number challenge",
+      "open the box"
+    ],
+    "resource_type": "game",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-10-25",
+    "updated": "2026-10-25",
+    "url": "resources/open-the-box-more-less-grade-2/"
   },
   {
     "id": "year-2-open-the-box-odd-even",
