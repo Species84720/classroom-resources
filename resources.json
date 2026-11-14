@@ -286,6 +286,39 @@
     "url": "resources/year-2-duckling-number-parade-41-to-50/"
   },
   {
+    "id": "hoppy-counting-adventure",
+    "title": "Hoppy's Counting Adventure",
+    "description": "Help Hoppy the kangaroo hop between neighbouring numbered rocks, counting in twos from 2 to 30 while avoiding snakes. Includes hints, feedback and a replay option.",
+    "year_group": "Year 2",
+    "learning_intent": "Count forwards in twos and recognise even numbers from 2 to 30.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "counting in twos",
+      "number sequences",
+      "even numbers"
+    ],
+    "themes": [
+      "kangaroo",
+      "rock path",
+      "animals"
+    ],
+    "labels": [
+      "2 to 30",
+      "interactive game",
+      "touch activity",
+      "hints",
+      "number recognition"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-14",
+    "updated": "2026-11-14",
+    "url": "resources/hoppy-counting-adventure/"
+  },
+  {
     "id": "year-2-jungle-number-hide-and-seek-30-to-50",
     "title": "Jungle Number Hide-and-Seek 30–50",
     "description": "A touch-friendly Year 2 jungle game where children seek the requested hidden numeral among numbers from 30 to 50.",
