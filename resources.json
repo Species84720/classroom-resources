@@ -139,16 +139,18 @@
   {
     "id": "hoppy-counting-adventure",
     "title": "Hoppy's Counting Adventure",
-    "description": "Help Hoppy the kangaroo hop between neighbouring numbered rocks, counting in twos from 2 to 30 while avoiding snakes. Includes hints, feedback and a replay option.",
+    "description": "Help Hoppy hop across neighbouring numbered rocks to reunite with his little kangaroo. Teachers choose counting in 1s (1–30), 2s (2–60), 5s (5–100), or 10s (0–100). Includes hints, snakes, feedback, and a new random path on replay.",
     "year_group": "Year 2",
-    "learning_intent": "Count forwards in twos and recognise even numbers from 2 to 30.",
+    "learning_intent": "Count forwards accurately in ones, twos, fives and tens up to 100.",
     "subjects": [
       "Mathematics"
     ],
     "topics": [
+      "counting in ones",
       "counting in twos",
-      "number sequences",
-      "even numbers"
+      "counting in fives",
+      "counting in tens",
+      "number sequences"
     ],
     "themes": [
       "kangaroo",
@@ -156,7 +158,11 @@
       "animals"
     ],
     "labels": [
-      "2 to 30",
+      "1 to 30",
+      "2 to 60",
+      "5 to 100",
+      "0 to 100",
+      "teacher configurable",
       "interactive game",
       "touch activity",
       "hints",
@@ -166,7 +172,7 @@
     "language": "en-GB",
     "estimated_minutes": 10,
     "created": "2026-11-14",
-    "updated": "2026-11-14",
+    "updated": "2026-11-15",
     "url": "resources/hoppy-counting-adventure/"
   },
   {
@@ -1046,71 +1052,5 @@
     "created": "2026-10-24",
     "updated": "2026-10-24",
     "url": "resources/year-2-witch-apple-cart/"
-  },
-  {
-    "id": "hoppy-counting-adventure-5s",
-    "title": "Hoppy's Counting Adventure – Counting in 5s",
-    "description": "Help Hoppy the kangaroo hop between neighbouring numbered rocks, counting in 5s from 5 to 75 while avoiding snakes. Includes hints, feedback and a new path on replay.",
-    "year_group": "Year 2",
-    "learning_intent": "Count forwards in 5s and recognise multiples of 5 from 5 to 75.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "counting in 5s",
-      "skip counting",
-      "number sequences"
-    ],
-    "themes": [
-      "kangaroo",
-      "rock path",
-      "animals"
-    ],
-    "labels": [
-      "5 to 75",
-      "interactive game",
-      "touch activity",
-      "hints",
-      "number recognition"
-    ],
-    "resource_type": "interactive game",
-    "language": "en-GB",
-    "estimated_minutes": 10,
-    "created": "2026-11-15",
-    "updated": "2026-11-15",
-    "url": "resources/hoppy-counting-adventure-5s/"
-  },
-  {
-    "id": "hoppy-counting-adventure-10s",
-    "title": "Hoppy's Counting Adventure – Counting in 10s",
-    "description": "Help Hoppy the kangaroo hop between neighbouring numbered rocks, counting in 10s from 10 to 150 while avoiding snakes. Includes hints, feedback and a new path on replay.",
-    "year_group": "Year 2",
-    "learning_intent": "Count forwards in 10s and recognise multiples of 10 from 10 to 150.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "counting in 10s",
-      "skip counting",
-      "number sequences"
-    ],
-    "themes": [
-      "kangaroo",
-      "rock path",
-      "animals"
-    ],
-    "labels": [
-      "10 to 150",
-      "interactive game",
-      "touch activity",
-      "hints",
-      "number recognition"
-    ],
-    "resource_type": "interactive game",
-    "language": "en-GB",
-    "estimated_minutes": 10,
-    "created": "2026-11-15",
-    "updated": "2026-11-15",
-    "url": "resources/hoppy-counting-adventure-10s/"
   }
 ]
