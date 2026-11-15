@@ -1,5 +1,169 @@
 [
   {
+    "title": "Dinosaur Adjectives",
+    "slug": "year-2-dinosaur-adjectives",
+    "yearGroup": "Year 2",
+    "subject": "English",
+    "topic": "Adjectives",
+    "learningIntention": "I can identify and use adjectives to describe nouns.",
+    "theme": "Dinosaurs",
+    "labels": [
+      "grammar",
+      "descriptive writing",
+      "nouns",
+      "dinosaurs"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-dinosaur-adjectives/"
+  },
+  {
+    "title": "Number Spinner",
+    "slug": "year-2-number-spinner",
+    "yearGroup": "Year 2",
+    "subject": "Maths",
+    "topic": "Numbers 1 to 15",
+    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
+    "theme": "Spinning number wheel",
+    "labels": [
+      "number",
+      "1-15",
+      "spinner",
+      "number recognition",
+      "addition",
+      "subtraction",
+      "comparison"
+    ],
+    "resourceType": "interactive/printable classroom resource",
+    "language": "English",
+    "url": "resources/year-2-number-spinner/"
+  },
+  {
+    "id": "grade-2-kangaroo-jump-two",
+    "title": "Kangaroo's Two Little Hops",
+    "description": "Teacher-led 1–100 grid: hop through both numbers and leave red curved jump marks.",
+    "year_group": "Grade 2",
+    "learning_intent": "Count forwards in ones to demonstrate adding two on a hundred square.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting forwards",
+      "addition",
+      "hundred square"
+    ],
+    "themes": [
+      "kangaroo",
+      "animals"
+    ],
+    "labels": [
+      "counting in twos",
+      "jump +2",
+      "teacher-led",
+      "interactive number grid"
+    ],
+    "resource_type": "interactive teaching activity",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-14",
+    "updated": "2026-11-14",
+    "url": "resources/grade-2-kangaroo-jump-two/"
+  },
+  {
+    "id": "hoppy-counting-adventure",
+    "title": "Hoppy's Counting Adventure",
+    "description": "Help Hoppy the kangaroo hop between neighbouring numbered rocks, counting in twos from 2 to 30 while avoiding snakes. Includes hints, feedback and a replay option.",
+    "year_group": "Year 2",
+    "learning_intent": "Count forwards in twos and recognise even numbers from 2 to 30.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "counting in twos",
+      "number sequences",
+      "even numbers"
+    ],
+    "themes": [
+      "kangaroo",
+      "rock path",
+      "animals"
+    ],
+    "labels": [
+      "2 to 30",
+      "interactive game",
+      "touch activity",
+      "hints",
+      "number recognition"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-14",
+    "updated": "2026-11-14",
+    "url": "resources/hoppy-counting-adventure/"
+  },
+  {
+    "id": "number-fishing",
+    "title": "Number Fishing — Even and Odd",
+    "description": "Catch swimming numbered fish to find the next even or odd number. The fish hanging from the rod shows the current number, with varied starting numbers each round.",
+    "year_group": "Year 2",
+    "learning_intent": "Identify the next even or odd number by counting forwards in twos.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number sequences",
+      "even and odd numbers",
+      "counting in twos"
+    ],
+    "themes": [
+      "fishing",
+      "fish",
+      "ocean"
+    ],
+    "labels": [
+      "moving fish",
+      "touch activity",
+      "keyboard accessible",
+      "randomised",
+      "number fishing"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-08",
+    "updated": "2026-11-08",
+    "url": "resources/number-fishing/"
+  },
+  {
+    "id": "open-the-box-more-less-grade-2",
+    "title": "Open the Box – More and Less",
+    "description": "Fifteen numbered boxes with one more, one less, ten more and ten less questions.",
+    "year_group": "Grade 2",
+    "learning_intent": "Find one more, one less, ten more and ten less than two-digit numbers and 100.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "place value",
+      "mental arithmetic"
+    ],
+    "themes": [],
+    "labels": [
+      "more and less",
+      "number challenge",
+      "open the box"
+    ],
+    "resource_type": "game",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-10-25",
+    "updated": "2026-10-25",
+    "url": "resources/open-the-box-more-less-grade-2/"
+  },
+  {
     "id": "year-2-autumn-memory-match",
     "title": "Autumn Memory Match",
     "description": "Match pairs of autumn pictures, with teacher controls to choose 2–7 pairs or select individual pictures.",
@@ -201,6 +365,43 @@
     "url": "resources/year-2-bird-number-song-30-to-50/"
   },
   {
+    "id": "year-2-birthday-one-more-one-less",
+    "title": "Teddy’s Birthday: One More and One Less",
+    "description": "An eight-slide birthday lesson with accurate counting pictures, gentle fades, answer reveals and teacher notes.",
+    "year_group": "Year 2",
+    "learning_intent": "Find one more and one less than numbers to 20, using objects and neighbouring numbers.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting",
+      "one more",
+      "one less",
+      "addition",
+      "subtraction"
+    ],
+    "themes": [
+      "birthdays",
+      "teddy bears",
+      "parties"
+    ],
+    "labels": [
+      "PowerPoint",
+      "slides",
+      "counting to 20",
+      "teacher notes",
+      "answer reveals",
+      "whiteboards"
+    ],
+    "resource_type": "powerpoint",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-10-24",
+    "updated": "2026-10-24",
+    "url": "resources/year-2-birthday-one-more-one-less/"
+  },
+  {
     "id": "year-2-caterpillar-number-order",
     "title": "Caterpillar Number Order",
     "description": "A touch-friendly game where children order 1 to 30 using teacher-controlled clues, instant feedback, rewards and optional background music.",
@@ -231,24 +432,6 @@
     "created": "2026-09-09",
     "updated": "2026-09-10",
     "url": "resources/year-2-caterpillar-number-order/"
-  },
-  {
-    "title": "Dinosaur Adjectives",
-    "slug": "year-2-dinosaur-adjectives",
-    "yearGroup": "Year 2",
-    "subject": "English",
-    "topic": "Adjectives",
-    "learningIntention": "I can identify and use adjectives to describe nouns.",
-    "theme": "Dinosaurs",
-    "labels": [
-      "grammar",
-      "descriptive writing",
-      "nouns",
-      "dinosaurs"
-    ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-dinosaur-adjectives/"
   },
   {
     "id": "year-2-duckling-number-parade-41-to-50",
@@ -286,39 +469,6 @@
     "url": "resources/year-2-duckling-number-parade-41-to-50/"
   },
   {
-    "id": "hoppy-counting-adventure",
-    "title": "Hoppy's Counting Adventure",
-    "description": "Help Hoppy the kangaroo hop between neighbouring numbered rocks, counting in twos from 2 to 30 while avoiding snakes. Includes hints, feedback and a replay option.",
-    "year_group": "Year 2",
-    "learning_intent": "Count forwards in twos and recognise even numbers from 2 to 30.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "counting in twos",
-      "number sequences",
-      "even numbers"
-    ],
-    "themes": [
-      "kangaroo",
-      "rock path",
-      "animals"
-    ],
-    "labels": [
-      "2 to 30",
-      "interactive game",
-      "touch activity",
-      "hints",
-      "number recognition"
-    ],
-    "resource_type": "interactive game",
-    "language": "en-GB",
-    "estimated_minutes": 10,
-    "created": "2026-11-14",
-    "updated": "2026-11-14",
-    "url": "resources/hoppy-counting-adventure/"
-  },
-  {
     "id": "year-2-jungle-number-hide-and-seek-30-to-50",
     "title": "Jungle Number Hide-and-Seek 30–50",
     "description": "A touch-friendly Year 2 jungle game where children seek the requested hidden numeral among numbers from 30 to 50.",
@@ -351,38 +501,6 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-jungle-number-hide-and-seek-30-to-50/"
-  },
-  {
-    "id": "grade-2-kangaroo-jump-two",
-    "title": "Kangaroo's Two Little Hops",
-    "description": "Teacher-led 1–100 grid: hop through both numbers and leave red curved jump marks.",
-    "year_group": "Grade 2",
-    "learning_intent": "Count forwards in ones to demonstrate adding two on a hundred square.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "counting forwards",
-      "addition",
-      "hundred square"
-    ],
-    "themes": [
-      "kangaroo",
-      "animals"
-    ],
-    "labels": [
-      "counting in twos",
-      "jump +2",
-      "teacher-led",
-      "interactive number grid"
-    ],
-    "resource_type": "interactive teaching activity",
-    "language": "en-GB",
-    "estimated_minutes": 10,
-    "created": "2026-11-14",
-    "updated": "2026-11-14",
-    "url": "resources/grade-2-kangaroo-jump-two/"
   },
   {
     "id": "year-2-listen-and-write-number-spinner",
@@ -519,39 +637,6 @@
     "created": "2026-09-23",
     "updated": "2026-09-23",
     "url": "resources/year-2-number-cards-1-to-100/"
-  },
-  {
-    "id": "number-fishing",
-    "title": "Number Fishing — Even and Odd",
-    "description": "Catch swimming numbered fish to find the next even or odd number. The fish hanging from the rod shows the current number, with varied starting numbers each round.",
-    "year_group": "Year 2",
-    "learning_intent": "Identify the next even or odd number by counting forwards in twos.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number sequences",
-      "even and odd numbers",
-      "counting in twos"
-    ],
-    "themes": [
-      "fishing",
-      "fish",
-      "ocean"
-    ],
-    "labels": [
-      "moving fish",
-      "touch activity",
-      "keyboard accessible",
-      "randomised",
-      "number fishing"
-    ],
-    "resource_type": "interactive game",
-    "language": "en-GB",
-    "estimated_minutes": 10,
-    "created": "2026-11-08",
-    "updated": "2026-11-08",
-    "url": "resources/number-fishing/"
   },
   {
     "id": "year-2-number-memory-match",
@@ -691,81 +776,35 @@
     "url": "resources/year-2-number-quest/"
   },
   {
-    "title": "Number Spinner",
-    "slug": "year-2-number-spinner",
-    "yearGroup": "Year 2",
-    "subject": "Maths",
-    "topic": "Numbers 1 to 15",
-    "learningIntention": "I can recognise, compare and calculate with numbers from 1 to 15.",
-    "theme": "Spinning number wheel",
-    "labels": [
-      "number",
-      "1-15",
-      "spinner",
-      "number recognition",
-      "addition",
-      "subtraction",
-      "comparison"
-    ],
-    "resourceType": "interactive/printable classroom resource",
-    "language": "English",
-    "url": "resources/year-2-number-spinner/"
-  },
-  {
-    "id": "open-the-box-more-less-grade-2",
-    "title": "Open the Box – More and Less",
-    "description": "Fifteen numbered boxes with one more, one less, ten more and ten less questions.",
-    "year_group": "Grade 2",
-    "learning_intent": "Find one more, one less, ten more and ten less than two-digit numbers and 100.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "place value",
-      "mental arithmetic"
-    ],
-    "themes": [],
-    "labels": [
-      "more and less",
-      "number challenge",
-      "open the box"
-    ],
-    "resource_type": "game",
-    "language": "en-GB",
-    "estimated_minutes": 15,
-    "created": "2026-10-25",
-    "updated": "2026-10-25",
-    "url": "resources/open-the-box-more-less-grade-2/"
-  },
-  {
-    "id": "year-2-open-the-box-odd-even",
-    "title": "Open the Box – Odd and Even",
-    "description": "Open 15 numbered boxes to identify odd and even numbers and find the next odd or even number. Tap an answer for immediate feedback, or reveal it when ready.",
+    "id": "year-2-open-the-box-counting-2s-5s-10s",
+    "title": "Open the Box – Counting in 2s, 5s and 10s",
+    "description": "Fifteen colourful number-sequence and ten-more-or-less challenges with hidden answers.",
     "year_group": "Year 2",
-    "learning_intent": "Recognise odd and even numbers and find the next odd or even number.",
+    "learning_intent": "Complete sequences counting in 2s, 5s and 10s and identify numbers 10 more or less.",
     "subjects": [
       "Mathematics"
     ],
     "topics": [
-      "number",
-      "odd and even",
-      "number sequences"
+      "skip counting",
+      "number sequences",
+      "10 more and 10 less"
     ],
-    "themes": [],
+    "themes": [
+      "gift boxes"
+    ],
     "labels": [
       "open the box",
-      "odd numbers",
-      "even numbers",
-      "counting in twos",
-      "answer reveal"
+      "counting in 2s",
+      "counting in 5s",
+      "counting in 10s",
+      "missing numbers"
     ],
-    "resource_type": "game",
+    "resource_type": "interactive game",
     "language": "en-GB",
     "estimated_minutes": 15,
-    "created": "2026-11-08",
-    "updated": "2026-11-08",
-    "url": "resources/year-2-open-the-box-odd-even/"
+    "created": "2026-11-15",
+    "updated": "2026-11-15",
+    "url": "resources/year-2-open-the-box-counting-2s-5s-10s/"
   },
   {
     "id": "year-2-open-the-box-numbers",
@@ -803,6 +842,35 @@
     "url": "resources/year-2-open-the-box-numbers/"
   },
   {
+    "id": "year-2-open-the-box-odd-even",
+    "title": "Open the Box – Odd and Even",
+    "description": "Open 15 numbered boxes to identify odd and even numbers and find the next odd or even number. Tap an answer for immediate feedback, or reveal it when ready.",
+    "year_group": "Year 2",
+    "learning_intent": "Recognise odd and even numbers and find the next odd or even number.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "odd and even",
+      "number sequences"
+    ],
+    "themes": [],
+    "labels": [
+      "open the box",
+      "odd numbers",
+      "even numbers",
+      "counting in twos",
+      "answer reveal"
+    ],
+    "resource_type": "game",
+    "language": "en-GB",
+    "estimated_minutes": 15,
+    "created": "2026-11-08",
+    "updated": "2026-11-08",
+    "url": "resources/year-2-open-the-box-odd-even/"
+  },
+  {
     "id": "year-2-race-car-number-lines",
     "title": "Race Car Number Lines",
     "description": "A printable Year 2 racing-themed worksheet with configurable number lines and missing-number practice, designed to fit on one A4 page.",
@@ -835,43 +903,6 @@
     "created": "2026-09-10",
     "updated": "2026-09-10",
     "url": "resources/year-2-race-car-number-lines/"
-  },
-  {
-    "id": "year-2-birthday-one-more-one-less",
-    "title": "Teddy’s Birthday: One More and One Less",
-    "description": "An eight-slide birthday lesson with accurate counting pictures, gentle fades, answer reveals and teacher notes.",
-    "year_group": "Year 2",
-    "learning_intent": "Find one more and one less than numbers to 20, using objects and neighbouring numbers.",
-    "subjects": [
-      "Mathematics"
-    ],
-    "topics": [
-      "number",
-      "counting",
-      "one more",
-      "one less",
-      "addition",
-      "subtraction"
-    ],
-    "themes": [
-      "birthdays",
-      "teddy bears",
-      "parties"
-    ],
-    "labels": [
-      "PowerPoint",
-      "slides",
-      "counting to 20",
-      "teacher notes",
-      "answer reveals",
-      "whiteboards"
-    ],
-    "resource_type": "powerpoint",
-    "language": "en-GB",
-    "estimated_minutes": 15,
-    "created": "2026-10-24",
-    "updated": "2026-10-24",
-    "url": "resources/year-2-birthday-one-more-one-less/"
   },
   {
     "id": "year-2-teddy-odd-even-picture",
