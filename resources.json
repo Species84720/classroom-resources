@@ -980,5 +980,71 @@
     "created": "2026-10-24",
     "updated": "2026-10-24",
     "url": "resources/year-2-witch-apple-cart/"
+  },
+  {
+    "id": "hoppy-counting-adventure-5s",
+    "title": "Hoppy's Counting Adventure – Counting in 5s",
+    "description": "Help Hoppy the kangaroo hop between neighbouring numbered rocks, counting in 5s from 5 to 75 while avoiding snakes. Includes hints, feedback and a new path on replay.",
+    "year_group": "Year 2",
+    "learning_intent": "Count forwards in 5s and recognise multiples of 5 from 5 to 75.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "counting in 5s",
+      "skip counting",
+      "number sequences"
+    ],
+    "themes": [
+      "kangaroo",
+      "rock path",
+      "animals"
+    ],
+    "labels": [
+      "5 to 75",
+      "interactive game",
+      "touch activity",
+      "hints",
+      "number recognition"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-15",
+    "updated": "2026-11-15",
+    "url": "resources/hoppy-counting-adventure-5s/"
+  },
+  {
+    "id": "hoppy-counting-adventure-10s",
+    "title": "Hoppy's Counting Adventure – Counting in 10s",
+    "description": "Help Hoppy the kangaroo hop between neighbouring numbered rocks, counting in 10s from 10 to 150 while avoiding snakes. Includes hints, feedback and a new path on replay.",
+    "year_group": "Year 2",
+    "learning_intent": "Count forwards in 10s and recognise multiples of 10 from 10 to 150.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "counting in 10s",
+      "skip counting",
+      "number sequences"
+    ],
+    "themes": [
+      "kangaroo",
+      "rock path",
+      "animals"
+    ],
+    "labels": [
+      "10 to 150",
+      "interactive game",
+      "touch activity",
+      "hints",
+      "number recognition"
+    ],
+    "resource_type": "interactive game",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-15",
+    "updated": "2026-11-15",
+    "url": "resources/hoppy-counting-adventure-10s/"
   }
 ]
