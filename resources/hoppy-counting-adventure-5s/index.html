@@ -102,7 +102,7 @@ function draw(){
 }
 function hop(r,c){
  if(finished)return;
- const [pr,pc]=path[path.length-1],v=grid[r][c],need=path.length*2+2;
+ const [pr,pc]=path[path.length-1],v=grid[r][c],need=(path.length+1)*5;
  if(r===pr&&c===pc)return;
  if(Math.max(Math.abs(r-pr),Math.abs(c-pc))!==1){
   notify('Too far! Hoppy can only hop to a neighbouring rock.','error');return;
@@ -125,7 +125,7 @@ function hint(){
  const target=trail[path.length],el=target&&tileEls.get(key(...target));
  if(el){
   if(el.animate)el.animate([{boxShadow:'0 0 0 0px #fff2a0'},{boxShadow:'0 0 0 13px #fff2a0'},{boxShadow:'0 0 0 0px #fff2a0'}],{duration:1100,iterations:2});
-  notify('Hint: find '+(path.length*2+2)+' next to Hoppy.');
+  notify('Hint: find '+((path.length+1)*5)+' next to Hoppy.');
  }
 }
 function reset(){
