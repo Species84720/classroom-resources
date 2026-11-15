@@ -1,0 +1,32 @@
+{
+  "id": "grade-2-kangaroo-jump-10",
+  "title": "Kangaroo's Ten Little Hops",
+  "description": "A teacher-led 1–100 number grid where a kangaroo visibly hops one number at a time, 10 times, leaving red curved jump marks.",
+  "year_group": "Grade 2",
+  "learning_intent": "Count forwards in ones to demonstrate adding 10 on a hundred square.",
+  "subjects": [
+    "Mathematics"
+  ],
+  "topics": [
+    "number",
+    "counting forwards",
+    "addition",
+    "hundred square"
+  ],
+  "themes": [
+    "kangaroo",
+    "animals"
+  ],
+  "labels": [
+    "counting forwards",
+    "jump +10",
+    "teacher-led",
+    "interactive number grid",
+    "red jump arrows"
+  ],
+  "resource_type": "interactive teaching activity",
+  "language": "en-GB",
+  "estimated_minutes": 10,
+  "created": "2026-11-15",
+  "updated": "2026-11-15"
+}
