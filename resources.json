@@ -71,6 +71,72 @@
     "url": "resources/grade-2-kangaroo-jump-two/"
   },
   {
+    "id": "grade-2-kangaroo-jump-5",
+    "title": "Kangaroo's Five Little Hops",
+    "description": "Teacher-led 1–100 grid: 5 one-number hops with red curved trails and a circled landing.",
+    "year_group": "Grade 2",
+    "learning_intent": "Count forwards in ones to demonstrate adding 5 on a hundred square.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting forwards",
+      "addition",
+      "hundred square"
+    ],
+    "themes": [
+      "kangaroo",
+      "animals"
+    ],
+    "labels": [
+      "counting forwards",
+      "jump +5",
+      "teacher-led",
+      "interactive number grid",
+      "red jump arrows"
+    ],
+    "resource_type": "interactive teaching activity",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-15",
+    "updated": "2026-11-15",
+    "url": "resources/grade-2-kangaroo-jump-5/"
+  },
+  {
+    "id": "grade-2-kangaroo-jump-10",
+    "title": "Kangaroo's Ten Little Hops",
+    "description": "Teacher-led 1–100 grid: 10 one-number hops with red curved trails and a circled landing.",
+    "year_group": "Grade 2",
+    "learning_intent": "Count forwards in ones to demonstrate adding 10 on a hundred square.",
+    "subjects": [
+      "Mathematics"
+    ],
+    "topics": [
+      "number",
+      "counting forwards",
+      "addition",
+      "hundred square"
+    ],
+    "themes": [
+      "kangaroo",
+      "animals"
+    ],
+    "labels": [
+      "counting forwards",
+      "jump +10",
+      "teacher-led",
+      "interactive number grid",
+      "red jump arrows"
+    ],
+    "resource_type": "interactive teaching activity",
+    "language": "en-GB",
+    "estimated_minutes": 10,
+    "created": "2026-11-15",
+    "updated": "2026-11-15",
+    "url": "resources/grade-2-kangaroo-jump-10/"
+  },
+  {
     "id": "hoppy-counting-adventure",
     "title": "Hoppy's Counting Adventure",
     "description": "Help Hoppy the kangaroo hop between neighbouring numbered rocks, counting in twos from 2 to 30 while avoiding snakes. Includes hints, feedback and a replay option.",
